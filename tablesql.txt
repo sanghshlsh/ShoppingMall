@@ -29,3 +29,4 @@ constraint member_pk primary key (memberId)
 );
 
 git 체험중
+dfdfdg
