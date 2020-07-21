@@ -27,3 +27,4 @@ isDelete number default 0,
 memberGrade number default 0,
 constraint member_pk primary key (memberId)
 );
+dd
