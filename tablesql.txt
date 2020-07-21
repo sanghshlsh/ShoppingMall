@@ -27,3 +27,5 @@ isDelete number default 0,
 memberGrade number default 0,
 constraint member_pk primary key (memberId)
 );
+
+gir 체험중
