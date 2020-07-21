@@ -28,4 +28,4 @@ memberGrade number default 0,
 constraint member_pk primary key (memberId)
 );
 
-gi 체험중
+git 체험중
