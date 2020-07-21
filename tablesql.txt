@@ -1,0 +1,29 @@
+create user ca20 identified by ca20;
+grant connect, resource, dba to ca20;
+
+
+
+member table
+
+create table member(
+memberId varchar2(32),
+memberPw varchar2(32) NOT NULL,
+memberName varchar2(21) NOT NULL,
+memberZipcode varchar2(12) NOT NULL,
+memberAddress_1 varchar2(300) NOT NULL,
+memberAddress_2 varchar2(300),
+memberTel varchar2(24),
+memberPhone varchar2(24) NOT NULL,
+memberPetName varchar2(21),
+memberPerAge number,
+memberHolder varchar2(21) NOT NULL,
+memberAccount varchar2(28) NOT NULL,
+memberBank varchar2(45) NOT NULL,
+memberRegDate date default sysdate,
+memberEmail varchar2(200) unique not null,
+memberAcceptedEmail number default 0,
+memberAcceptedSns number default 0,
+isDelete number default 0,
+memberGrade number default 0,
+constraint member_pk primary key (memberId)
+);
