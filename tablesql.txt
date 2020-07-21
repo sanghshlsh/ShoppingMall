@@ -28,6 +28,7 @@ memberGrade number default 0,
 constraint member_pk primary key (memberId)
 );
 
+
 notice table
 
 create table notice(
