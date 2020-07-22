@@ -1,7 +1,13 @@
 package kr.co.domain;
 
-public class MemberShipDTO {
+import java.io.Serializable;
 
+public class MemberShipDTO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String memberId;
 	private String memberPw;
 	private String memberName;
