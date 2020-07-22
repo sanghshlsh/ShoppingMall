@@ -2,7 +2,7 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class MemberShipDTO implements Serializable{
+public class MemberDTO implements Serializable{
 
 	/**
 	 * 
@@ -17,7 +17,7 @@ public class MemberShipDTO implements Serializable{
 	private String memberTel; //일반전화
 	private String memberPhone; //핸드폰
 	private String memberPetName;
-	private int memberPerAge;
+	private int memberPetAge;
 	private String memberHolder; //예금주
 	private String memberAccount; //계좌번호
 	private String memberBank; //은행
@@ -28,13 +28,13 @@ public class MemberShipDTO implements Serializable{
 	private int isDelete; //삭제여부
 	private int memberGrade; //등급
 	
-	public MemberShipDTO() {
+	public MemberDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberShipDTO(String memberId, String memberPw, String memberName, String memberZipcode,
+	public MemberDTO(String memberId, String memberPw, String memberName, String memberZipcode,
 			String memberAddress_1, String memberAddress_2, String memberTel, String memberPhone, String memberPetName,
-			int memberPerAge, String memberHolder, String memberAccount, String memberBank, String memberRegDate,
+			int memberPetAge, String memberHolder, String memberAccount, String memberBank, String memberRegDate,
 			String memberEmail, int memberAcceptedEmail, int memberAcceptedSns, int isDelete, int memberGrade) {
 		super();
 		this.memberId = memberId;
@@ -46,7 +46,7 @@ public class MemberShipDTO implements Serializable{
 		this.memberTel = memberTel;
 		this.memberPhone = memberPhone;
 		this.memberPetName = memberPetName;
-		this.memberPerAge = memberPerAge;
+		this.memberPetAge = memberPetAge;
 		this.memberHolder = memberHolder;
 		this.memberAccount = memberAccount;
 		this.memberBank = memberBank;
@@ -130,12 +130,12 @@ public class MemberShipDTO implements Serializable{
 		this.memberPetName = memberPetName;
 	}
 
-	public int getMemberPerAge() {
-		return memberPerAge;
+	public int getMemberPetAge() {
+		return memberPetAge;
 	}
 
-	public void setMemberPerAge(int memberPerAge) {
-		this.memberPerAge = memberPerAge;
+	public void setMemberPetAge(int memberPetAge) {
+		this.memberPetAge = memberPetAge;
 	}
 
 	public String getMemberHolder() {
@@ -226,7 +226,7 @@ public class MemberShipDTO implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MemberShipDTO other = (MemberShipDTO) obj;
+		MemberDTO other = (MemberDTO) obj;
 		if (memberId == null) {
 			if (other.memberId != null)
 				return false;
