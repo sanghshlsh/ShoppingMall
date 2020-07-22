@@ -64,3 +64,25 @@ memberId varchar2(32),
 constraint delivery_pk primary key (deliveryNo),
 constraint delivery_memberId_fk foreign key (memberId) references member (memberId)
 );
+
+create table productOption(
+productOptionNo number,
+productNo number,
+productColor varchar2(12),
+productSize varchar2(12),
+productQuantity number check(productQuantity>-1),
+isDelete number default 0,
+constraint productOption_pk primary key (productOptionNo),
+constraint productOption_productNo_fk foreign key (productNo) references product (productNo)
+);
+
+
+create table cart(
+cartNo number,
+productNo number,
+cartAmount number check(cartAmount>0),
+memberId varchar2(32),
+constraint cart_pk primary key (cartNo),
+constraint cart_productNo_fk foreign key (productNo) references product (productNo),
+constraint cart_memberId_fk foreign key (memberId) references member (memberId)
+);
