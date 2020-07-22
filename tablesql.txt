@@ -86,3 +86,24 @@ constraint cart_pk primary key (cartNo),
 constraint cart_productNo_fk foreign key (productNo) references product (productNo),
 constraint cart_memberId_fk foreign key (memberId) references member (memberId)
 );
+
+
+
+create table review(
+reviewNo number,
+productNo number,
+memberId  varchar2(32),
+reviewContent varchar2(3000) not null,
+reviewRegDate date default sysdate,
+reviewTitle varchar2(90) not null,
+reviewReadCnt number default 0,
+reviewScore number not null,
+petKind varchar2(21),
+petWeight number,
+petSize varchar2(6),
+isDelete number default 0,
+constraint review_pk primary key (reviewNo),
+constraint review_productNo_fk foreign key (productNo) references product (productNo),
+constraint review_memberId_fk foreign key (memberId) references member (memberId)
+);
+
