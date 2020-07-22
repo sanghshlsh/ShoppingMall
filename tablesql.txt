@@ -107,3 +107,11 @@ constraint review_productNo_fk foreign key (productNo) references product (produ
 constraint review_memberId_fk foreign key (memberId) references member (memberId)
 );
 
+create table wishlist(
+wishNo number,
+productNo number,
+memberId varchar2(32),
+constraint wish_pk primary key (wishNo),
+constraint wish_productNo_fk foreign key (productNo) references product (productNo),
+constraint wish_memberId_fk foreign key (memberId) references member (memberId)
+);
