@@ -50,3 +50,17 @@ productSet varchar2(60),
 isDelete number default 0,
 constraint product_pk primary key (productNo)
 );
+
+create table delivery(
+deliveryNo number,
+deliveryName varchar2(50) not null,
+deliveryCustomer varchar2(21) not null,
+deliveryCode varchar2(12) not null,
+deliveryAddress_1 varchar2(300) not null,
+deliveryAddress_2 varchar2(300),
+deliveryTel varchar2(24),
+deliveryPhone varchar2(24) not null,
+memberId varchar2(32),
+constraint delivery_pk primary key (deliveryNo),
+constraint delivery_memberId_fk foreign key (memberId) references member (memberId)
+);
