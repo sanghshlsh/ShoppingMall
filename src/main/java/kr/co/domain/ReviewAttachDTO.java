@@ -2,7 +2,7 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class ProductAttachDTO implements Serializable{
+public class ReviewAttachDTO implements Serializable{
 
 	/**
 	 * 
@@ -11,18 +11,18 @@ public class ProductAttachDTO implements Serializable{
 	private int attachNo; //NOM
 	private String attachFullName; //fullname
 	private String attachRegDate; //regdate
-	private int productNo; //게시판no
+	private int reviewNo; //게시판no
 	
-	public ProductAttachDTO() {
+	public ReviewAttachDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductAttachDTO(int attachNo, String attachFullName, String attachRegDate, int productNo) {
+	public ReviewAttachDTO(int attachNo, String attachFullName, String attachRegDate, int reviewNo) {
 		super();
 		this.attachNo = attachNo;
 		this.attachFullName = attachFullName;
 		this.attachRegDate = attachRegDate;
-		this.productNo = productNo;
+		this.reviewNo = reviewNo;
 	}
 
 	public int getAttachNo() {
@@ -49,19 +49,16 @@ public class ProductAttachDTO implements Serializable{
 		this.attachRegDate = attachRegDate;
 	}
 
-	public int getProductNo() {
-		return productNo;
+	public int getReviewNo() {
+		return reviewNo;
 	}
 
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 	
-	
-
 }

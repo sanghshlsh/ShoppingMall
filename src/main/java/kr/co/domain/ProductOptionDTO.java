@@ -8,6 +8,7 @@ public class ProductOptionDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private int productNo; //상품번호
 	private String productColor; //색깔
 	private String productSize; //사이즈
 	private int productQuantity; //수량
@@ -18,15 +19,20 @@ public class ProductOptionDTO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductOptionDTO(String productColor, String productSize, int productQuantity, int productOptionNo,
-			int isDelete) {
+	
+
+	public ProductOptionDTO(int productNo, String productColor, String productSize, int productQuantity,
+			int productOptionNo, int isDelete) {
 		super();
+		this.productNo = productNo;
 		this.productColor = productColor;
 		this.productSize = productSize;
 		this.productQuantity = productQuantity;
 		this.productOptionNo = productOptionNo;
 		this.isDelete = isDelete;
 	}
+
+
 
 	public String getProductColor() {
 		return productColor;
@@ -71,6 +77,15 @@ public class ProductOptionDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
+	
 
 	
 	

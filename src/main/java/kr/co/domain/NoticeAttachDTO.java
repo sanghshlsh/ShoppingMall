@@ -2,7 +2,7 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class AttachDTO implements Serializable{
+public class NoticeAttachDTO implements Serializable{
 
 	/**
 	 * 
@@ -11,16 +11,18 @@ public class AttachDTO implements Serializable{
 	private int attachNo; //NOM
 	private String attachFullName; //fullname
 	private String attachRegDate; //regdate
+	private int noticeNo; //게시판no
 	
-	public AttachDTO() {
+	public NoticeAttachDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AttachDTO(int attachNo, String attachFullName, String attachRegDate) {
+	public NoticeAttachDTO(int attachNo, String attachFullName, String attachRegDate, int noticeNo) {
 		super();
 		this.attachNo = attachNo;
 		this.attachFullName = attachFullName;
 		this.attachRegDate = attachRegDate;
+		this.noticeNo = noticeNo;
 	}
 
 	public int getAttachNo() {
@@ -47,9 +49,19 @@ public class AttachDTO implements Serializable{
 		this.attachRegDate = attachRegDate;
 	}
 
+	public int getNoticeNo() {
+		return noticeNo;
+	}
+
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	
 	
 
 }
