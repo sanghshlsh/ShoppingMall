@@ -6,7 +6,7 @@ import java.util.List;
 public class ProductDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
+
 	private int productNo; //상품번호
 	private String productName; //상품이름
 	private int productPrice; //가격
@@ -17,16 +17,7 @@ public class ProductDTO implements Serializable {
 	private String[] files; //첨부파일
 	private List<ProductOptionDTO> plist; //상품옥션
 	
-=======
-	private int productNo; // 상품번호
-	private String productName; // 상품이름
-	private int productPrice; // 가격
-	private int productDiscountRate; // 가격할인율
-	private String productSet; // 세트
-	private int isDelete; // 삭제 여부
-	private int sellStatus; // 판매상태
 
->>>>>>> fetch_head
 	public ProductDTO() {
 
 	}
@@ -119,14 +110,7 @@ public class ProductDTO implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-<<<<<<< HEAD
-	
-
-	
+	}	
 		
 }
-=======
-}
->>>>>>> fetch_head
+

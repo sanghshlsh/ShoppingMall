@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class ReviewDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
 	private int reviewNo; //NO
 	private int productNo; //상품번호
 	private String memberId; //작성자
@@ -19,19 +18,6 @@ public class ReviewDTO implements Serializable {
 	private String petSize; //평소사이즈
 	private int isDelete; //삭제여부
 	
-=======
-	private int reviewNo; // no
-	private String reviewContent; // 내용
-	private String reviewRegDate; // 작성일자
-	private String reviewTitle; // 제목
-	private int reviewReadCnt; // 조회수
-	private int reviewScore; // 별점
-	private String petKind; // 견종/모종
-	private int petWeight; // 몸무게
-	private String petSize; // 평소사이즈
-	private int isDelete; // 삭제여부
-
->>>>>>> fetch_head
 	public ReviewDTO() {
 
 	}
@@ -153,11 +139,8 @@ public class ReviewDTO implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-<<<<<<< HEAD
+
 	
 
 }
-=======
 
-}
->>>>>>> fetch_head

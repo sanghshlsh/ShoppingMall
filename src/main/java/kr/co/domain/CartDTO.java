@@ -5,20 +5,14 @@ import java.io.Serializable;
 public class CartDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
-	private int cartNo; //no
-	private int productNo; //상품번호
-	private String memberId; //회원ID
-	private int cartAmount; //수량
-	
-	
-=======
-	private int cartNo; // no
-	private int cartAmount; // 수량
+	private int cartNo; //no		
+	private int productNo; //상품번호		
+	private String memberId; //회원ID		
+	private int cartAmount; //수량		
 
->>>>>>> fetch_head
+
 	public CartDTO() {
-
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -74,13 +68,7 @@ public class CartDTO implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-<<<<<<< HEAD
 	
 	
-	
-
 }
-=======
-}
->>>>>>> fetch_head
+

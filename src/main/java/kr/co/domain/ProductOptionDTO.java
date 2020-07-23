@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ProductOptionDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
+
 	private int productNo; //상품번호
 	private String productColor; //색깔
 	private String productSize; //사이즈
@@ -13,14 +13,6 @@ public class ProductOptionDTO implements Serializable {
 	private int productOptionNo; //no
 	private int isDelete; //삭제여부
 	
-=======
-	private String productColor; // 색깔
-	private String productSize; // 사이즈
-	private int productQuantity; // 수량
-	private int productOptionNo; // no
-	private int isDelete; // 삭제여부
-
->>>>>>> fetch_head
 	public ProductOptionDTO() {
 
 	}
@@ -84,7 +76,7 @@ public class ProductOptionDTO implements Serializable {
 		return serialVersionUID;
 	}
 
-<<<<<<< HEAD
+
 	public int getProductNo() {
 		return productNo;
 	}
@@ -92,12 +84,6 @@ public class ProductOptionDTO implements Serializable {
 	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
-	
 
 	
-	
 }
-
-=======
-}
->>>>>>> fetch_head
