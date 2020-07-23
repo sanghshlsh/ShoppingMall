@@ -5,16 +5,16 @@ import java.io.Serializable;
 public class ProductDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int productNo; //상품번호
-	private String productName; //상품이름
-	private int productPrice; //가격
-	private int productDiscountRate; //가격할인율
-	private String productSet; //세트
-	private int isDelete; //삭제 여부
-	private int sellStatus; //판매상태
-	
+	private int productNo; // 상품번호
+	private String productName; // 상품이름
+	private int productPrice; // 가격
+	private int productDiscountRate; // 가격할인율
+	private String productSet; // 세트
+	private int isDelete; // 삭제 여부
+	private int sellStatus; // 판매상태
+
 	public ProductDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public ProductDTO(int productNo, String productName, int productPrice, int productDiscountRate, String productSet,
@@ -89,6 +89,4 @@ public class ProductDTO implements Serializable {
 		return serialVersionUID;
 	}
 
-	
-		
 }

@@ -2,17 +2,14 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class CartDTO implements Serializable{
+public class CartDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private int cartNo; //no
-	private int cartAmount; //수량
-	
+	private int cartNo; // no
+	private int cartAmount; // 수량
+
 	public CartDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public CartDTO(int cartNo, int cartAmount) {
@@ -40,7 +37,5 @@ public class CartDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
 
 }

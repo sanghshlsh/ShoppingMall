@@ -1,5 +1,5 @@
 package kr.co.persistence;
 
-public interface ProductDAO {
+public interface MemberDAO {
 
 }

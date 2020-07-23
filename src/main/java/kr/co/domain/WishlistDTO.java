@@ -4,14 +4,11 @@ import java.io.Serializable;
 
 public class WishlistDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int wishNo; //no
 	
 	public WishlistDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public WishlistDTO(int wishNo) {

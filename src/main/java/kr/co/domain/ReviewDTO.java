@@ -2,25 +2,22 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class ReviewDTO implements Serializable{
+public class ReviewDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private int reviewNo; //no
-	private String reviewContent; //내용
-	private String reviewRegDate; //작성일자
-	private String reviewTitle; //제목
-	private int reviewReadCnt; //조회수
-	private int reviewScore; //별점
-	private String petKind; //견종/모종
-	private int petWeight; //몸무게
-	private String petSize; //평소사이즈
-	private int isDelete; //삭제여부
-	
+	private int reviewNo; // no
+	private String reviewContent; // 내용
+	private String reviewRegDate; // 작성일자
+	private String reviewTitle; // 제목
+	private int reviewReadCnt; // 조회수
+	private int reviewScore; // 별점
+	private String petKind; // 견종/모종
+	private int petWeight; // 몸무게
+	private String petSize; // 평소사이즈
+	private int isDelete; // 삭제여부
+
 	public ReviewDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public ReviewDTO(int reviewNo, String reviewContent, String reviewRegDate, String reviewTitle, int reviewReadCnt,
@@ -122,7 +119,4 @@ public class ReviewDTO implements Serializable{
 		return serialVersionUID;
 	}
 
-	
-	
-	
 }

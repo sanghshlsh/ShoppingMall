@@ -2,22 +2,19 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class FaqDTO implements Serializable{
+public class FaqDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private int fagNo; //no
-	private String faqTitle; //제목
-	private String faqRegDate; //작성일자
-	private String faqContent; //내용
-	private int faqReadCnt; //조회수
-	private String faqCategory; //카테고리
-	private int isDelete; //삭제여부
-	
+	private int fagNo; // no
+	private String faqTitle; // 제목
+	private String faqRegDate; // 작성일자
+	private String faqContent; // 내용
+	private int faqReadCnt; // 조회수
+	private String faqCategory; // 카테고리
+	private int isDelete; // 삭제여부
+
 	public FaqDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public FaqDTO(int fagNo, String faqTitle, String faqRegDate, String faqContent, int faqReadCnt, String faqCategory,
@@ -91,7 +88,5 @@ public class FaqDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 
 }

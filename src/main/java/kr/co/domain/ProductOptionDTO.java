@@ -2,20 +2,17 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class ProductOptionDTO implements Serializable{
+public class ProductOptionDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private String productColor; //색깔
-	private String productSize; //사이즈
-	private int productQuantity; //수량
-	private int productOptionNo; //no
-	private int isDelete; //삭제여부
-	
+	private String productColor; // 색깔
+	private String productSize; // 사이즈
+	private int productQuantity; // 수량
+	private int productOptionNo; // no
+	private int isDelete; // 삭제여부
+
 	public ProductOptionDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public ProductOptionDTO(String productColor, String productSize, int productQuantity, int productOptionNo,
@@ -72,7 +69,4 @@ public class ProductOptionDTO implements Serializable{
 		return serialVersionUID;
 	}
 
-	
-	
 }
-
