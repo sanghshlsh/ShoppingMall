@@ -4,16 +4,13 @@ import java.io.Serializable;
 
 public class WishlistDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int wishNo; //no
 	private int productNo; //상품번호
 	private String memberId; //회원ID
 	
 	public WishlistDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public WishlistDTO(int wishNo, int productNo, String memberId) {

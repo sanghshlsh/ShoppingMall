@@ -2,12 +2,10 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class QnaDTO implements Serializable{
+public class QnaDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+<<<<<<< HEAD
 	private int qnaNo; //no
 	private String qnaTitle; //제목
 	private String qnaContent; //내용
@@ -16,9 +14,17 @@ public class QnaDTO implements Serializable{
 	private String memberId; //작성자
 	private int productNo; //상품번호
 	private int isDelete; //삭제여부
+=======
+	private int qnaNo; // no
+	private String qnaTitle; // 제목
+	private String qnaContent; // 내용
+	private String qnaRegDate; // 작성일자
+	private int qnaReadCnt; // 조회수
+	private int isDelete; // 삭제여부
+>>>>>>> fetch_head
 
 	public QnaDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public QnaDTO(int qnaNo, String qnaTitle, String qnaContent, String qnaRegDate, int qnaReadCnt, String memberId,
@@ -102,7 +108,11 @@ public class QnaDTO implements Serializable{
 		return serialVersionUID;
 	}
 
+<<<<<<< HEAD
 	
 	
 	
 }
+=======
+}
+>>>>>>> fetch_head
