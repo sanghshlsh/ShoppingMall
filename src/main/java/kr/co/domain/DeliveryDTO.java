@@ -5,19 +5,16 @@ import java.io.Serializable;
 public class DeliveryDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String deliveryName; // 배송지명
-	private String deliveryCustomer; // 성명
-	private String deliveryCode; // 우편번호
-	private String deliveryAddress_1; // 주소
-	private String deliveryAddress_2; // 상세주소
-	private String deliveryTel; // 전화번호
-	private String deliveryPhone; // 핸드폰
-	private int deliveryNo; // no
-	private String memberId;
 
-	public DeliveryDTO() {
-
-	}
+	private String deliveryName; //배송지명
+	private String deliveryCustomer; //성명
+	private String deliveryCode; //우편번호
+	private String deliveryAddress_1; //주소
+	private String deliveryAddress_2; //상세주소
+	private String deliveryTel; //전화번호
+	private String deliveryPhone; //핸드폰
+	private String memberId; //회원ID
+	private int deliveryNo; //no
 
 	public DeliveryDTO(String deliveryName, String deliveryCustomer, String deliveryCode, String deliveryAddress_1,
 			String deliveryAddress_2, String deliveryTel, String deliveryPhone, int deliveryNo, String memberId) {
@@ -92,7 +89,7 @@ public class DeliveryDTO implements Serializable {
 	public int getDeliveryNo() {
 		return deliveryNo;
 	}
-
+	
 	public void setDeliveryNo(int deliveryNo) {
 		this.deliveryNo = deliveryNo;
 	}
@@ -109,4 +106,6 @@ public class DeliveryDTO implements Serializable {
 		this.memberId = memberId;
 	}
 
+
 }
+

@@ -5,25 +5,32 @@ import java.io.Serializable;
 public class ProductOptionDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String productColor; // 색깔
-	private String productSize; // 사이즈
-	private int productQuantity; // 수량
-	private int productOptionNo; // no
-	private int isDelete; // 삭제여부
 
+	private int productNo; //상품번호
+	private String productColor; //색깔
+	private String productSize; //사이즈
+	private int productQuantity; //수량
+	private int productOptionNo; //no
+	private int isDelete; //삭제여부
+	
 	public ProductOptionDTO() {
 
 	}
 
-	public ProductOptionDTO(String productColor, String productSize, int productQuantity, int productOptionNo,
-			int isDelete) {
+	
+
+	public ProductOptionDTO(int productNo, String productColor, String productSize, int productQuantity,
+			int productOptionNo, int isDelete) {
 		super();
+		this.productNo = productNo;
 		this.productColor = productColor;
 		this.productSize = productSize;
 		this.productQuantity = productQuantity;
 		this.productOptionNo = productOptionNo;
 		this.isDelete = isDelete;
 	}
+
+
 
 	public String getProductColor() {
 		return productColor;
@@ -69,4 +76,14 @@ public class ProductOptionDTO implements Serializable {
 		return serialVersionUID;
 	}
 
+
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
+
+	
 }

@@ -5,24 +5,29 @@ import java.io.Serializable;
 public class QnaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int qnaNo; // no
-	private String qnaTitle; // 제목
-	private String qnaContent; // 내용
-	private String qnaRegDate; // 작성일자
-	private int qnaReadCnt; // 조회수
-	private int isDelete; // 삭제여부
+	private int qnaNo; //no
+	private String qnaTitle; //제목
+	private String qnaContent; //내용
+	private String qnaRegDate; //작성일자
+	private int qnaReadCnt; //조회수
+	private String memberId; //작성자
+	private int productNo; //상품번호
+	private int isDelete; //삭제여부
 
 	public QnaDTO() {
 
 	}
 
-	public QnaDTO(int qnaNo, String qnaTitle, String qnaContent, String qnaRegDate, int qnaReadCnt, int isDelete) {
+	public QnaDTO(int qnaNo, String qnaTitle, String qnaContent, String qnaRegDate, int qnaReadCnt, String memberId,
+			int productNo, int isDelete) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
 		this.qnaContent = qnaContent;
 		this.qnaRegDate = qnaRegDate;
 		this.qnaReadCnt = qnaReadCnt;
+		this.memberId = memberId;
+		this.productNo = productNo;
 		this.isDelete = isDelete;
 	}
 
@@ -66,6 +71,22 @@ public class QnaDTO implements Serializable {
 		this.qnaReadCnt = qnaReadCnt;
 	}
 
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
+
 	public int getIsDelete() {
 		return isDelete;
 	}
@@ -77,5 +98,6 @@ public class QnaDTO implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
 }
+
