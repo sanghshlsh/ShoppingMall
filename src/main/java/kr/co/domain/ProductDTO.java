@@ -1,6 +1,7 @@
 package kr.co.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ProductDTO implements Serializable {
 
@@ -12,13 +13,14 @@ public class ProductDTO implements Serializable {
 	private String productSet; // 세트
 	private int isDelete; // 삭제 여부
 	private int sellStatus; // 판매상태
-
+	private List<ProductOptionDTO> optList;
+	
 	public ProductDTO() {
 
 	}
-
+	
 	public ProductDTO(int productNo, String productName, int productPrice, int productDiscountRate, String productSet,
-			int isDelete, int sellStatus) {
+			int isDelete, int sellStatus, List<ProductOptionDTO> optList) {
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -27,6 +29,7 @@ public class ProductDTO implements Serializable {
 		this.productSet = productSet;
 		this.isDelete = isDelete;
 		this.sellStatus = sellStatus;
+		this.optList = optList;
 	}
 
 	public int getProductNo() {
@@ -88,5 +91,15 @@ public class ProductDTO implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public List<ProductOptionDTO> getOptList() {
+		return optList;
+	}
+
+	public void setOptList(List<ProductOptionDTO> optList) {
+		this.optList = optList;
+	}
+	
+	
 
 }
