@@ -1,6 +1,6 @@
 package kr.co.persistence;
 
-<<<<<<< HEAD
+
 import kr.co.domain.MemberDTO;
 
 public interface MemberDAO {
@@ -11,8 +11,3 @@ public interface MemberDAO {
 }
 
 
-=======
-public interface MemberDAO {
-
-}
->>>>>>> fetch_head
