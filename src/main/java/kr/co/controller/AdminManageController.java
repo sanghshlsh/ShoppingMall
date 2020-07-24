@@ -8,15 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("admin")
 public class AdminManageController {
 	
-	@RequestMapping(value = "/manage/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/manage/boardList", method = RequestMethod.GET)
 	public void adminManageIndex() {
 	}
-	
-	@RequestMapping(value = "/product/list", method = RequestMethod.GET)
-	public void adminProduct() {		
-	}
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public void adminIndex() {		
-	}
+
 }
