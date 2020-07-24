@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p.r.o">
+ 
+ <!-- 회원 가입 -->
+ <insert id="insert">
+ insert into member(memberId, memberPw, memberName, memberZipcode,
+ memberAddress_1, memberAddress_2, memberTel, memberPhone, 
+ memberPetName, memberPetAge, memberHolder, memberAccount, memberBank,
+ memberEmail, memberAcceptedEmail, memberAcceptedSns
+ )
+ 
+  values(#{memberId}, #{memberPw}, #{memberName}, #{memberZipcode},
+  #{memberAddress_1}, #{memberAddress_2}, #{memberTel}, #{memberPhone},
+  #{memberPetName}, #{memberPetAge}, #{memberHolder}, #{memberAccount}, #{memberBank},
+   #{memberEmail},  #{memberAcceptedEmail},  #{memberAcceptedSns}) 
+</insert> 
+
+<!-- 로그인 -->
+<select id="login" resultType="kr.co.domain.MemberDTO">
+ select
+   memberId, memberPw, memberName, memberZipcode,
+ memberAddress_1, memberAddress_2, memberTel, memberPhone, 
+ memberPetName, memberPetAge, memberHolder, memberAccount, memberBank,
+ memberEmail, memberAcceptedEmail, memberAcceptedSns, memberRegDate
+ from
+    member
+ where  memberId = #{memberId}
+</select>
+ 
+</mapper>

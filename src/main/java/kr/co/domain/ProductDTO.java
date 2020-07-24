@@ -16,12 +16,12 @@ public class ProductDTO implements Serializable {
 	private int sellStatus; //판매상태
 	private String[] files; //첨부파일
 	private List<ProductOptionDTO> plist; //상품옥션
-	
+
 
 	public ProductDTO() {
 
 	}
-
+	
 	public ProductDTO(int productNo, String productName, int productPrice, int productDiscountRate, String productSet,
 			int isDelete, int sellStatus, String[] files, List<ProductOptionDTO> plist) {
 		super();
