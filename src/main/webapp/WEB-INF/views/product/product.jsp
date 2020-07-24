@@ -15,6 +15,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="container">
+		<div class="row text-center">
+			<h1>판매상품관리</h1>
+		</div>
+		<div class="row">
+			<form action="/admin/insert" method="post">
+				<div class="form-group">
+					<label for="productNo">상품번호</label>
+					<input type="text" id="productNo" name="productNo">
+				</div>
+				<div class="form-group">
+					<label for="productName">상품이름</label>
+					<input type="productName" id="productName" name="productNo">
+				</div>
+				<div class="form-group">
+					<label for="productPrice">가격</label>
+					<input type="text" id="productPrice" name="productPrice">
+				</div>
+				
+			</form>
+		</div>
+	</div>
 
 </body>
 </html>
