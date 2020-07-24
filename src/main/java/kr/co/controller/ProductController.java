@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProductController {
 
-<<<<<<< HEAD
 
-=======
 	@RequestMapping(value="/admin/product/list", method = RequestMethod.GET)
 	public void adminProduct() {		
 	}
@@ -37,5 +35,21 @@ public class ProductController {
 	public void adminCharts() {
 		//필요x
 	}
->>>>>>> fetch_head
+	@RequestMapping(value="/admin/default/animation", method = RequestMethod.GET)
+	public void adminAniamtion() {
+		//필요x
+	}
+	@RequestMapping(value="/admin/default/boarder", method = RequestMethod.GET)
+	public void adminBoarder() {
+		//필요x
+	}
+	@RequestMapping(value="/admin/default/color", method = RequestMethod.GET)
+	public void adminColor() {
+		//필요x
+	}
+	@RequestMapping(value="/admin/default/other", method = RequestMethod.GET)
+	public void adminOther() {
+		//필요x
+	}
+
 }
