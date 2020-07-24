@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProductController {
 
-	@RequestMapping(value="/manager/product/list", method = RequestMethod.GET)
-	public void managerProduct() {		
+	@RequestMapping(value="/admin/product/list", method = RequestMethod.GET)
+	public void adminProduct() {		
 	}
-	@RequestMapping(value="/manager/index", method = RequestMethod.GET)
-	public void managerIndex() {		
+	@RequestMapping(value="/admin/index", method = RequestMethod.GET)
+	public void adminIndex() {		
 	}
 }
