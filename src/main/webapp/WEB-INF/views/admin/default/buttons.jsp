@@ -47,7 +47,7 @@
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>상품</span></a>
       </li>
 
       <!-- Divider -->

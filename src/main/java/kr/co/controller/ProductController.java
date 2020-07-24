@@ -11,9 +11,11 @@ public class ProductController {
 
 
 
+
 	@RequestMapping(value="/admin/product/list", method = RequestMethod.GET)
 	public void adminProduct() {		
 	}
+
 	@RequestMapping(value="/admin/default/index", method = RequestMethod.GET)
 	public void adminIndex() {
 		//필요x
@@ -39,6 +41,21 @@ public class ProductController {
 		//필요x
 
 	}
-	
-	
+	@RequestMapping(value="/admin/default/animation", method = RequestMethod.GET)
+	public void adminAniamtion() {
+		//필요x
+	}
+	@RequestMapping(value="/admin/default/boarder", method = RequestMethod.GET)
+	public void adminBoarder() {
+		//필요x
+	}
+	@RequestMapping(value="/admin/default/color", method = RequestMethod.GET)
+	public void adminColor() {
+		//필요x
+	}
+	@RequestMapping(value="/admin/default/other", method = RequestMethod.GET)
+	public void adminOther() {
+		//필요x
+	}
+
 }
