@@ -12,10 +12,10 @@ public class AdminManageController {
 	public void adminManageIndex() {
 	}
 	
-//	@RequestMapping(value = "/product/list", method = RequestMethod.GET)
-//	public void adminProduct() {		
-//	}
-//	
+	@RequestMapping(value = "/product/list", method = RequestMethod.GET)
+	public void adminProduct() {		
+	}
+	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public void adminIndex() {		
 	}
