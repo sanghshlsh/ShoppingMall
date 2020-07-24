@@ -2,31 +2,33 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class ReviewDTO implements Serializable{
+public class ReviewDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private int reviewNo; //no
+	private int reviewNo; //NO
+	private int productNo; //상품번호
+	private String memberId; //작성자
 	private String reviewContent; //내용
 	private String reviewRegDate; //작성일자
 	private String reviewTitle; //제목
 	private int reviewReadCnt; //조회수
 	private int reviewScore; //별점
-	private String petKind; //견종/모종
+	private String petKind; //견종/묘종
 	private int petWeight; //몸무게
 	private String petSize; //평소사이즈
 	private int isDelete; //삭제여부
 	
 	public ReviewDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public ReviewDTO(int reviewNo, String reviewContent, String reviewRegDate, String reviewTitle, int reviewReadCnt,
-			int reviewScore, String petKind, int petWeight, String petSize, int isDelete) {
+	public ReviewDTO(int reviewNo, int productNo, String memberId, String reviewContent, String reviewRegDate,
+			String reviewTitle, int reviewReadCnt, int reviewScore, String petKind, int petWeight, String petSize,
+			int isDelete) {
 		super();
 		this.reviewNo = reviewNo;
+		this.productNo = productNo;
+		this.memberId = memberId;
 		this.reviewContent = reviewContent;
 		this.reviewRegDate = reviewRegDate;
 		this.reviewTitle = reviewTitle;
@@ -44,6 +46,22 @@ public class ReviewDTO implements Serializable{
 
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
+	}
+
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getReviewContent() {
@@ -123,6 +141,6 @@ public class ReviewDTO implements Serializable{
 	}
 
 	
-	
-	
+
 }
+

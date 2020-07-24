@@ -1,10 +1,12 @@
 package kr.co.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ProductDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	private int productNo; //상품번호
 	private String productName; //상품이름
 	private int productPrice; //가격
@@ -12,13 +14,16 @@ public class ProductDTO implements Serializable {
 	private String productSet; //세트
 	private int isDelete; //삭제 여부
 	private int sellStatus; //판매상태
-	
-	public ProductDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	private String[] files; //첨부파일
+	private List<ProductOptionDTO> plist; //상품옥션
 
+
+	public ProductDTO() {
+
+	}
+	
 	public ProductDTO(int productNo, String productName, int productPrice, int productDiscountRate, String productSet,
-			int isDelete, int sellStatus) {
+			int isDelete, int sellStatus, String[] files, List<ProductOptionDTO> plist) {
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -27,6 +32,8 @@ public class ProductDTO implements Serializable {
 		this.productSet = productSet;
 		this.isDelete = isDelete;
 		this.sellStatus = sellStatus;
+		this.files = files;
+		this.plist = plist;
 	}
 
 	public int getProductNo() {
@@ -85,10 +92,25 @@ public class ProductDTO implements Serializable {
 		this.sellStatus = sellStatus;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String[] getFiles() {
+		return files;
 	}
 
-	
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+
+	public List<ProductOptionDTO> getPlist() {
+		return plist;
+	}
+
+	public void setPlist(List<ProductOptionDTO> plist) {
+		this.plist = plist;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}	
 		
 }
+

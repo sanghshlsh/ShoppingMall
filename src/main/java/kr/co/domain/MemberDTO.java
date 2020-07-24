@@ -2,40 +2,37 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
-public class MemberDTO implements Serializable{
+public class MemberDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String memberId;
 	private String memberPw;
 	private String memberName;
-	private String memberZipcode; //우편
-	private String memberAddress_1; //주소
-	private String memberAddress_2; //상세주소
-	private String memberTel; //일반전화
-	private String memberPhone; //핸드폰
+	private String memberZipcode; // 우편
+	private String memberAddress_1; // 주소
+	private String memberAddress_2; // 상세주소
+	private String memberTel; // 일반전화
+	private String memberPhone; // 핸드폰
 	private String memberPetName;
 	private int memberPetAge;
-	private String memberHolder; //예금주
-	private String memberAccount; //계좌번호
-	private String memberBank; //은행
-	private String memberRegDate; //가입일
-	private String memberEmail; //이메일
-	private int memberAcceptedEmail; //이메일수신동의
-	private int memberAcceptedSns; //SNS수신동의
-	private int isDelete; //삭제여부
-	private int memberGrade; //등급
-	
+	private String memberHolder; // 예금주
+	private String memberAccount; // 계좌번호
+	private String memberBank; // 은행
+	private String memberRegDate; // 가입일
+	private String memberEmail; // 이메일
+	private int memberAcceptedEmail; // 이메일수신동의
+	private int memberAcceptedSns; // SNS수신동의
+	private int isDelete; // 삭제여부
+	private int memberGrade; // 등급
+
 	public MemberDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public MemberDTO(String memberId, String memberPw, String memberName, String memberZipcode,
-			String memberAddress_1, String memberAddress_2, String memberTel, String memberPhone, String memberPetName,
-			int memberPetAge, String memberHolder, String memberAccount, String memberBank, String memberRegDate,
-			String memberEmail, int memberAcceptedEmail, int memberAcceptedSns, int isDelete, int memberGrade) {
+	public MemberDTO(String memberId, String memberPw, String memberName, String memberZipcode, String memberAddress_1,
+			String memberAddress_2, String memberTel, String memberPhone, String memberPetName, int memberPetAge,
+			String memberHolder, String memberAccount, String memberBank, String memberRegDate, String memberEmail,
+			int memberAcceptedEmail, int memberAcceptedSns, int isDelete, int memberGrade) {
 		super();
 		this.memberId = memberId;
 		this.memberPw = memberPw;
@@ -234,7 +231,5 @@ public class MemberDTO implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

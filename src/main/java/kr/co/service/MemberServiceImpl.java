@@ -1,5 +1,6 @@
 package kr.co.service;
 
+<<<<<<< HEAD
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -21,3 +22,17 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 }
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.co.persistence.MemberDAO;
+
+@Service
+public class MemberServiceImpl implements MemberService {
+	
+	@Autowired
+	private MemberDAO memberDao;
+
+}
+>>>>>>> fetch_head
