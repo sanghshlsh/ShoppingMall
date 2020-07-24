@@ -16,6 +16,10 @@
 <body>
 <div class=container>
 	<div class="row">
+		<%-- <jsp:include page="" flush="true">
+		manager-header 액션태그로 삽입 --%>
+	</div>
+	<div class="row">
 		<button class="btn btn-primary" id="product_insert_btn">제품 등록</button>
 	</div>
 	<div class="row">
