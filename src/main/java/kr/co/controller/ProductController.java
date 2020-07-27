@@ -70,5 +70,9 @@ public class ProductController {
 	public void adminOther() {
 		//필요x
 	}
+	@RequestMapping(value="/admin/main", method = RequestMethod.GET)
+	public void adminMain() {
+		//필요x
+	}
 
 }
