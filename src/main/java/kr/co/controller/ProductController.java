@@ -15,6 +15,7 @@ import kr.co.service.ProductService;
 @Controller
 public class ProductController {
 
+
 	@Autowired
 	private ProductService productService;
 
@@ -24,10 +25,7 @@ public class ProductController {
 		return "redirct:/admin/insert";
 	}
 	
-	@RequestMapping(value ="/admin/product/insert", method = RequestMethod.GET)
-	public void insertProduct() {
-		
-	}
+
 
 //	@RequestMapping(value="/admin/product/list", method = RequestMethod.GET)
 //	public void adminProduct() {	
