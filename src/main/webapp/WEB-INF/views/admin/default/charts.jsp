@@ -146,6 +146,35 @@
 
         </nav>
         <!-- End of Topbar -->
+        
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+        	<!-- Page Heading -->
+        	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+           		<h1 class="h3 mb-0 text-gray-800">판매상품등록</h1>
+          	</div>
+        </div>
+        
+        <div class="container">
+			<div class="row">
+				<form action="/admin/insert" method="post">
+					<div class="form-group">
+						<label for="productNo">상품번호</label>
+						<input type="text" id="productNo" name="productNo">
+					</div>
+					<div class="form-group">
+						<label for="productName">상품이름</label>
+						<input type="productName" id="productName" name="productNo">
+					</div>
+					<div class="form-group">
+						<label for="productPrice">가격</label>
+						<input type="text" id="productPrice" name="productPrice">
+					</div>
+				
+				</form>
+			</div>
+		</div>
+        
 
 
   <!-- Scroll to Top Button-->
