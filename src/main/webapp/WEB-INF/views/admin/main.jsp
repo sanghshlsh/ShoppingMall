@@ -15,108 +15,113 @@
 </head>
 <body>
 <div class="container">
-	<div class="row">
-		admin헤더삽입
-	</div>
-	<div class="row">
-		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-			<thead>
-				<tr>
-					<th>오늘주문</th>
-					<th>오늘매출</th>
-					<th>상품문의</th>
-					<th>1:1문의</th>
-					<th>신규회원</th>
-					<th>오늘 방문자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>주문완료 건수</td>
-					<td rowspan="2">매출건수</td>
-					<td rowspan="2">상품문의건수</td>
-					<td rowspan="2">1:1문의건수</td>
-					<td rowspan="2">가입건수</td>
-					<td rowspan="2">방문자수</td>
-				</tr>
-				<tr>
-					<td>취소완료 건수</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="row">
-	</div>
-	<div class="row">
-		<div class="row" id="table_title">
-			<div class="col-sm-6">
-				쇼핑몰 운영 현황
-			</div>
-			<div class="dropdown col-sm-3">
-				<a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
-					<span id="selected"></span><span class="caret"></span></a>
-				<ul class="dropdown-menu">
-				</ul>
-			</div>
-			<div class="col-sm-3">
-				
-			</div>
+	<div class="row"> 
+		<div class="col-sm-3">
+			좌측 사이드바 삽입
 		</div>
-		<div class="row">
-			<table class="table">
-				<thead>
-					<tr id="thead1">
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>매출액 (단위:원)</td>
-						<%-- 
-						<c:forEach items="" var="">
-						<td>해당일 불러오기</td>
-						</c:forEach>
-						--%>
-					</tr>
-					<tr>
-						<td>매결제완료 (단위:건)</td>
-						<%-- 
-						<c:forEach items="" var="">
-						<td>해당일 불러오기</td>
-						</c:forEach>
-						--%>
-					</tr>
-					<tr>
-						<td>배송준비</td>
-						<%-- 
-						<c:forEach items="" var="">
-						<td>해당일 불러오기</td>
-						</c:forEach>
-						--%>
-					</tr>
-					<tr>
-						<td>배송중</td>
-						<%-- 
-						<c:forEach items="" var="">
-						<td>해당일 불러오기</td>
-						</c:forEach>
-						--%>
-					</tr>
-					<tr>
-						<td>배송완료</td>
-						<%-- 
-						<c:forEach items="" var="">
-						<td>해당일 불러오기</td>
-						</c:forEach>
-						--%>
-					</tr>
+		<div class="row col-sm-9">
+			<div class="row">
+			admin헤더삽입
+			</div>
+			<div class="row">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
 						<tr>
-						<td>구매확정</td>
-						<%-- 
-						<c:forEach items="" var="">
-						<td>해당일 불러오기</td>
-						</c:forEach>
-						--%>
-					</tr>
+							<th>오늘주문</th>
+							<th>오늘매출</th>
+							<th>상품문의</th>
+							<th>1:1문의</th>
+							<th>신규회원</th>
+							<th>오늘 방문자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>주문완료 건수</td>
+							<td rowspan="2">매출건수</td>
+							<td rowspan="2">상품문의건수</td>
+							<td rowspan="2">1:1문의건수</td>
+							<td rowspan="2">가입건수</td>
+							<td rowspan="2">방문자수</td>
+						</tr>
+						<tr>
+							<td>취소완료 건수</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+			</div>
+			<div class="row">
+				<div class="row" id="table_title">
+					<div class="col-sm-6">
+						쇼핑몰 운영 현황
+					</div>
+					<div class="dropdown col-sm-3">
+						<a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<span id="selected"></span><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						
+					</div>
+				</div>
+			<div class="row">
+				<table class="table">
+					<thead>
+						<tr id="thead1">
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>매출액 (단위:원)</td>
+							<%-- 
+							<c:forEach items="" var="">
+							<td>해당일 불러오기</td>
+							</c:forEach>
+							--%>
+						</tr>
+						<tr>
+							<td>매결제완료 (단위:건)</td>
+							<%-- 
+							<c:forEach items="" var="">
+							<td>해당일 불러오기</td>
+							</c:forEach>
+							--%>
+						</tr>
+						<tr>
+							<td>배송준비</td>
+							<%-- 
+							<c:forEach items="" var="">
+							<td>해당일 불러오기</td>
+							</c:forEach>
+							--%>
+						</tr>
+						<tr>
+							<td>배송중</td>
+							<%-- 
+							<c:forEach items="" var="">
+							<td>해당일 불러오기</td>
+							</c:forEach>
+							--%>
+						</tr>
+						<tr>
+							<td>배송완료</td>
+							<%-- 
+							<c:forEach items="" var="">
+							<td>해당일 불러오기</td>
+							</c:forEach>
+							--%>
+						</tr>
+							<tr>
+							<td>구매확정</td>
+							<%-- 
+							<c:forEach items="" var="">
+							<td>해당일 불러오기</td>
+							</c:forEach>
+							--%>
+						</tr>
 						<tr>
 						<td>취소,환불,교환</td>
 						<%-- 
@@ -134,77 +139,81 @@
 						--%>
 					</tr>
 				</tbody>
-			</table>
-		
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<table>
-					<thead>
-						<tr>
-							<th class="col-sm-11">기능 업데이트</th>
-							<th class="col-sm-1">+</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>불러오기</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-sm-6">
-				<table>
-					<thead>
-						<tr>
-							<th class="col-sm-11">공지사항</th>
-							<th class="col-sm-1">+</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>불러오기</td>
-						</tr>
-					</tbody>
-				</table>			
-			</div>
-		</div>
-		<div class="row">
-		<br><br>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<table>
-					<thead>
-						<tr>
-							<th class="col-sm-11">상품문의</th>
-							<th class="col-sm-1">+</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>불러오기</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-sm-6">
-				<table>
-					<thead>
-						<tr>
-							<th class="col-sm-11">1:1문의</th>
-							<th class="col-sm-1">+</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>불러오기</td>
-						</tr>
-					</tbody>
-				</table>			
-			</div>
+					</table>
+			
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<table>
+							<thead>
+								<tr>
+									<th class="col-sm-11">기능 업데이트</th>
+									<th class="col-sm-1">+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>불러오기</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-sm-6">
+						<table>
+							<thead>
+								<tr>
+									<th class="col-sm-11">공지사항</th>
+									<th class="col-sm-1">+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>불러오기</td>
+								</tr>
+							</tbody>
+						</table>			
+					</div>
+				</div>
+				<div class="row">
+				<br><br>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<table>
+							<thead>
+								<tr>
+									<th class="col-sm-11">상품문의</th>
+									<th class="col-sm-1">+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>불러오기</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-sm-6">
+						<table>
+							<thead>
+								<tr>
+									<th class="col-sm-11">1:1문의</th>
+									<th class="col-sm-1">+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>불러오기</td>
+								</tr>
+							</tbody>
+						</table>			
+					</div>
+				</div>
+			</div>	
 		</div>
 	</div>
+	
+
 
 </div>
 
