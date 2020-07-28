@@ -12,8 +12,13 @@ import kr.co.domain.ProductDTO;
 import kr.co.service.ProductService;
 
 
+
 @Controller
+@RequestMapping("product")
 public class ProductController {
+
+	
+
 
 
 	@Autowired
@@ -62,6 +67,11 @@ public class ProductController {
 	}
 	@RequestMapping(value="/admin/default/other", method = RequestMethod.GET)
 	public void adminOther() {
+		//필요x
+
+	}
+	@RequestMapping(value="/admin/main", method = RequestMethod.GET)
+	public void adminMain() {
 		//필요x
 	}
 

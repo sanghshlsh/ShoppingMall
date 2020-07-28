@@ -10,112 +10,163 @@
 <title>Admin Management</title>
 <%@ include file="../include/head.jsp"%>
 <style>
-.col-fixed {
-	position: relative;
-	min-height: 1px;
-	padding-right: 15px;
-	padding-left: 15px;
-	float: left;
-	width: 100%;
+/* Base structure */
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+	padding-top: 50px;
 }
 
-.col-fluid {
-	position: relative;
-	min-height: 1px;
-	padding-right: 15px;
-	padding-left: 15px;
-	float: left;
-	width: 100%;
+/* Global add-ons */
+.sub-header {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
 }
 
-@media ( min-width : 768px) and (max-width: 991px) {
-	.col-fixed {
-		width: 300px;
-	}
-	.col-fluid {
-		width: calc(100% - 300px);
-	}
+/* Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+	border: 0;
 }
 
-@media ( min-width : 992px) and (max-width: 1199px) {
-	.col-fixed {
-		width: 300px;
-	}
-	.col-fluid {
-		width: calc(100% - 300px);
-	}
+/* Sidebar */
+/* Hide for mobile, show later */
+.sidebar {
+	display: none;
 }
 
-@media ( min-width : 1200px) {
-	.col-fixed {
-		width: 300px;
-	}
-	.col-fluid {
-		width: calc(100% - 300px);
+@media ( min-width : 768px) {
+	.sidebar {
+		position: fixed;
+		top: 51px;
+		bottom: 0;
+		left: 0;
+		z-index: 1000;
+		display: block;
+		padding: 20px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		/* Scrollable contents if viewport is shorter than content. */
+		background-color: #f5f5f5;
+		border-right: 1px solid #eee;
 	}
 }
 
-/* footer */
-footer {
-	background-color: #555;
-	color: white;
-	padding: 15px;
+/* Sidebar navigation */
+.nav-sidebar {
+	margin-right: -21px; /* 20px padding + 1px border */
+	margin-bottom: 20px;
+	margin-left: -20px;
+}
+
+.nav-sidebar>li>a {
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.nav-sidebar>.active>a, .nav-sidebar>.active>a:hover, .nav-sidebar>.active>a:focus
+	{
+	color: #fff;
+	background-color: #428bca;
+}
+
+/* Main content */
+.main {
+	padding: 20px;
+}
+
+@media ( min-width : 768px) {
+	.main {
+		padding-right: 40px;
+		padding-left: 40px;
+	}
+}
+
+.main .page-header {
+	margin-top: 0;
+}
+
+/* Placeholder dashboard ideas */
+.placeholders {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.placeholders h4 {
+	margin-bottom: 0;
+}
+
+.placeholder {
+	margin-bottom: 20px;
+}
+
+.placeholder img {
+	display: inline-block;
+	border-radius: 50%;
 }
 </style>
 </head>
 <body>
-	<%@ include file="../include/navbar.jsp"%>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Settings</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</nav>
 
 	<div class="container-fluid">
 		<div class="row">
-
-			<div class="sidenav col-fixed">
-				<h2>Management</h2>
-				<ul class="nav nav-pills nav-stacked">
-					<li class="active"><a href="/admin/manage/boardList">게시판 리스트</a></li>
-					<li><a href="/admin/manage/SavemoneyHistory">적립금 관리</a></li>
-					<li><a href="/admin/manage/PointHistory">포인트 관리</a></li>
-					<li><a href="/admin/manage/SmsSendMain">SMS 발송</a></li>
-					<li><a href="/admin/manage/EmailSendMain">Email 발송</a></li>
-					<li><a href="/admin/manage/BannedList">금칙어 관리</a></li>
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Reports</a></li>
+					<li><a href="#">Analytics</a></li>
+					<li><a href="#">Export</a></li>
 				</ul>
-				<br>
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search.."> <span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</span>
-				</div>
+				<ul class="nav nav-sidebar">
+					<li><a href="">Nav item</a></li>
+					<li><a href="">Nav item again</a></li>
+					<li><a href="">One more nav</a></li>
+					<li><a href="">Another nav item</a></li>
+					<li><a href="">More navigation</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="">Nav item again</a></li>
+					<li><a href="">One more nav</a></li>
+					<li><a href="">Another nav item</a></li>
+				</ul>
 			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h1 class="page-header">Dashboard</h1>
 
-			<div class="main-content col-fluid">
-				<div class="container-fluid">
-					<h2>게시판 리스트</h2>
-					<p>게시판을 검색하거나 관리할 수 있는 페이지입니다.</p>
-					<div class="row" style="background-color: lavender; border: 1px; black;">
-						<div class="col-md-3"></div>
-						<div class="col-md-4">사용자권한</div>
-						<div class="col-md-5"></div>
-					</div>
-					<div class="row" style="background-color: lavender;">
-						<div class="col-md-1">번호</div>
-						<div class="col-md-1">게시판아이디</div>
-						<div class="col-md-1">게시판명</div>
-						<div class="col-md-2">읽기</div>
-						<div class="col-md-2">쓰기</div>
-						<div class="col-md-1">사용여부</div>
-						<div class="col-md-1">새글/총게시글</div>
-						<div class="col-md-1">종류</div>
-						<div class="col-md-1">게시글관리</div>
-						<div class="col-md-1">관리</div>
-					</div>
-				</div>
+
 			</div>
-
 		</div>
 	</div>
 
-	<%@ include file="../include/footer.jsp"%>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="../../dist/js/bootstrap.min.js"></script>
+	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+	<script src="../../assets/js/vendor/holder.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
