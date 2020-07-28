@@ -7,13 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+<<<<<<< HEAD
+=======
 
 import kr.co.domain.ProductDTO;
 import kr.co.service.ProductService;
 
+>>>>>>> fetch_head
 
 @Controller
+@RequestMapping("product")
 public class ProductController {
+<<<<<<< HEAD
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public void productIndex() {
+=======
 
 
 	@Autowired
@@ -69,10 +77,15 @@ public class ProductController {
 	@RequestMapping(value="/admin/default/other", method = RequestMethod.GET)
 	public void adminOther() {
 		//필요x
+>>>>>>> fetch_head
 	}
 	@RequestMapping(value="/admin/main", method = RequestMethod.GET)
 	public void adminMain() {
 		//필요x
 	}
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> fetch_head
 }
