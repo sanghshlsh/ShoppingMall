@@ -43,99 +43,29 @@
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="adminproductlist.jsp">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <span>판매상품관리</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
       </li>
+      
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span>판매상품등록</span></a>
       </li>
+      
+       <!-- Divider -->
+      <hr class="sidebar-divider">
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -159,17 +89,6 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -192,114 +111,8 @@
                   </div>
                 </form>
               </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
+            
+           
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -324,7 +137,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  	로그아웃
                 </a>
               </div>
             </li>
@@ -333,89 +146,209 @@
 
         </nav>
         <!-- End of Topbar -->
+        
+		
+		<div class="common-inner-body">
+				
+				<form class="container">
+					<div class="row">
+							<p class="h4">상품 등록</p>
+						</div>
+					<div class="row container">
+						<table class="table col-md-12">
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품명</th>
+								<td class="col-md-4 container">
+									<input class="form-control" type="text" placeholder="내용을 입력하세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">자체상품코드</th>
+								<td class="col-md-4 container">
+									<input class="form-control" type="text" placeholder="내용을 입력하세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">판매가</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">판매설정</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+												<label class="form-check-label" for="gridRadios1">
+													판매함
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													판매안함
+												</label>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품명</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">상품소개</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">제조사</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">A/S책임자</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">제조일</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">A/S번호</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">제조국</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">세탁법</th>
+								<td class="col-md-4 container">
+									파일 업로드
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">공급사</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">품질보증기준</th>
+								<td class="col-md-4 container">
+									파일업로드 붙이기
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">재고</th>
+								<td class="col-md-3 container">
+									<div class="row container">
+										<input class="form-control col-md-10" type="text" id="datepicker" placeholder="갯수입력">
+										<span class="text col-md-1 mt-2">개</span>
+									</div>
+								</td>
+								<td class="col-md-7 container">
+									<p class="text" style="font-size: x-small;">
+										<br>*상품의 재고는 쇼핑몰에 노출 되지 않습니다.	
+									</p>
+								</td>
+							</tr>							
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품할인설정</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+												<label class="form-check-label" for="gridRadios1">
+													할인안함
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													할인함
+												</label>
+											</div>
+										</div>
+									</div>
+								</td>
+								<th class="col-md-2 form-label table-active">상품할인율</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<span class="text col-md-4 mt-1">상품금액의</span>
+										<input class="form-control col-md-3 ml-1 mr-1" type="text" id="datepicker" placeholder="할인율">
+										<span class="text col-md-1 mt-1">%</span>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">메인 노출 이미지</th>
+								<td class="col-md-10 container">
+									<div class="row container">
+										<input class="form-control col-md-3" type="text" id="datepicker" placeholder="no_img.jpg">
+										<button class="btn btn-dark col-md-2 ml-2">찾아보기</button>
+										<p class="text col-md-3" style="font-size: xx-small;"><br>*상품 상세 이용 안내에서 설정 가능합니다.</p>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품 정보 이미지</th>
+								<td class="col-md-10 container">
+									<div class="row container">
+										<input class="form-control col-md-3 mr-2" type="text" id="datepicker" placeholder="no_img.jpg">
+										<button class="btn btn-dark col-md-2">찾아보기</button>
+										<i class="fa fa-plus fa-2x col-md-1" aria-hidden="true"></i>
+										<i class="fa fa-minus fa-2x" aria-hidden="true"></i>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품 짧은 설명</th>
+								<td class="col-md-10 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="*상품 짧은 설명은 메인 리스트에 노출됩니다.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0 border border-left-0 border-right-0 border-top-0">
+								<th class="col-md-2 form-label table-active">상품 상세 설명</th>
+								<td class="col-md-10 container">
+									<textarea class="form-control col-md-11" id="exampleFormControlTextarea1" rows="5" placeholder="내용을 입력해주세요."></textarea>
+								</td>
+							</tr>
+							
+						</table>
+					</div>
+					
+					<div class="form-group row">
+					</div>
+					
+					<div class="form-group row">
+					</div>
+					
+					<div class="form-group row">
+						<div class="col-sm-4">
+						</div>
+						<div class="col-sm-1">
+							<button type="submit" class="btn btn-dark">상품등록</button>
+						</div>
+						<div class="col-sm-2">
+						</div>
+						<div class="col-sm-1">
+							<button type="reset" class="btn btn-dark">취소</button>
+						</div>
+						<div class="col-sm-4">
+						</div>
+					</div>
+				</form>
+			</div>
+        
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Charts</h1>
-          <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <div class="col-xl-8 col-lg-7">
-
-              <!-- Area Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-                </div>
-              </div>
-
-              <!-- Bar Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-bar">
-                    <canvas id="myBarChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Donut Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
@@ -457,7 +390,6 @@
   <!-- Page level custom scripts -->
   <script src="../resources/js/demo/chart-area-demo.js"></script>
   <script src="../resources/js/demo/chart-pie-demo.js"></script>
-  <script src="../resources/js/demo/chart-bar-demo.js"></script>
 
 </body>
 

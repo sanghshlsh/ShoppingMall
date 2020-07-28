@@ -12,7 +12,7 @@ public class MemberDAOImpl  implements MemberDAO{
 	@Autowired
 	private SqlSession session;
 	
-	private final String NS = "p.r.o";
+	private final String NS = "m.e.m";
 
 	@Override
 	public void insert(MemberDTO dto) {
