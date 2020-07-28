@@ -36,13 +36,9 @@
 				</div>
 				<br><br>
 				<div class="row">
-					<div class="dropdown col-sm-3">
-						<a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
-							<span id="selected">카테고리추가</span><span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li>카테고리목록</li>
-						</ul>
-					</div>
+					<select>
+						<option>faq카테고리db받아넣기</option>
+					</select>
 				</div>
 				<div class="row">
 					테이블추가
