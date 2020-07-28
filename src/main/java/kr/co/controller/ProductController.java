@@ -19,12 +19,6 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping(value ="/admin/product/insert", method = RequestMethod.GET)
-	public String insertProduct(ProductDTO pdto) {
-		productService.insert(pdto);
-		return "redirct:/admin/insert";
-	}
-	
 
 
 //	@RequestMapping(value="/admin/product/list", method = RequestMethod.GET)

@@ -48,7 +48,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="adminproductlist.jsp">
+        <a class="nav-link collapsed" href="color.html">
           <i class="fas fa-fw fa-folder"></i>
           <span>판매상품관리</span>
         </a>

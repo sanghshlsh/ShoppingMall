@@ -47,7 +47,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="adminproductlist.jsp">
+        <a class="nav-link collapsed" href="color.html">
           <i class="fas fa-fw fa-folder"></i>
           <span>판매상품관리</span>
         </a>
@@ -146,7 +146,19 @@
 
         </nav>
         <!-- End of Topbar -->
-        
+        <div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
+			<div class="common-right-title">
+					<div class="row">
+						<div class="col-md-11">
+							<p class="h3">
+								상품관리
+							</p>
+						</div>
+						<div class="col-md-1">
+							<button class="btn btn-outline-danger">저장</button>
+						</div>
+					</div>
+			</div>
 		
 		<div class="common-inner-body">
 				
@@ -208,17 +220,7 @@
 								<td class="col-md-4 container">
 									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
 								</td>
-								<th class="col-md-2 form-label table-active">A/S책임자</th>
-								<td class="col-md-4 container">
-									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
-								</td>
-							</tr>
-							<tr class="row form-group mb-0">
 								<th class="col-md-2 form-label table-active">제조일</th>
-								<td class="col-md-4 container">
-									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
-								</td>
-								<th class="col-md-2 form-label table-active">A/S번호</th>
 								<td class="col-md-4 container">
 									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
 								</td>
@@ -304,8 +306,6 @@
 									<div class="row container">
 										<input class="form-control col-md-3 mr-2" type="text" id="datepicker" placeholder="no_img.jpg">
 										<button class="btn btn-dark col-md-2">찾아보기</button>
-										<i class="fa fa-plus fa-2x col-md-1" aria-hidden="true"></i>
-										<i class="fa fa-minus fa-2x" aria-hidden="true"></i>
 									</div>
 								</td>
 							</tr>
@@ -347,7 +347,7 @@
 					</div>
 				</form>
 			</div>
-        
+        </div>
 
 
   <!-- Scroll to Top Button-->
