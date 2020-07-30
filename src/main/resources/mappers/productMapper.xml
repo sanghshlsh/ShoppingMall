@@ -8,4 +8,12 @@
 		insert into product (productNo, productName, productPrice, productDiscountRate, productSet, isDelete, sellStatus)
 		values (#{productNo},#{productName},#{productPrice},#{productDiscountRate},#{productSet},#{isDelete},#{sellStatus})
 	</insert>
+	
+	<select id="categoryList" resultType="CategoryDTO">
+		select * from category where categoryNoRef is null
+	</select>
+	
+	<select id="categoryList2" resultType="CategoryDTO">
+		select * from category where categoryNoRef = #{categoryNoRef}
+	</select>
 </mapper>

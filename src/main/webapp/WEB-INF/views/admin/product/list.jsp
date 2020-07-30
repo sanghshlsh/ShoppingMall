@@ -41,7 +41,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('div').on("click","#product_insert_btn",function(){
-			location.assign("/manager/product/insert")
+			location.assign("/admin/product/insert")
 		});
 	});
 
