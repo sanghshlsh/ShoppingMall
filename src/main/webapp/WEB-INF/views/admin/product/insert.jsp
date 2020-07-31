@@ -50,6 +50,9 @@ li {
  .link_product_category:hover {
  	color : black;
  }
+
+ 
+ 
 </style>
 </head>
 <body>
@@ -192,7 +195,19 @@ li {
 				<div class="row">
 					<div class="form-group">
 						<div class="col-sm-2 label_font">상품사진</div>
-						<div class="col-sm-10">사진입력버튼</div>
+						<div class="col-sm-10 div_product_file">
+							<form action="/uploadajax" method="post" enctype="multipart/form-data" id="form_product_file">
+								<div class="row">
+									<div class="col-sm-8">
+										<input type="file" id="input_product_file" name="file">
+									</div>
+									<div class="col-sm-4">
+										<button class="btn btn-primary" id="btn_product_file">확인</button>
+									</div>
+								</div>								
+							</form>
+						</div>
+						
 					</div>
 				</div>
 				<div class="row">
@@ -348,6 +363,30 @@ li {
 			$("#productCategory").removeAttr("value")
 			that.parent().children().remove();
 			
+		});
+		$(".div_product_file").on("click", "#btn_product_file", function(event){
+			event.preventDefault();			
+			var formData = new FormData(document.getElementById('form_product_file'));
+			$.ajax({
+				type : 'post',
+				url : '/uploadajax',
+				dataType : 'text',
+				data : formData,
+				processData : false,
+				contentType : false,					
+				success : function(result){						
+					var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
+					if(checkImage(result)){
+						str += "<img src = '/displayfile?filename="+result+"' />";
+					} else{
+						str += "<img src = '/resources/show.jpg'/>";
+					}
+					
+					str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
+					str += getOriginalName(result)+"</p></li>";
+					$(".uploadedList").append(str);
+				}
+			});
 		});
 		
 	});

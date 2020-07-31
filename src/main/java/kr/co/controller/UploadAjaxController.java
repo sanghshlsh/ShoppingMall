@@ -108,4 +108,6 @@ public class UploadAjaxController {
 	
 		return productService.getAttach(productNo);
 	}
+	
+	
 }
