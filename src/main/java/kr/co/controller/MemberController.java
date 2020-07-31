@@ -17,6 +17,7 @@ import kr.co.domain.PageTO;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import kr.co.domain.MemberDTO;
 import kr.co.service.MemberService;
 
 @Controller
