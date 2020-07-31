@@ -1,11 +1,11 @@
 package kr.co.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
 import kr.co.persistence.ProductDAO;
 
@@ -20,12 +20,28 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		productDao.insert(pdto);
 	}
-
+	
 	@Override
-	public Map readList(int i) {
+	public void deleteAttachByFileName(String filename) {
+		// TODO Auto-generated method stub
 		
-		return productDao.list();
 	}
-
+	@Override
+	public List<String> getAttach(Integer productNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<CategoryDTO> categoryList() {
+		// TODO Auto-generated method stub
+		return productDao.categoryList();
+	}
+	
+	@Override
+	public List<CategoryDTO> categoryListN(CategoryDTO categoryDto) {
+		// TODO Auto-generated method stub
+		return  productDao.categoryListN(categoryDto);
+	}
 
 }

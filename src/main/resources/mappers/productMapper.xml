@@ -4,8 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="p.r.o">
 
+<<<<<<< HEAD
 	
 	
  
 	
+=======
+	<insert id="insert">
+		insert into product (productNo, productName, productPrice, productDiscountRate, productSet, isDelete, sellStatus)
+		values (#{productNo},#{productName},#{productPrice},#{productDiscountRate},#{productSet},#{isDelete},#{sellStatus})
+	</insert>
+	
+	<select id="categoryList" resultType="CategoryDTO">
+		select * from category where categoryNoRef is null
+	</select>
+	
+	<select id="categoryList2" resultType="CategoryDTO">
+		select * from category where categoryNoRef = #{categoryNoRef}
+	</select>
+>>>>>>> fetch_head
 </mapper>

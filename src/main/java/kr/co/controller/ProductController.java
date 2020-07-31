@@ -14,7 +14,6 @@ import kr.co.service.ProductService;
 
 
 @Controller
-@RequestMapping("product")
 public class ProductController {
 
 	@Autowired
