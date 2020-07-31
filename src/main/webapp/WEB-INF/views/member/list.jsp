@@ -58,20 +58,20 @@
            <ul class="pagination">
                 <li>
                    
-                  <a href="/member/list?curPage=${to.curPage> 1? to.curPage-1 : 1}" aria-label="Previous">
+                  <a href="/member/list?curPage=${mto.curPage> 1? mto.curPage-1 : 1}" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                  </a>
                 </li>
                 
                 <li>
-                   <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}" var="page">
-                       <li class= "${to.curPage==page?'active':''}"><a href="/member/list?curPage=${page}">${page}</a></li>
+                   <c:forEach begin="${mto.beginPageNum}" end="${mto.stopPageNum}" var="page">
+                       <li class= "${mto.curPage==page?'active':''}"><a href="/member/list?curPage=${page}">${page}</a></li>
                     </c:forEach>
     
                 </li>
  
                 <li>
-                  <a href="/member/list?curPage=${to.curPage<to.totalPage? to.curPage+1 : to.curPage }" aria-label="Next">
+                  <a href="/member/list?curPage=${mto.curPage<mto.totalPage? mto.curPage+1 : mto.curPage }" aria-label="Next">
                    <span aria-hidden="true">&raquo;</span>
                   </a>
                </li>

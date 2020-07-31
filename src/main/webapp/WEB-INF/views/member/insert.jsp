@@ -23,7 +23,7 @@
   
   <div class="input_area">
    <label for="memberId">아이디</label>
-   <input type="email" id="memberId" name="memberId" required="required" />      
+   <input type="text" id="memberId" name="memberId" required="required" />      
   </div>
   
   <div class="input_area">
@@ -63,7 +63,7 @@
   </div>
     <div class="input_area">
    <label for="memberEmail">이메일</label>
-   <input type="email" id="memberEmail" name="memberEmail" required="required" />      
+   <input type="text" id="memberEmail" name="memberEmail" required="required" />      
   </div>
     <div class="input_area">
    <label for="memberPetName">반려동물 이름</label>
