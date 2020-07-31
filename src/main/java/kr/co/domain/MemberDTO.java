@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class MemberDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private int memberNo;
 	private String memberId;
 	private String memberPw;
 	private String memberName;
@@ -26,14 +27,15 @@ public class MemberDTO implements Serializable {
 	private int memberGrade; // 등급
 
 	public MemberDTO() {
-
+		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(String memberId, String memberPw, String memberName, String memberZipcode, String memberAddress_1,
-			String memberAddress_2, String memberTel, String memberPhone, String memberPetName, int memberPetAge,
-			String memberHolder, String memberAccount, String memberBank, String memberRegDate, String memberEmail,
-			int memberAcceptedEmail, int memberAcceptedSns, int isDelete, int memberGrade) {
+	public MemberDTO(int memberNo, String memberId, String memberPw, String memberName, String memberZipcode,
+			String memberAddress_1, String memberAddress_2, String memberTel, String memberPhone, String memberPetName,
+			int memberPetAge, String memberHolder, String memberAccount, String memberBank, String memberRegDate,
+			String memberEmail, int memberAcceptedEmail, int memberAcceptedSns, int isDelete, int memberGrade) {
 		super();
+		this.memberNo = memberNo;
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
@@ -53,6 +55,14 @@ public class MemberDTO implements Serializable {
 		this.memberAcceptedSns = memberAcceptedSns;
 		this.isDelete = isDelete;
 		this.memberGrade = memberGrade;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getMemberId() {
@@ -207,29 +217,8 @@ public class MemberDTO implements Serializable {
 		this.memberGrade = memberGrade;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((memberId == null) ? 0 : memberId.hashCode());
-		return result;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MemberDTO other = (MemberDTO) obj;
-		if (memberId == null) {
-			if (other.memberId != null)
-				return false;
-		} else if (!memberId.equals(other.memberId))
-			return false;
-		return true;
-	}
-
+	
 }

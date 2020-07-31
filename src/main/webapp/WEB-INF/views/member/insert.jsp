@@ -15,6 +15,12 @@
 <div id="container_box">
 <section id="content">
  <form role="form" method="post" autocomplete="off">
+  
+  <!-- <div class="input_area">
+   <label for="memberNo" ></label>
+   <input type="hidden" id="memberNo" name="memberNo" required="required" />      
+  </div> -->
+  
   <div class="input_area">
    <label for="memberId">아이디</label>
    <input type="email" id="memberId" name="memberId" required="required" />      
