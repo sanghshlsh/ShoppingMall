@@ -53,4 +53,9 @@ public class ProductDAOimpl implements ProductDAO {
 	public List<ProductDTO> productList() {
 		return session.selectList(NS+".productList");
 	}
+	@Override
+	public String getCategoryName(CategoryDTO categoryDto) {
+	
+		return session.selectOne(NS+".getCategoryName", categoryDto);
+	}
 }

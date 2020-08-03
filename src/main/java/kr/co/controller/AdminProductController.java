@@ -21,7 +21,10 @@ public class AdminProductController {
 
 	@Autowired
 	private ProductService productService;
-
+	@RequestMapping(value ="/admin/product/insert", method = RequestMethod.GET)
+	public void insert() {
+	}
+	
 	@RequestMapping(value ="/admin/product/insert", method = RequestMethod.POST)
 	public String insert(ProductDTO productDto) {
 		List<ProductOptionDTO> list = productDto.getProductOptionList();
@@ -35,33 +38,10 @@ public class AdminProductController {
 		return "redirect:/admin/product/insert";
 	}
 	
-	@RequestMapping(value ="/admin/product/insert")
-	public void insert() {
-	}
 	@RequestMapping(value ="/admin/product/list")
 	public void list() {
 	}
 	
-//	@RequestMapping("/admin/product/list")
-//	public ModelAndView productList() throws Exception {
-//		ModelAndView model = new ModelAndView();
-//		Map list = productService.readList(1);
-//		model.addObject("productList", list.get("productList"));
-//		//model.setViewName("product/list");
-//		return model;
-//	}
-//	@RequestMapping("/admin/product/modification")
-//	public ModelAndView productModify() {
-//		ModelAndView model = new ModelAndView();
-//		model.setViewName("product/modification");
-//		return model;
-//	}
-//	@RequestMapping("/admin/product/registration")
-//	public ModelAndView productRegistration() {
-//		ModelAndView model = new ModelAndView();
-//		model.setViewName("product/registration");
-//		return model;
-//	}
 	@ResponseBody
 	@RequestMapping(value ="/product_Category", method = RequestMethod.GET)
 	public List<CategoryDTO> category() {
@@ -83,5 +63,13 @@ public class AdminProductController {
 		List<ProductDTO> list = productService.productList();
 
 		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value ="/getCategoryName", method = RequestMethod.GET)
+	public String getCategoryName(CategoryDTO categoryDto) {
+		String categoryName = productService.getCategoryName(categoryDto);
+
+		return categoryName;
 	}
 }

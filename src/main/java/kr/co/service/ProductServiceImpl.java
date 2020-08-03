@@ -66,4 +66,9 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productDao.productList();
 	}
+	@Override
+	public String getCategoryName(CategoryDTO categoryDto) {
+		
+		return productDao.getCategoryName(categoryDto);
+	}
 }

@@ -232,44 +232,73 @@ input[type=checkbox] {
 				str.append('<div class="row div_search_option_result_inner">');
 				str.append('<ul>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('<input type="checkbox">');
+				str.append('<input type="checkbox name='+data[i]["productNo"]+'">');
 				str.append('</li>');
 				str.append('<li class="col-sm-2 li_product_search_result">');
-				str.append('카테고리');
+				str.append(getCategoryName(data[i]["categoryNo"]));
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('상품번호');
+				str.append(data[i]["productNo"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-2 li_product_search_result">');
-				str.append('상품명');
+				str.append(data[i]["productName]"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('판매가');
+				str.append(data[i]["productPrice"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
 				str.append('재고');
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('등록일');
+				str.append(dateToString(data[i]["regDate"]));
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('판매상태');
+				if(data[i]["sellStatus"]==0){
+					str.append('판매대기');
+				}else if(data[i]["sellStatus"]==1){
+					str.append('판매중');
+				}else{
+					str.append('품절');
+				}				
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('전시상태');
+				if(data[i]["isDelete"]==0){
+					str.append('전시');
+				}else{
+					str.append('미전시');
+				}
 				str.append('</li>');
 				str.append('<li class="col-sm-1">');
-				str.append('관리');
+				str.append('수정버튼');
 				str.append('</li>');
 				str.append('</ul>');
 				str.append('</div>');	
 			}
 			var resultstr = str.toString();
-			console.log(resultstr);
-			console.log("123qwe");
+			
 			$("#form_product_search_result_list").html(resultstr);				
 		});
 	};
+	function getCategoryName(categoryNo){
+		$.ajax({
+			type : 'get',
+			url : '/getCategoryName',
+			dataType : 'text',
+			data : {
+				categoryNo : categoryNo
+			},			
+			success : function(result){
+			console.log(result);
+			}
+		});
+	};
+	function dateToString(date){
+	    function pad(num) {
+	        num = num + '';
+	        return num.length < 2 ? '0' + num : num;
+	    }
+	    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
+	}
 
 	
 	

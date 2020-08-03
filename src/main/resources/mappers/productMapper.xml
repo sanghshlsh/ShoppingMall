@@ -5,8 +5,8 @@
 <mapper namespace="p.r.o">
 	
 	<insert id="insert">
-			<![CDATA[insert into product (productNo, productName, productPrice, productDiscountRate, productSet, isDelete, sellStatus, categoryNo)
-		values (#{productNo}, #{productName}, #{productPrice}, #{productDiscountRate}, #{productSet}, #{isDelete}, #{sellStatus}, #{categoryNo})]]>
+			insert into product (productNo, productName, productPrice, productDiscountRate, productSet, isDelete, sellStatus, categoryNo)
+		values (#{productNo}, #{productName}, #{productPrice}, #{productDiscountRate}, #{productSet}, #{isDelete}, #{sellStatus}, #{categoryNo})
 	</insert>
 	<select id="getProductNo" resultType="Integer">
 	<![CDATA[select NVL2(max(productNo), max(productNo)+1, 1) from product]]>
@@ -29,5 +29,8 @@
 	</insert>
 	<select id="productList" resultType="ProductDTO">
 			<![CDATA[select * from product]]>
+	</select>
+	<select id="getCategoryName" resultType="String">
+		<![CDATA[select categoryName from category where categoryNo = #{categoryNo}]]>
 	</select>
 </mapper>

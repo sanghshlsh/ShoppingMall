@@ -20,5 +20,7 @@ public interface ProductService {
 
 	List<ProductDTO> productList();
 
+	String getCategoryName(CategoryDTO categoryDto);
+
 
 }

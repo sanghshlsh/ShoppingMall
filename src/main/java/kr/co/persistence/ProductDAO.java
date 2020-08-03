@@ -20,5 +20,7 @@ public interface ProductDAO {
 
 	List<ProductDTO> productList();
 
+	String getCategoryName(CategoryDTO categoryDto);
+
 
 }
