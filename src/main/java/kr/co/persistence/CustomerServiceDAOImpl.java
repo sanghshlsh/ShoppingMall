@@ -33,11 +33,40 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO{
 		session.insert(NS +".insert", qdto);
 		
 	}
+	@Override
+	public List<QnaDTO> list() {
+		
+		return session.selectList(NS+".list");
+	}
 
 	@Override
-	public void addAttach(String fullName, int qnaNo) {
-		// TODO Auto-generated method stub
+	public QnaDTO read(int qnaNo) {
 		
+		return session.selectOne(NS+".read", qnaNo);
+	}
+	
+	@Override
+	public void increaseViewcnt(int qnaNo) {
+		
+		session.update(NS+".increaseViewcnt", qnaNo);
+	}
+	
+	@Override
+	public QnaDTO updateUi(int qnaNo) {
+		
+		return session.selectOne(NS+".updateUI", qnaNo);
+	}
+	
+	@Override
+	public void update(QnaDTO qdto) {
+		
+		session.update(NS+".update", qdto);
+	}
+	
+	@Override
+	public void delete(int qnaNo) {
+		
+		session.delete(NS+".delete", qnaNo);
 	}
 
 	@Override
@@ -58,49 +87,24 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO{
 	}
 
 	@Override
-	public void increaseViewcnt(int qnaNo) {
-		
-		session.update(NS+".increaseViewcnt", qnaNo);
-	}
-
-	@Override
-	public QnaDTO read(int qnaNo) {
-		
-		return session.selectOne(NS+".read", qnaNo);
-	}
-
-	@Override
-	public void update(QnaDTO qdto) {
-		
-		session.update(NS+".update", qdto);
-	}
-	
-	@Override
-	public QnaDTO updateUi(int qnaNo) {
-	
-		return session.selectOne(NS+".updateUI", qnaNo);
-	}
-
-	@Override
-	public void deleteByQnaNo(int qnaNo) {
-		
-		session.delete(NS+".deleteByBno", qnaNo);
-	}
-
-	@Override
-	public void delete(int qnaNo) {
-		
-		session.delete(NS+".delete", qnaNo);
-	}
-
-	@Override
 	public List<QnaDTO> searchlist(String searchType, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchType", searchType);
 		map.put("keyword", keyword);
 		return session.selectList(NS+".searchlist", map);
 	}
-
+	
+	@Override
+	public void addAttach(String fullName, int qnaNo) {
+		Integer id = session.selectOne(NS+".getId");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("fullName", fullName);
+		map.put("qnaNo", qnaNo);
+		session.insert(NS+".addAttach", map);
+		
+	}
+	
 	@Override
 	public void updateAttach(String fullName, int qnaNo) {
 		Integer id = session.selectOne(NS+".getId");
@@ -112,11 +116,12 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO{
 	}
 
 	@Override
-	public List<QnaDTO> list() {
+	public void deleteByQnaNo(int qnaNo) {
 		
-		return session.selectList(NS+".list");
+		session.delete(NS+".deleteByBno", qnaNo);
 	}
 
+ 
 	@Override
 	public List<String> getAttach(Integer qnaNo) {
 		

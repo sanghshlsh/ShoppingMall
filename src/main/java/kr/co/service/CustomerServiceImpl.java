@@ -17,6 +17,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerServiceDAO pcDao;
 	
+	
 	@Transactional
 	@Override
 	public void insert(QnaDTO qdto) {
@@ -29,19 +30,26 @@ public class CustomerServiceImpl implements CustomerService{
 			}
 		}
 	}
-
-	@Override
-	public PageTO<QnaDTO> list(PageTO<QnaDTO> to) {
+	
+	public List<QnaDTO> list() {
 		
-		return pcDao.list(to);
+		return pcDao.list();
 	}
+
 	@Transactional
 	@Override
 	public QnaDTO read(int qnaNo) {
 		pcDao.increaseViewcnt(qnaNo);
 		return pcDao.read(qnaNo);
 	}
+	
+	@Override
+	public QnaDTO updateUI(int qnaNo) {
+		
+		return pcDao.updateUi(qnaNo);
+	}
 
+	@Transactional
 	@Override
 	public void update(QnaDTO qdto) {
 		pcDao.update(qdto);
@@ -56,12 +64,8 @@ public class CustomerServiceImpl implements CustomerService{
 		}
 	}
 
-	@Override
-	public QnaDTO updateUI(int qnaNo) {
-	
-		return pcDao.updateUi(qnaNo);
-	}
 
+	@Transactional
 	@Override
 	public void delete(int qnaNo) {
 		
@@ -69,6 +73,11 @@ public class CustomerServiceImpl implements CustomerService{
 		pcDao.deleteByQnaNo(qnaNo);
 	}
 
+	@Override
+	public PageTO<QnaDTO> list(PageTO<QnaDTO> to) {
+		
+		return pcDao.list(to);
+	}
 	@Override
 	public List<QnaDTO> searchlist(String searchType, String keyword) {
 		
