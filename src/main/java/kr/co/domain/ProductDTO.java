@@ -1,6 +1,7 @@
 package kr.co.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 public class ProductDTO implements Serializable {
@@ -15,15 +16,17 @@ public class ProductDTO implements Serializable {
 	private int isDelete; //삭제 여부
 	private int sellStatus; //판매상태
 	private String[] files; //첨부파일
-	private List<ProductOptionDTO> plist; //상품옥션
-
+	private List<ProductOptionDTO> productOptionList; //상품옥션
+	private int categoryNo;
+	private Date regDate;
 
 	public ProductDTO() {
 
 	}
-	
+
 	public ProductDTO(int productNo, String productName, int productPrice, int productDiscountRate, String productSet,
-			int isDelete, int sellStatus, String[] files, List<ProductOptionDTO> plist) {
+			int isDelete, int sellStatus, String[] files, List<ProductOptionDTO> productOptionList, int categoryNo,
+			Date regDate) {
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -33,7 +36,26 @@ public class ProductDTO implements Serializable {
 		this.isDelete = isDelete;
 		this.sellStatus = sellStatus;
 		this.files = files;
-		this.plist = plist;
+		this.productOptionList = productOptionList;
+		this.categoryNo = categoryNo;
+		this.regDate = regDate;
+	}
+
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public int getCategoryNo() {
+		return categoryNo;
+	}
+
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 
 	public int getProductNo() {
@@ -100,12 +122,12 @@ public class ProductDTO implements Serializable {
 		this.files = files;
 	}
 
-	public List<ProductOptionDTO> getPlist() {
-		return plist;
+	public List<ProductOptionDTO> getProductOptionList() {
+		return productOptionList;
 	}
 
-	public void setPlist(List<ProductOptionDTO> plist) {
-		this.plist = plist;
+	public void setProductOptionList(List<ProductOptionDTO> productOptionList) {
+		this.productOptionList = productOptionList;
 	}
 
 	public static long getSerialversionuid() {
