@@ -17,6 +17,9 @@
 .borderd_div {
 	border: 1px solid black;
 }
+.borderd_div_left {
+	border-left: 1px solid black;
+}
 .label_font {
     font-weight: 700;
     
@@ -56,7 +59,7 @@ li {
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2">
 				sidebar	
@@ -98,7 +101,7 @@ li {
 					</table>
 				</div>
 				<div class="row"> 
-					<div class="row text-center rowspan_div">
+					<div class="row text-center">
 						<button type="button" class="btn btn-primary" id="btn_product_category_insert">카테고리 추가 버튼</button>
 					</div>
 					<div class="row borderd_div">
@@ -106,8 +109,7 @@ li {
 							선택된 카테고리
 						</div>
 						<div class="col-sm-9">
-							<div class="row borderd_div">분류명</div>
-							<div class="row borderd_div product_category_selected">분류명db받아오기</div>
+							<div class="row borderd_div_left product_category_selected">분류명db받아오기</div>
 						</div>
 					</div>
 					<div class="row">
@@ -456,9 +458,6 @@ li {
 			var productSize = $(".modal_productSize").val();
 			var productQuantity = $(".modal_productQuantity").val();
 			var str = '';
-			console.log(productColor);
-			console.log(productSize);
-			console.log(productQuantity);
 			str += '<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>';
 			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>';
 			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>';
@@ -466,7 +465,6 @@ li {
 			
 			
 			countOption++;
-			console.log(countOption);
 			$('.div_product_option').append(str);
 		});
 		$(".div_product_option").on("click", ".btn_product_option_delete", function(event){

@@ -18,5 +18,7 @@ public interface ProductService {
 
 	List<CategoryDTO> categoryListN(CategoryDTO categoryDto);
 
+	List<ProductDTO> productList();
+
 
 }

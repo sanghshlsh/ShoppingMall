@@ -1,7 +1,6 @@
 package kr.co.persistence;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
@@ -18,6 +17,8 @@ public interface ProductDAO {
 	void addAttach(String fullName, int productNo);
 
 	void insertProductOption(ProductOptionDTO productOptionDTO);
+
+	List<ProductDTO> productList();
 
 
 }

@@ -76,5 +76,12 @@ public class AdminProductController {
 		List<CategoryDTO> list = productService.categoryListN(categoryDto);
 		return list;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value ="/product_List", method = RequestMethod.GET)
+	public List<ProductDTO> productList() {
+		List<ProductDTO> list = productService.productList();
 
+		return list;
+	}
 }

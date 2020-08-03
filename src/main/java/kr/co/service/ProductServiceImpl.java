@@ -20,14 +20,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void insert(ProductDTO productDto) {
-		// TODO Auto-generated method stub
 		productDao.insert(productDto);
-		
 		String[] files = productDto.getFiles();
 		if(files != null) {  
-			for(String fullName : files) {
+			for(String fullName : files) {	
 				productDao.addAttach(fullName, productDto.getProductNo());
-			}
+			}			
 		}
 		List<ProductOptionDTO> list = productDto.getProductOptionList();
 		if( list != null) {
@@ -63,5 +61,9 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return  productDao.categoryListN(categoryDto);
 	}
-
+	@Override
+	public List<ProductDTO> productList() {
+		// TODO Auto-generated method stub
+		return productDao.productList();
+	}
 }
