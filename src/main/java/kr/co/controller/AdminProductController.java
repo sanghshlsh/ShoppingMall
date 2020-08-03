@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
+import kr.co.domain.ProductOptionDTO;
 import kr.co.service.ProductService;
 
 @Controller
@@ -21,11 +22,18 @@ public class AdminProductController {
 	@Autowired
 	private ProductService productService;
 
-//	@RequestMapping(value ="/admin/product/insert", method = RequestMethod.POST)
-//	public String insert(ProductDTO pdto) {
-//		productService.insert(pdto);
-//		return "redirct:/admin/insert";
-//	}
+	@RequestMapping(value ="/admin/product/insert", method = RequestMethod.POST)
+	public String insert(ProductDTO productDto) {
+		List<ProductOptionDTO> list = productDto.getProductOptionList();
+		if (list == null) {
+			System.out.println("옵션넣어라 작업하기");
+			return "redirect:/admin/product/insert";
+		}
+		productService.insert(productDto);
+		
+			
+		return "redirect:/admin/product/insert";
+	}
 	
 	@RequestMapping(value ="/admin/product/insert")
 	public void insert() {

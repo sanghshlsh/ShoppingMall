@@ -59,14 +59,13 @@ li {
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
-				sidebar
+				sidebar	
 			</div>
 			<div class="col-sm-10">
 				<div class="row">
 					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_list">상품리스트</button></div>
 					<div class="col-sm-8"><h1>판매 상품 관리</h1></div>
-					<div class="col-sm-1"><button type="button" class="btn btn-primary">미리보기</button></div>
-					<div class="col-sm-1"><button type="button" class="btn btn-primary" id="btn_product_insert">저장하기</button></div>					
+					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_insert">저장하기</button></div>					
 				</div>
 				<div class="row">
 					<table class="table table-bordered tbl_product_category">
@@ -126,7 +125,7 @@ li {
 							</div>
 							<div class="form-group">
 								<div class="col-sm-2">
-									<label for="productName">카테고리</label>
+									<label for="productCategory">카테고리</label>
 								</div>
 								<div class="col-sm-10">
 									<input name="productCategory" readonly id="productCategory" class="form-control">
@@ -138,13 +137,13 @@ li {
 								</div>
 								<div class="col-sm-10">
 									<label for="sellStatus1">
-										<input  type="radio" name="sellStatus" id="sellStatus1" checked>판매중
+										<input  type="radio" name="sellStatus" id="sellStatus1" value="0" checked>판매대기
 									</label>
 									<label for="sellStatus2">
-										<input  type="radio" name="sellStatus" id="sellStatus2">판매대기
+										<input  type="radio" name="sellStatus" id="sellStatus2" value="1">판매중
 									</label>
 									<label for="sellStatus3">
-										<input  type="radio" name="sellStatus" id="sellStatus3">판매중지
+										<input  type="radio" name="sellStatus" id="sellStatus3" value="2">품절
 									</label>
 								</div>
 							</div>
@@ -155,10 +154,10 @@ li {
 								</div>
 								<div class="col-sm-10">
 									<label for="isDelete1">
-										<input  type="radio" name="isDelete" id="isDelete1" checked>전시
+										<input  type="radio" name="isDelete" id="isDelete1" value="0" checked>전시
 									</label>
 									<label for="isDelete2">
-										<input  type="radio" name="isDelete" id="isDelete2">미전시
+										<input  type="radio" name="isDelete" id="isDelete2"value="1">미전시
 									</label>
 								</div>
 							</div>
@@ -188,10 +187,19 @@ li {
 							</div>
 							<div class="form_product_category_number">
 							</div>
+							<div class="row div_product_option">
+								
+							</div>
 						</form>
 					</div>
-					
+					<div class="row product_option">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_product_option_insert" id="btn_product_option">
+  							옵션 추가
+						</button>
+					</div>
+				
 				</div>
+				
 				<div class="row">
 					<div class="form-group">
 						<div class="col-sm-2 label_font">상품사진</div>
@@ -222,10 +230,54 @@ li {
 			</div>
 		</div>
 	</div>
+	
+	
+	<div class="row">
+		<div data-backdrop="static" class="modal fade" tabindex="-1" role="dialog" id="modal_product_option_insert">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-rno">옵션 추가</h4>
+					</div>
+					<div class="modal-body row  ">
+						<div class="form-group">
+							<div class="col-sm-2">
+								<label for="modal_productColor">색상</label>
+							</div>
+							<div class="col-sm-10">
+								<input class="form-control modal_productColor">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2">
+								<label for="modal_productSize">사이즈</label>
+							</div>
+							<div class="col-sm-10">
+								<input class="form-control modal_productSize">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2">
+								<label for="modal_productQuantity">재고</label>
+							</div>
+							<div class="col-sm-10">
+								<input required class="form-control modal_productQuantity">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning modal-insert" data-dismiss="modal">옵션 추가</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+					
 	<script type="text/javascript">
 	$(document).ready(function(){
 		getList();
-
+		var countOption = 0;
 		
 		$('#productDiscountRate').on('keyup', function() {
 		    if (/\D/.test(this.value)) {
@@ -237,7 +289,13 @@ li {
 		      alert('100이하만 가능합니다.');
 		  }
 		});
+		$('.modal_productQuantity').on('keyup', function() {
+		    if (/\D/.test(this.value)) {
+		        this.value = this.value.replace(/\D/g, '')
+		        alert('숫자만 입력가능합니다.');
+		    }
 		
+		});
 		$('#productPrice').on('keyup', function() {
 		    if (/\D/.test(this.value)) {
 		        this.value = this.value.replace(/\D/g, '')
@@ -350,15 +408,14 @@ li {
 		$(".product_category_selected").on("click", ".link_product_category", function(event){
 			event.preventDefault();
 			var that = $(this);
-			alert(that.attr("data-name"));
 			var productCategory = document.getElementById('productCategory');
 			productCategory.setAttribute("value",that.attr("data-name"));
-			$('.form_product_category_number').html('<input type="hidden" name="productCategoryNo" value="'+that.attr("href")+'">')
+			$('.form_product_category_number').html('<input type="hidden" name="categoryNo" value="'+that.attr("href")+'">')
 		});
 		$(".product_category_selected").on("click", "#btn_product_category_delete", function(event){
 			event.preventDefault();
 			var that = $(this);
-			alert(that);
+	
 			$(".form_product_category_number").children().remove();
 			$("#productCategory").removeAttr("value")
 			that.parent().children().remove();
@@ -366,28 +423,58 @@ li {
 		});
 		$(".div_product_file").on("click", "#btn_product_file", function(event){
 			event.preventDefault();			
-			var formData = new FormData(document.getElementById('form_product_file'));
-			$.ajax({
-				type : 'post',
-				url : '/uploadajax',
-				dataType : 'text',
-				data : formData,
-				processData : false,
-				contentType : false,					
-				success : function(result){						
-					var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
-					if(checkImage(result)){
-						str += "<img src = '/displayfile?filename="+result+"' />";
-					} else{
-						str += "<img src = '/resources/show.jpg'/>";
+			if(document.getElementById("input_product_file").files[0]==null){
+			alert("사진이 없습니다.");
+			}else{
+				var formData = new FormData(document.getElementById('form_product_file'));
+				
+				$.ajax({
+					type : 'post',
+					url : '/uploadajax',
+					dataType : 'text',
+					data : formData,
+					processData : false,
+					contentType : false,					
+					success : function(result){						
+						var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
+						if(checkImage(result)){
+							str += "<img src = '/displayfile?filename="+result+"' />";
+						} else{
+							str += "<img src = '/resources/show.jpg'/>";
+						}
+						
+						str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
+						str += getOriginalName(result)+"</p></li>";
+						$(".uploadedList").append(str);
+						document.getElementById("form_product_file").reset();
 					}
-					
-					str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
-					str += getOriginalName(result)+"</p></li>";
-					$(".uploadedList").append(str);
-				}
-			});
+				});
+			}
 		});
+		$(".modal-footer").on("click", ".modal-insert", function(){
+			var productColor = $(".modal_productColor").val();
+			var productSize = $(".modal_productSize").val();
+			var productQuantity = $(".modal_productQuantity").val();
+			var str = '';
+			console.log(productColor);
+			console.log(productSize);
+			console.log(productQuantity);
+			str += '<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>';
+			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>';
+			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>';
+			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productQuantity">수량</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productQuantity" required value="'+productQuantity+'" class="form-control"></div></div></div>'; 
+			
+			
+			countOption++;
+			console.log(countOption);
+			$('.div_product_option').append(str);
+		});
+		$(".div_product_option").on("click", ".btn_product_option_delete", function(event){
+			event.preventDefault();	
+			var that = $(this);
+			that.parent().parent().remove();
+		});
+		
 		
 	});
 
