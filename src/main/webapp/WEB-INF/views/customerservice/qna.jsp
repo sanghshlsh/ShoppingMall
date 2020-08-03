@@ -35,9 +35,38 @@
 					<h1>Q&A</h1>
 				</div>
 				<br><br>
-				<div class="row">
-					테이블추가
+				<div class="table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="th-center">글번호</th>
+								<th class="th-center">상품정보</th>
+								<th class="th-center" style="width: 50%">제목</th>
+								<th class="th-center">작성자</th>
+								<th class="th-center">작성일</th>
+								<th class="th-center">조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${list}" var="qdto">
+								<tr>
+									<td>${dto.qnaNo}</td>
+									<td><a href="/customerservice/qnaread/${dto.qnaNo}">${dto.qnaTitle}</a></td>
+									<td>${dto.memberId}</td>
+									<td>${dto.qnaRegDate}</td>
+									<td>${dto.qnaReadCnt}</td>
+		
+								</tr>
+		
+							</c:forEach>
+		
+						</tbody>
+					</table>
 				</div>
+				<div class="row">
+					<a href="/customerservice/qnainsert">글쓰기</a>
+				</div>
+
 				<div class="row">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">

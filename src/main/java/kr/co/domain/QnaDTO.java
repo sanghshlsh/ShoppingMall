@@ -13,13 +13,14 @@ public class QnaDTO implements Serializable {
 	private String memberId; //작성자
 	private int productNo; //상품번호
 	private int isDelete; //삭제여부
+	private String[] files;
 
 	public QnaDTO() {
 
 	}
 
 	public QnaDTO(int qnaNo, String qnaTitle, String qnaContent, String qnaRegDate, int qnaReadCnt, String memberId,
-			int productNo, int isDelete) {
+			int productNo, int isDelet, String[] files) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
@@ -29,6 +30,7 @@ public class QnaDTO implements Serializable {
 		this.memberId = memberId;
 		this.productNo = productNo;
 		this.isDelete = isDelete;
+		this.files = files;
 	}
 
 	public int getQnaNo() {
@@ -97,6 +99,15 @@ public class QnaDTO implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String[] getFiles() {
+
+		return files;
+	}
+	public void setFiles(String[] files) {
+
+		this.files = files;
 	}
 	
 }
