@@ -1,6 +1,7 @@
 package kr.co.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 public class ProductDTO implements Serializable {
@@ -17,13 +18,15 @@ public class ProductDTO implements Serializable {
 	private String[] files; //첨부파일
 	private List<ProductOptionDTO> productOptionList; //상품옥션
 	private int categoryNo;
+	private Date regDate;
 
 	public ProductDTO() {
 
 	}
-	
+
 	public ProductDTO(int productNo, String productName, int productPrice, int productDiscountRate, String productSet,
-			int isDelete, int sellStatus, String[] files, List<ProductOptionDTO> productOptionList, int categoryNo) {
+			int isDelete, int sellStatus, String[] files, List<ProductOptionDTO> productOptionList, int categoryNo,
+			Date regDate) {
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -35,8 +38,17 @@ public class ProductDTO implements Serializable {
 		this.files = files;
 		this.productOptionList = productOptionList;
 		this.categoryNo = categoryNo;
+		this.regDate = regDate;
 	}
 
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
 
 	public int getCategoryNo() {
 		return categoryNo;
