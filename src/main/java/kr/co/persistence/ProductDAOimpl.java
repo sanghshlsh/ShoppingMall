@@ -51,6 +51,10 @@ public class ProductDAOimpl implements ProductDAO {
 	}
 	@Override
 	public List<ProductDTO> productList() {
+		List<ProductDTO> list =  session.selectList(NS+".productList");
+			for (ProductDTO productDTO : list) {
+				System.out.println(productDTO.getRegDate());
+			}
 		return session.selectList(NS+".productList");
 	}
 	@Override

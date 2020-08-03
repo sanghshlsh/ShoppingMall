@@ -61,7 +61,9 @@ public class AdminProductController {
 	@RequestMapping(value ="/product_List", method = RequestMethod.GET)
 	public List<ProductDTO> productList() {
 		List<ProductDTO> list = productService.productList();
-
+		for (ProductDTO productDTO : list) {
+			System.out.println(productDTO.getRegDate());
+		}
 		return list;
 	}
 	

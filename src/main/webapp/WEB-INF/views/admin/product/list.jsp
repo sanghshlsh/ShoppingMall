@@ -232,16 +232,16 @@ input[type=checkbox] {
 				str.append('<div class="row div_search_option_result_inner">');
 				str.append('<ul>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('<input type="checkbox name='+data[i]["productNo"]+'">');
+				str.append('<input type="checkbox" name="'+data[i]["productNo"]+'">');
 				str.append('</li>');
 				str.append('<li class="col-sm-2 li_product_search_result">');
-				str.append(getCategoryName(data[i]["categoryNo"]));
+				str.append((data[i]["categoryNo"]));
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
 				str.append(data[i]["productNo"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-2 li_product_search_result">');
-				str.append(data[i]["productName]"]);
+				str.append(data[i]["productName"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
 				str.append(data[i]["productPrice"]);
@@ -250,7 +250,7 @@ input[type=checkbox] {
 				str.append('재고');
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append(dateToString(data[i]["regDate"]));
+				str.append(data[i]["regDate"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
 				if(data[i]["sellStatus"]==0){
@@ -292,15 +292,16 @@ input[type=checkbox] {
 			}
 		});
 	};
-	function dateToString(date){
-	    function pad(num) {
-	        num = num + '';
-	        return num.length < 2 ? '0' + num : num;
-	    }
-	    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
-	}
 
-	
+	<%--작동x--%>
+	function getFormatDate(date){
+	    var year = date.getFullYear();              
+	    var month = (1 + date.getMonth());          
+	    month = month >= 10 ? month : '0' + month;  
+	    var day = date.getDate();                  
+	    day = day >= 10 ? day : '0' + day;          
+	    return  year + '' + month + '' + day;     
+	}
 	
 </script>
 </body>
