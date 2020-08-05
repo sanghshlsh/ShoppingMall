@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class FaqDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int fagNo; // no
+	private int faqNo; // no
 	private String faqTitle; // 제목
 	private String faqRegDate; // 작성일자
 	private String faqContent; // 내용
@@ -17,10 +17,10 @@ public class FaqDTO implements Serializable {
 
 	}
 
-	public FaqDTO(int fagNo, String faqTitle, String faqRegDate, String faqContent, int faqReadCnt, String faqCategory,
+	public FaqDTO(int faqNo, String faqTitle, String faqRegDate, String faqContent, int faqReadCnt, String faqCategory,
 			int isDelete) {
 		super();
-		this.fagNo = fagNo;
+		this.faqNo = faqNo;
 		this.faqTitle = faqTitle;
 		this.faqRegDate = faqRegDate;
 		this.faqContent = faqContent;
@@ -29,12 +29,12 @@ public class FaqDTO implements Serializable {
 		this.isDelete = isDelete;
 	}
 
-	public int getFagNo() {
-		return fagNo;
+	public int getFaqNo() {
+		return faqNo;
 	}
 
-	public void setFagNo(int fagNo) {
-		this.fagNo = fagNo;
+	public void setFagNo(int faqNo) {
+		this.faqNo = faqNo;
 	}
 
 	public String getFaqTitle() {

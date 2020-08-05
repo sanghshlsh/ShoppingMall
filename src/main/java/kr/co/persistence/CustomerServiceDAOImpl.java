@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.FaqDTO;
 import kr.co.domain.PageTO;
 import kr.co.domain.QnaDTO;
 
@@ -20,8 +21,10 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO{
 	
 	private final String NS = "c.u.s";
 
+	/////////////////////////////Q&A//////////////////////////////////
+	
 	@Override
-	public void insert(QnaDTO qdto) {
+	public void qnaInsert(QnaDTO qdto) {
 		Integer qnaNo = session.selectOne(NS+".getQnaNo");
 		if (qnaNo != null) {
 			qnaNo += 1;
@@ -30,108 +33,171 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO{
 		}
 		qdto.setQnaNo(qnaNo);
 		
-		session.insert(NS +".insert", qdto);
+		session.insert(NS +".qnaInsert", qdto);
 		
 	}
 	@Override
-	public List<QnaDTO> list() {
+	public List<QnaDTO> qnaList() {
 		
-		return session.selectList(NS+".list");
-	}
-
-	@Override
-	public QnaDTO read(int qnaNo) {
-		
-		return session.selectOne(NS+".read", qnaNo);
-	}
-	
-	@Override
-	public void increaseViewcnt(int qnaNo) {
-		
-		session.update(NS+".increaseViewcnt", qnaNo);
-	}
-	
-	@Override
-	public QnaDTO updateUi(int qnaNo) {
-		
-		return session.selectOne(NS+".updateUI", qnaNo);
-	}
-	
-	@Override
-	public void update(QnaDTO qdto) {
-		
-		session.update(NS+".update", qdto);
-	}
-	
-	@Override
-	public void delete(int qnaNo) {
-		
-		session.delete(NS+".delete", qnaNo);
+		return session.selectList(NS+".qnaList");
 	}
 
 	@Override
-	public PageTO<QnaDTO> list(PageTO<QnaDTO> to) {
+	public QnaDTO qnaRead(int qnaNo) {
 		
-		RowBounds rowBounds = new RowBounds(to.getStartNum() -1, to.getPerPage());
+		return session.selectOne(NS+".qnaRead", qnaNo);
+	}
+	
+	@Override
+	public void qnaIncreaseViewcnt(int qnaNo) {
 		
-		List<QnaDTO> list = session.selectList(NS + ".list", null, rowBounds);
+		session.update(NS+".qnaIncreaseViewcnt", qnaNo);
+	}
+	
+	@Override
+	public QnaDTO qnaUpdateUi(int qnaNo) {
+		
+		return session.selectOne(NS+".qnaUpdateUI", qnaNo);
+	}
+	
+	@Override
+	public void qnaUpdate(QnaDTO qdto) {
+		
+		session.update(NS+".qnaUpdate", qdto);
+	}
+	
+	@Override
+	public void qnaDelete(int qnaNo) {
+		
+		session.delete(NS+".qnaDelete", qnaNo);
+	}
+
+	@Override
+	public PageTO<QnaDTO> qnaList(PageTO<QnaDTO> qto) {
+		
+		RowBounds rowBounds = new RowBounds(qto.getStartNum() -1, qto.getPerPage());
+		
+		List<QnaDTO> qlist = session.selectList(NS + ".qnaList", null, rowBounds);
 		
 		Integer amount = session.selectOne(NS+".getAmount");
 		if (amount != null) {
-			to.setAmount(amount);
+			qto.setAmount(amount);
 		} else {
-			to.setAmount(0);
+			qto.setAmount(0);
 		}
 		
-		return to;
+		return qto;
 	}
 
 	@Override
-	public List<QnaDTO> searchlist(String searchType, String keyword) {
+	public List<QnaDTO> qnaSearchlist(String searchType, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchType", searchType);
 		map.put("keyword", keyword);
-		return session.selectList(NS+".searchlist", map);
+		return session.selectList(NS+".qnaSearchlist", map);
 	}
 	
 	@Override
-	public void addAttach(String fullName, int qnaNo) {
+	public void qnaAddAttach(String fullName, int qnaNo) {
 		Integer id = session.selectOne(NS+".getId");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("fullName", fullName);
 		map.put("qnaNo", qnaNo);
-		session.insert(NS+".addAttach", map);
+		session.insert(NS+".qnaAddAttach", map);
 		
 	}
 	
 	@Override
-	public void updateAttach(String fullName, int qnaNo) {
+	public void qnaUpdateAttach(String fullName, int qnaNo) {
 		Integer id = session.selectOne(NS+".getId");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("fullName", fullName);
 		map.put("qnaNo", qnaNo);
-		session.update(NS+"updateAttach", map);
+		session.update(NS+"qnaUpdateAttach", map);
 	}
 
 	@Override
-	public void deleteByQnaNo(int qnaNo) {
+	public void qnaDeleteByQnaNo(int qnaNo) {
 		
-		session.delete(NS+".deleteByBno", qnaNo);
+		session.delete(NS+".qnaDeleteByQnaNo", qnaNo);
 	}
 
  
 	@Override
-	public List<String> getAttach(Integer qnaNo) {
+	public List<String> getQnaattach(Integer qnaNo) {
 		
-		return session.selectList(NS+".getAttach", qnaNo);
+		return session.selectList(NS+".getQnaattach", qnaNo);
 	}
 
 	@Override
-	public void deleteAttachByFileName(String filename) {
+	public void qnaDeleteAttachByFileName(String filename) {
 		
-		session.delete(NS+".deleteByFileName", filename);
+		session.delete(NS+".qnaDeleteAttachByFileName", filename);
+	}
+	
+	/////////////////////////////FAQ//////////////////////////////////
+	
+	@Override
+	public void faqInsert(FaqDTO fdto) {
+		
+		session.insert(NS+".faqInsert", fdto);
+	}
+	
+	@Override
+	public PageTO<FaqDTO> faqList(PageTO<FaqDTO> fto) {
+		
+		RowBounds rowBounds = new RowBounds(fto.getStartNum() -1, fto.getPerPage());
+		
+		List<FaqDTO> flist = session.selectList(NS + ".faqList", null, rowBounds);
+		
+		Integer amount = session.selectOne(NS+".getAmount");
+		if (amount != null) {
+			fto.setAmount(amount);
+		} else {
+			fto.setAmount(0);
+		}
+		
+		return fto;
+	}
+	@Override
+	public List<FaqDTO> faqSearchlist(String searchType, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchType", searchType);
+		map.put("keyword", keyword);
+		return session.selectList(NS+".faqSearchlist", map);
+	}
+	@Override
+	public FaqDTO faqRead(int faqNo) {
+		
+		return session.selectOne(NS+".faqRead", faqNo);
+	}
+	@Override
+	public void faqIncreaseViewcnt(int faqNo) {
+		
+		session.update(NS+".faqIncreaseViewcnt", faqNo);
+	}
+	@Override
+	public void faqUpdate(FaqDTO fdto) {
+		
+		session.update(NS+".faqUpdate", fdto);
+	}
+	@Override
+	public void faqDeleteByQnaNo(int faqNo) {
+		
+		session.delete(NS+".faqDelete", faqNo);
+	}
+	@Override
+	public FaqDTO faqUpdateUI(int faqNo) {
+		
+		return session.selectOne(NS+".faqUpdateUI", faqNo);
+	}
+	@Override
+	public void faqDelete(int faqNo) {
+		
+		session.delete(NS+".faqDelete", faqNo);
 	}
 
+	
 }

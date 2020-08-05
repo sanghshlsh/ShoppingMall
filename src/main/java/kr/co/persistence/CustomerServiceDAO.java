@@ -2,37 +2,58 @@ package kr.co.persistence;
 
 import java.util.List;
 
+import kr.co.domain.FaqDTO;
 import kr.co.domain.PageTO;
 import kr.co.domain.QnaDTO;
 
 public interface CustomerServiceDAO {
+	////////////////////////////Q&A//////////////////////////////////
+	void qnaInsert(QnaDTO qdto);
 
-	void insert(QnaDTO qdto);
-
-	void addAttach(String fullName, int qnaNo);
+	void qnaAddAttach(String fullName, int qnaNo);
 	
-	void updateAttach(String fullName, int qnaNo);
+	void qnaUpdateAttach(String fullName, int qnaNo);
 	
-	List<QnaDTO> list();
+	List<QnaDTO> qnaList();
 
-	QnaDTO read(int qnaNo);
+	QnaDTO qnaRead(int qnaNo);
 	
-	void increaseViewcnt(int qnaNo);
+	void qnaIncreaseViewcnt(int qnaNo);
 
-	QnaDTO updateUi(int qnaNo);
+	QnaDTO qnaUpdateUi(int qnaNo);
 
-	void update(QnaDTO qdto);
+	void qnaUpdate(QnaDTO qdto);
 
-	void delete(int qnaNo);
+	void qnaDelete(int qnaNo);
 
-	PageTO<QnaDTO> list(PageTO<QnaDTO> to);
+	PageTO<QnaDTO> qnaList(PageTO<QnaDTO> qto);
 
-	List<QnaDTO> searchlist(String searchType, String keyword);
+	List<QnaDTO> qnaSearchlist(String searchType, String keyword);
 
-	List<String> getAttach(Integer qnaNo);
+	List<String> getQnaattach(Integer qnaNo);
 
-	void deleteAttachByFileName(String filename);
+	void qnaDeleteAttachByFileName(String filename);
 
-	void deleteByQnaNo(int qnaNo);
+	void qnaDeleteByQnaNo(int qnaNo);
+	
+	////////////////////////////FAQ//////////////////////////////////
+
+	void faqInsert(FaqDTO fdto);
+
+	PageTO<FaqDTO> faqList(PageTO<FaqDTO> fto);
+
+	List<FaqDTO> faqSearchlist(String searchType, String keyword);
+
+	FaqDTO faqRead(int faqNo);
+
+	void faqIncreaseViewcnt(int faqNo);
+
+	void faqUpdate(FaqDTO fdto);
+
+	void faqDeleteByQnaNo(int faqNo);
+
+	FaqDTO faqUpdateUI(int faqNo);
+
+	void faqDelete(int faqNo);
 
 }
