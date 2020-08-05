@@ -18,5 +18,9 @@ public interface ProductService {
 
 	List<CategoryDTO> categoryListN(CategoryDTO categoryDto);
 
+	List<ProductDTO> productList();
+
+	String getCategoryName(CategoryDTO categoryDto);
+
 
 }
