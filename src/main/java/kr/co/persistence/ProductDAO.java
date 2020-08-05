@@ -22,5 +22,9 @@ public interface ProductDAO {
 
 	String getCategoryName(CategoryDTO categoryDto);
 
+	ProductDTO updateUI(int productNo);
+
+	List<String> getAttach(Integer productNo);
+
 
 }

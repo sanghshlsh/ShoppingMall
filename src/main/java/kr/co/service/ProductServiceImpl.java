@@ -46,8 +46,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	@Override
 	public List<String> getAttach(Integer productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(":::::::::::::::::::::::::");
+		System.out.println("psip");
+		return productDao.getAttach(productNo);
 	}
 	
 	@Override
@@ -71,4 +72,10 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productDao.getCategoryName(categoryDto);
 	}
+	@Override
+	public ProductDTO updateUI(int productNo) {
+	
+		return productDao.updateUI(productNo);
+	}
+	
 }

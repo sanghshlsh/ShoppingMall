@@ -1,15 +1,14 @@
 package kr.co.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
@@ -61,9 +60,6 @@ public class AdminProductController {
 	@RequestMapping(value ="/product_List", method = RequestMethod.GET)
 	public List<ProductDTO> productList() {
 		List<ProductDTO> list = productService.productList();
-		for (ProductDTO productDTO : list) {
-			System.out.println(productDTO.getRegDate());
-		}
 		return list;
 	}
 	
@@ -73,5 +69,13 @@ public class AdminProductController {
 		String categoryName = productService.getCategoryName(categoryDto);
 
 		return categoryName;
+	}
+	
+	@RequestMapping(value ="/admin/product/update/{productNo}")
+	public String update(Model model, @PathVariable("productNo") int productNo) {
+		ProductDTO productDTO = productService.updateUI(productNo);
+		model.addAttribute("productDTO",productDTO );
+		System.out.println(productDTO.getProductName());
+		return "/admin/product/update";
 	}
 }

@@ -22,5 +22,7 @@ public interface ProductService {
 
 	String getCategoryName(CategoryDTO categoryDto);
 
+	ProductDTO updateUI(int productNo);
+
 
 }

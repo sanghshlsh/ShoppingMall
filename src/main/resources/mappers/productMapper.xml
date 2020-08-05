@@ -33,4 +33,13 @@
 	<select id="getCategoryName" resultType="String">
 		<![CDATA[select categoryName from category where categoryNo = #{categoryNo}]]>
 	</select>
+	<select id="updateUI" resultType="ProductDTO">
+		<![CDATA[select * from product where productNo = #{productNo}]]>
+	</select>
+	<select id="getProductOptionList" resultType="ProductOptionDTO">
+		<![CDATA[select * from productOption where productNo = #{productNo}]]>
+	</select>
+	<select id="getAttach" resultType="string">
+		<![CDATA[select fullName from productAttach where productNo = #{productNo} order by attachRegDate asc]]>
+	</select>
 </mapper>

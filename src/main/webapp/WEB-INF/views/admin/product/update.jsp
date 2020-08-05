@@ -109,7 +109,7 @@ li {
 							선택된 카테고리
 						</div>
 						<div class="col-sm-9">
-							<div class="row borderd_div_left product_category_selected">분류명db받아오기</div>
+							<div class="row borderd_div_left product_category_selected">${categoryNo }</div>
 						</div>
 					</div>
 					<div class="row">
@@ -122,7 +122,7 @@ li {
 									<label for="productName">상품명</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productName" required id="productName" class="form-control">
+									<input name="productName" required id="productName" class="form-control" value="${productDTO.productName }">
 								</div>
 							</div>
 							<div class="form-group">
@@ -130,7 +130,7 @@ li {
 									<label for="productCategory">카테고리</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productCategory" readonly id="productCategory" class="form-control">
+									<input name="productCategory" readonly id="productCategory" class="form-control" value="${productDTO.categoryNo }">
 								</div>
 							</div>
 							<div class="radio">
@@ -139,13 +139,13 @@ li {
 								</div>
 								<div class="col-sm-10">
 									<label for="sellStatus1">
-										<input  type="radio" name="sellStatus" id="sellStatus1" value="0" checked>판매대기
+										<input  type="radio" name="sellStatus" id="sellStatus1" value="0" ${productDTO.sellStatus == 0 ? "checked" :"" }>판매대기
 									</label>
 									<label for="sellStatus2">
-										<input  type="radio" name="sellStatus" id="sellStatus2" value="1">판매중
+										<input  type="radio" name="sellStatus" id="sellStatus2" value="1" ${productDTO.sellStatus == 1 ? "checked" :"" }>판매중
 									</label>
 									<label for="sellStatus3">
-										<input  type="radio" name="sellStatus" id="sellStatus3" value="2">품절
+										<input  type="radio" name="sellStatus" id="sellStatus3" value="2" ${productDTO.sellStatus == 2 ? "checked" :"" }>품절
 									</label>
 								</div>
 							</div>
@@ -156,10 +156,10 @@ li {
 								</div>
 								<div class="col-sm-10">
 									<label for="isDelete1">
-										<input  type="radio" name="isDelete" id="isDelete1" value="0" checked>전시
+										<input  type="radio" name="isDelete" id="isDelete1" value="0" ${productDTO.isDelete == 0 ? "checked" :"" }>전시
 									</label>
 									<label for="isDelete2">
-										<input  type="radio" name="isDelete" id="isDelete2"value="1">미전시
+										<input  type="radio" name="isDelete" id="isDelete2" value="1" ${productDTO.isDelete == 1 ? "checked" :"" }>미전시
 									</label>
 								</div>
 							</div>
@@ -168,7 +168,7 @@ li {
 									<label for="productSet">세트설정</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productSet" required id="productSet" class="form-control">
+									<input name="productSet" required id="productSet" class="form-control" value="${productDTO.productSet }">
 								</div>
 							</div>
 							<div class="form-group">
@@ -176,7 +176,7 @@ li {
 									<label for="productPrice">가격</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productPrice" required id="productPrice" class="form-control">
+									<input name="productPrice" required id="productPrice" class="form-control" value="${productDTO.productPrice }">
 								</div>
 							</div>
 							<div class="form-group">
@@ -184,7 +184,7 @@ li {
 									<label for="productDiscountRate">할인율(%)</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productDiscountRate" required id="productDiscountRate" class="form-control">
+									<input name="productDiscountRate" required id="productDiscountRate" class="form-control" value="${productDTO.productDiscountRate }">
 								</div>
 							</div>
 							<div class="form_product_category_number">
@@ -277,6 +277,16 @@ li {
 	</div>
 					
 	<script type="text/javascript">
+	var StringBuffer = function() { 
+		this.buffer = new Array(); 
+	}; 
+	StringBuffer.prototype.append = function(str) { 
+		this.buffer[this.buffer.length] = str; 
+	}; 
+	StringBuffer.prototype.toString = function() { 
+		return this.buffer.join(""); 
+	};
+	var productNo = ${productDTO.productNo};
 	$(document).ready(function(){
 		getCategoryList();
 		var countOption = 0;
@@ -395,7 +405,6 @@ li {
 						$(id).html(str);		
 					}
 				});
-			
 		});
 		$(".tbl_product_category").on("click", ".product_category_minimum", function(event){
 			event.preventDefault();
@@ -473,7 +482,29 @@ li {
 			that.parent().parent().remove();
 		});
 		
+		$.getJSON("/getAttach/" + productNo, function(arr) {
+			console.log("getJson")
+			for(var i = 0; i < arr.length; i++) {
+			var str	= new StringBuffer();
+			str.append('<li class="col-xs-4">');
+			str.append('<a herf="/displayfile?filename=' + getImageLink(arr[i]) + '">');
+			if(checkImage(arr[i])) {
+				str.append('<img src="/displayfile?filename=' + arr[i] + '"/>');
+			} else {
+				str.append('<img src="/resources/show.png"/>');
+			}						
+			str.append('</a>');
+			str.append('<p class="orifilename">');
+			str.append('<a class="deletefile" href="' + arr[i] + '"><span class="glyphicon glyphicon-trash"></span></a>');
+			str.append(getOriginalName(arr[i]));
+			str.append('</p>');
+			str.append('</li>');
 		
+			var resultstr = str.toString();
+			$(".uploadedList").append(resultstr);
+			}
+			
+		});
 	});
 
 		function getCategoryList(){
