@@ -41,7 +41,34 @@
 					</select>
 				</div>
 				<div class="row">
-					테이블추가
+					<div class="table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="th-center">글번호</th>
+								<th class="th-center">상품정보</th>
+								<th class="th-center" style="width: 50%">제목</th>
+								<th class="th-center">작성자</th>
+								<th class="th-center">작성일</th>
+								<th class="th-center">조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${faqList}" var="fdto">
+								<tr>
+									<td>${fdto.faqNo}</td>
+									<td><a href="/customerservice/faqread/${fdto.faqNo}">${fdto.faqTitle}</a></td>
+									<td>${fdto.memberId}</td>
+									<td>${fdto.faqRegDate}</td>
+									<td>${fdto.faqReadCnt}</td>
+		
+								</tr>
+		
+							</c:forEach>
+		
+						</tbody>
+					</table>
+				</div>
 				</div>
 				<div class="row">
 					<nav aria-label="Page navigation example">

@@ -76,7 +76,7 @@ public class CustomerServiceController {
 		model.addAttribute("to",fto);
 		model.addAttribute("listist",fto.getList());
 	}
-	@RequestMapping(value = "/faqSearchlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/faqsearchlist", method = RequestMethod.GET)
 	public String faqSearchlist(Model model, String searchType, String keyword) {
 		
 		List<FaqDTO> flist = cService.faqSearchlist(searchType,keyword);

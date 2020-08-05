@@ -48,7 +48,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${list}" var="qdto">
+							<c:forEach items="${qnaList}" var="qdto">
 								<tr>
 									<td>${qdto.qnaNo}</td>
 									<td><a href="/customerservice/qnaread/${qdto.qnaNo}">${qdto.qnaTitle}</a></td>
