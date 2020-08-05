@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.domain.FaqDTO;
 import kr.co.domain.PageTO;
 import kr.co.domain.QnaAttachDTO;
 import kr.co.domain.QnaDTO;
@@ -14,76 +15,144 @@ import kr.co.persistence.CustomerServiceDAO;
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
+	
 	@Autowired
 	private CustomerServiceDAO pcDao;
 	
+///////////////////////////////Q&A///////////////////////////////
 	@Transactional
 	@Override
-	public void insert(QnaDTO qdto) {
-		pcDao.insert(qdto);
+	public void qnaInsert(QnaDTO qdto) {
+		pcDao.qnaInsert(qdto);
 		
 		String[] files = qdto.getFiles();
 		if (files!=null) {
 			for(String fullName : files) {
-				pcDao.addAttach(fullName, qdto.getQnaNo());
+				pcDao.qnaAddAttach(fullName, qdto.getQnaNo());
 			}
 		}
 	}
-
-	@Override
-	public PageTO<QnaDTO> list(PageTO<QnaDTO> to) {
+	
+	public List<QnaDTO> qnaList() {
 		
-		return pcDao.list(to);
+		return pcDao.qnaList();
 	}
+
 	@Transactional
 	@Override
-	public QnaDTO read(int qnaNo) {
-		pcDao.increaseViewcnt(qnaNo);
-		return pcDao.read(qnaNo);
+	public QnaDTO qnaRead(int qnaNo) {
+		pcDao.qnaIncreaseViewcnt(qnaNo);
+		return pcDao.qnaRead(qnaNo);
+	}
+	
+	@Override
+	public QnaDTO qnaUpdateUI(int qnaNo) {
+		
+		return pcDao.qnaUpdateUi(qnaNo);
 	}
 
+	@Transactional
 	@Override
-	public void update(QnaDTO qdto) {
-		pcDao.update(qdto);
+	public void qnaUpdate(QnaDTO qdto) {
+		pcDao.qnaUpdate(qdto);
 		
-		pcDao.deleteByQnaNo(qdto.getQnaNo());
+		pcDao.qnaDeleteByQnaNo(qdto.getQnaNo());
 		
 		String[] files = qdto.getFiles();
 		if(files != null) {
 			for(String fullName : files) {
-				pcDao.addAttach(fullName, qdto.getQnaNo());
+				pcDao.qnaAddAttach(fullName, qdto.getQnaNo());
 			}
 		}
 	}
 
+
+	@Transactional
 	@Override
-	public QnaDTO updateUI(int qnaNo) {
+	public void qnaDelete(int qnaNo) {
+		
+		pcDao.qnaDelete(qnaNo);
+		pcDao.qnaDeleteByQnaNo(qnaNo);
+	}
+
+	@Override
+	public PageTO<QnaDTO> qnaList(PageTO<QnaDTO> qto) {
+		
+		return pcDao.qnaList(qto);
+	}
+	@Override
+	public List<QnaDTO> qnaSearchlist(String searchType, String keyword) {
+		
+		return pcDao.qnaSearchlist(searchType, keyword);
+	}
+
+	@Override
+	public List<String> getQnaAttach(Integer qnaNo) {
+		
+		return pcDao.getQnaattach(qnaNo);
+	}
+
+	@Override
+	public void qnaDeleteAttachByFileName(String filename) {
+		
+		pcDao.qnaDeleteAttachByFileName(filename);
+	}
+	///////////////////////////////FAQ///////////////////////////////
+	@Transactional
+	@Override
+	public void faqInsert(FaqDTO fdto) {
+		
+		pcDao.faqInsert(fdto);
+		
+	}
+
+	@Override
+	public PageTO<FaqDTO> faqList(PageTO<FaqDTO> fto) {
 	
-		return pcDao.updateUi(qnaNo);
+		return pcDao.faqList(fto);
 	}
 
 	@Override
-	public void delete(int qnaNo) {
+	public List<FaqDTO> faqSearchlist(String searchType, String keyword) {
 		
-		pcDao.delete(qnaNo);
-		pcDao.deleteByQnaNo(qnaNo);
+		return pcDao.faqSearchlist(searchType, keyword);
+	}
+	@Transactional
+	@Override
+	public FaqDTO faqRead(int faqNo) {
+		pcDao.faqIncreaseViewcnt(faqNo);
+		return pcDao.faqRead(faqNo);
 	}
 
 	@Override
-	public List<QnaDTO> searchlist(String searchType, String keyword) {
+	public void faqUpdate(FaqDTO fdto) {
 		
-		return pcDao.searchlist(searchType, keyword);
+		pcDao.faqUpdate(fdto);
+		
+		pcDao.faqDeleteByQnaNo(fdto.getFaqNo());
 	}
 
 	@Override
-	public List<String> getAttach(Integer qnaNo) {
+	public FaqDTO faqUpdateUI(int faqNo) {
 		
-		return pcDao.getAttach(qnaNo);
+		return pcDao.faqUpdateUI(faqNo);
 	}
 
 	@Override
-	public void deleteAttachByFileName(String filename) {
+	public void faqDelete(int faqNo) {
 		
-		pcDao.deleteAttachByFileName(filename);
+		pcDao.faqDelete(faqNo);
+		pcDao.faqDeleteByQnaNo(faqNo);
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

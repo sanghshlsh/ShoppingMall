@@ -2,26 +2,44 @@ package kr.co.service;
 
 import java.util.List;
 
+import kr.co.domain.FaqDTO;
 import kr.co.domain.PageTO;
 import kr.co.domain.QnaDTO;
 
 public interface CustomerService {
-	void insert(QnaDTO qdto);
+	//////////////////////////////Q&A/////////////////////////////////
+	void qnaInsert(QnaDTO qdto);
 
-	PageTO<QnaDTO> list(PageTO<QnaDTO> to);
+	PageTO<QnaDTO> qnaList(PageTO<QnaDTO> qto);
 
-	QnaDTO read(int qnaNo);
+	QnaDTO qnaRead(int qnaNo);
 
-	QnaDTO updateUI(int qnaNo);
+	QnaDTO qnaUpdateUI(int qnaNo);
 
-	void update(QnaDTO qdto);
+	void qnaUpdate(QnaDTO qdto);
 
-	void delete(int qnaNo);
+	void qnaDelete(int qnaNo);
 
-	List<QnaDTO> searchlist(String searchType, String keyword);
+	List<QnaDTO> qnaSearchlist(String searchType, String keyword);
 	
-	List<String> getAttach(Integer qnaNo);
+	List<String> getQnaAttach(Integer qnaNo);
 	
-	void deleteAttachByFileName(String filename);
+	void qnaDeleteAttachByFileName(String filename);
+	
+	//////////////////////////////FAQ/////////////////////////////////
+
+	void faqInsert(FaqDTO fdto);
+
+	PageTO<FaqDTO> faqList(PageTO<FaqDTO> fto);
+
+	List<FaqDTO> faqSearchlist(String searchType, String keyword);
+
+	FaqDTO faqRead(int faqNo);
+
+	void faqUpdate(FaqDTO fdto);
+
+	FaqDTO faqUpdateUI(int faqNo);
+
+	void faqDelete(int faqNo);
 
 }
