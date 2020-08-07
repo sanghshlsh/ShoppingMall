@@ -83,17 +83,17 @@ li {
 							<tr>
 								<td class="col-sm-4">
 									<ul id="ul_product_category_1">
-										<li>1차 db불러오기</li>
+										<li></li>
 									</ul>
 								</td>
 								<td class="col-sm-4">
 									<ul id="ul_product_category_2">
-										<li>2차 db불러오기</li>
+										<li></li>
 									</ul>
 								</td>
 								<td class="col-sm-4">
 									<ul id="ul_product_category_3">
-										<li>3차 db불러오기</li>
+										<li></li>
 									</ul>
 								</td>
 							</tr>
@@ -101,17 +101,6 @@ li {
 					</table>
 				</div>
 				<div class="row"> 
-					<div class="row text-center">
-						<button type="button" class="btn btn-primary" id="btn_product_category_insert">카테고리 추가 버튼</button>
-					</div>
-					<div class="row borderd_div">
-						<div class="col-sm-3">
-							선택된 카테고리
-						</div>
-						<div class="col-sm-9">
-							<div class="row borderd_div_left product_category_selected">분류명db받아오기</div>
-						</div>
-					</div>
 					<div class="row">
 						상품 기본정보
 					</div>
@@ -212,7 +201,7 @@ li {
 										<input type="file" id="input_product_file" name="file">
 									</div>
 									<div class="col-sm-4">
-										<button class="btn btn-primary" id="btn_product_file">확인</button>
+										<button class="btn btn-primary" id="btn_product_file">사진 등록</button>
 									</div>
 								</div>								
 							</form>
@@ -277,6 +266,15 @@ li {
 	</div>
 					
 	<script type="text/javascript">
+	var StringBuffer = function() { 
+		this.buffer = new Array(); 
+	}; 
+	StringBuffer.prototype.append = function(str) { 
+		this.buffer[this.buffer.length] = str; 
+	}; 
+	StringBuffer.prototype.toString = function() { 
+		return this.buffer.join(""); 
+	};
 	$(document).ready(function(){
 		getCategoryList();
 		var countOption = 0;
@@ -307,11 +305,33 @@ li {
 		
 		$('#btn_product_insert').click(function(event){
 			event.preventDefault();
-			var str = '<input type="hidden">';
+			var str = new StringBuffer();
+
+			if($("#productName").val()==""){
+				alert("상품명을 입력하시오.")
+				$("#productName").focus();
+				return false;
+			} else if($("#productCategory").val()==""){
+				alert("카테고리를 고르시오.")
+				$(".tbl_product_category").focus();
+				return false;
+			} else if($("#productPrice").val()==""){
+				alert("상품 가격을 입력하시오.")
+				$("#productPrice").focus();
+				return false;
+			} else if($(".div_product_option").children("div").val()==null){
+				alert("옵션을 선택하시오.")
+				$("#btn_product_option").focus();
+				return false;
+			}
+			
+			
+			str.append('<input type="hidden">');
 			$(".deletefile").each(function(index){
-				str += "<input type='hidden' value='"+$(this).attr("href")+"' name='files["+index+"]'>"
+				str.append('<input type="hidden" value="'+$(this).attr("href")+'" name="files['+index+']">');
 			});
-			$("#form_product_insert").append(str);
+			var resultstr = str.toString();
+			$("#form_product_insert").append(resultstr);
 			$("#form_product_insert").submit();
 		});
 		
@@ -325,7 +345,8 @@ li {
 		});
 
 		$(".fileDrop").on("drop", function(event){
-			event.preventDefault();		
+			event.preventDefault();
+			var str = new StringBuffer();
 			var files = event.originalEvent.dataTransfer.files;
 			var file = files[0];			
 			var formData = new FormData();
@@ -338,16 +359,18 @@ li {
 				processData : false,
 				contentType : false,					
 				success : function(result){						
-					var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
+					str.append('<li class="col-xs-4"><a href ="/displayfile?filename='+getImageLink(result)+'">');
 					if(checkImage(result)){
-						str += "<img src = '/displayfile?filename="+result+"' />";
+						str.append('<img src = "/displayfile?filename='+result+'" />');
 					} else{
-						str += "<img src = '/resources/show.jpg'/>";
+						str.append('<img src = "/resources/show.jpg"/>');
 					}
 					
-					str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
-					str += getOriginalName(result)+"</p></li>";
-					$(".uploadedList").append(str);
+					str.append('</a><p class="originalfilename"><a class="deletefile" href="'+result+'"><span class="glyphicon glyphicon-trash"></span></a>');
+					str.append(getOriginalName(result));
+					str.append('</p></li>');
+					var resultstr = str.toString();
+					$(".uploadedList").append(resultstr);
 				}
 			});
 		})
@@ -372,8 +395,10 @@ li {
 		$(".tbl_product_category").on("click", ".link_product_category", function(event){
 			event.preventDefault();
 			var that = $(this);
-			var str = '';
+			var str = new StringBuffer();
 			var degree = Number($(this).attr("data-degree"))+1;
+			var id = "#ul_product_category_"+degree;
+			var nextId = "#ul_product_category_"+(degree+1);
 				$.ajax({
 					type : 'get',
 					url : '/product_CategoryN',
@@ -386,43 +411,31 @@ li {
 						var list = $.parseJSON(data);
 						var listLen = list.length;
 						for(var i = 0; i < listLen; i++){
-							str += '<li><a href="'+list[i].categoryNo+'" class="link_product_category'
+							str.append('<li><a href="'+list[i].categoryNo+'" class="link_product_category');
+							str.append('" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">'+list[i].categoryName+'</a>');
 							if(that.attr("data-degree")==2)
-								 str +=' product_category_minimum'
-							str += '" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">'+list[i].categoryName+'</a></li>';
+								 str.append('<button class="btn btn-primary btn_product_category_selected">추가버튼</button>');
+							str.append('</li>');
+							
+							$(nextId).html("");
 						}
-						var id = "#ul_product_category_"+degree;
-						$(id).html(str);		
+						var resultstr = str.toString();
+						
+						$(id).html(resultstr);		
 					}
 				});
 			
 		});
-		$(".tbl_product_category").on("click", ".product_category_minimum", function(event){
+		$(".tbl_product_category").on("click", ".btn_product_category_selected", function(event){
 			event.preventDefault();
-			var that = $(this);
-			var str = '';
-			
-			str += '<a href="'+that.attr("href")+'" class="link_product_category'
-			str += '" data-degree="'+that.attr("data-degree")+'" data-name="'+that.attr("data-name")+'">'+that.attr("data-name")+'</a>';
-			str += '<button type="button" class="btn btn-primary" id="btn_product_category_delete">삭제</button>';					
-			$('.product_category_selected').html(str);		
-		});
-		$(".product_category_selected").on("click", ".link_product_category", function(event){
-			event.preventDefault();
-			var that = $(this);
+
 			var productCategory = document.getElementById('productCategory');
-			productCategory.setAttribute("value",that.attr("data-name"));
-			$('.form_product_category_number').html('<input type="hidden" name="categoryNo" value="'+that.attr("href")+'">')
-		});
-		$(".product_category_selected").on("click", "#btn_product_category_delete", function(event){
-			event.preventDefault();
-			var that = $(this);
-	
-			$(".form_product_category_number").children().remove();
-			$("#productCategory").removeAttr("value")
-			that.parent().children().remove();
+			
+			productCategory.setAttribute("value",$(this).prev().attr("data-name"));
+			$('.form_product_category_number').html('<input type="hidden" name="categoryNo" value="'+ $(this).prev().attr("href")+'">')
 			
 		});
+
 		$(".div_product_file").on("click", "#btn_product_file", function(event){
 			event.preventDefault();			
 			if(document.getElementById("input_product_file").files[0]==null){
@@ -457,15 +470,15 @@ li {
 			var productColor = $(".modal_productColor").val();
 			var productSize = $(".modal_productSize").val();
 			var productQuantity = $(".modal_productQuantity").val();
-			var str = '';
-			str += '<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>';
-			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>';
-			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>';
-			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productQuantity">수량</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productQuantity" required value="'+productQuantity+'" class="form-control"></div></div></div>'; 
-			
+			var str = new StringBuffer();
+			str.append('<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>');
+			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>');
+			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>');
+			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productQuantity">수량</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productQuantity" required value="'+productQuantity+'" class="form-control"></div></div></div>'); 
+			var resultstr = str.toString();
 			
 			countOption++;
-			$('.div_product_option').append(str);
+			$('.div_product_option').append(resultstr);
 		});
 		$(".div_product_option").on("click", ".btn_product_option_delete", function(event){
 			event.preventDefault();	
@@ -477,12 +490,13 @@ li {
 	});
 
 		function getCategoryList(){
-			var str = '';			
+			var str = new StringBuffer();
 			$.getJSON("/product_Category", function(data){
 				for(var i = 0 ; i < data.length ; i++){
-					str += '<li><a href="'+data[i]["categoryNo"]+'" class="link_product_category" data-degree="'+data[i]["categoryDegree"]+'">'+data[i]["categoryName"]+'</a></li>';
+					str.append('<li><a href="'+data[i]["categoryNo"]+'" class="link_product_category" data-degree="'+data[i]["categoryDegree"]+'">'+data[i]["categoryName"]+'</a></li>');
 				}
-				$("#ul_product_category_1").html(str);				
+				var resultstr = str.toString();
+				$("#ul_product_category_1").html(resultstr);				
 			});
 		};
 	</script>

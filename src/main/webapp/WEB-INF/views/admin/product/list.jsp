@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="/resources/js/uploadfn.js" type="text/javascript"></script>
 <title>Insert title here</title>
 <style type="text/css">
 .div_search_option_outter {
@@ -58,6 +59,12 @@ a:hover {
  .link_product_category_select {
  	font-size: 5px;
  	font-style: italic;
+ }
+ img {
+ 	height: 100%; 
+ 	width: 100%; 
+ 	object-fit: contain; 
+ 	float: right;
  }
 </style>
 </head>
@@ -234,15 +241,17 @@ a:hover {
 			$(document).ready(function(){
 		
 		
-
-		getProductList();
 		getCategoryList();
-		equalHeights( $(".div_product_category"));
-		equalHeights( $(".div_product_regDate"));
-		equalHeights( $(".div_product_price"));
-		equalHeights( $(".div_product_sellStatus"));
-		equalHeights( $(".div_product_isDelete"));
-		equalHeights( $(".div_product_searchKeyword"));
+		getProductList();
+
+		equalHeights( $("#div_product_category"));
+		equalHeights( $("#div_product_regDate"));
+		equalHeights( $("#div_product_price"));
+		equalHeights( $("#div_product_sellStatus"));
+		equalHeights( $("#div_product_isDelete"));
+		equalHeights( $("#div_product_searchKeyword"));
+
+		
 
 		$('div').on("click","#btn_product_insert",function(event){
 			event.preventDefault();
@@ -258,6 +267,8 @@ a:hover {
 		$('.product_search_result').on("click", ".checkbox_product", function(){
 		    $("#checkAll").prop('checked', false);
 		});
+
+		
 		<%--수정할부분 --%>
 		$('.product_search_result').on("click",".btn_product_update",function(event){
 			event.preventDefault();
@@ -272,6 +283,8 @@ a:hover {
 			var that = $(this);
 			var str = new StringBuffer();
 			var degree = Number($(this).attr("data-degree"))+1;
+			var id = "#ul_product_category_"+degree;
+			var nextId = "#ul_product_category_"+(degree+1);
 				$.ajax({
 					type : 'get',
 					url : '/product_CategoryN',
@@ -289,8 +302,9 @@ a:hover {
 							str.append('<a href="'+list[i].categoryNo+'" class="linkt_product_category_select">선택</a></li>');
 						}
 						var resultstr = str.toString();
-						var id = "#ul_product_category_"+degree;
-						$(id).html(resultstr);	
+						
+						$(id).html(resultstr);
+						$(nextId).html("");
 						childHeights( $(".div_search_option_inner.div_product_category"));	
 					}
 				});
@@ -312,22 +326,23 @@ a:hover {
 		that.prev().height(height);
 	    that.height(height);
 	}
-	function equalHeights(that){
+	function equalHeights(parent){
 	    var highest = 0;
+		var children = parent.children();
+	    children.each(function() {
 
-	    that.each(function() {
 	        var thisHeight = $(this).height();
-	        if(thisHeight > highest) {
-	            highest = thisHeight;
+			if(thisHeight > highest) {
+				highest = thisHeight;
 	        }
-	        thisHeight = $(this).children('div').height();
+			thisHeight = $(this).children().height();
 
-	        if(thisHeight > highest) {
-	            highest = thisHeight;
+			if(thisHeight > highest) {
+				highest = thisHeight;
 	        }
-	    });
+		});
 	  
-	    that.height(highest);
+	    children.height(highest);
 	}
 
 	function getProductList(){
@@ -336,18 +351,34 @@ a:hover {
 			for(var i = 0 ; i < data.length ; i++){
 				var date = new Date(data[i]["regDate"]);
 				str.append('<div class="row div_search_option_result_inner">');
-				str.append('<ul>');
+				str.append('<ul class="ul_product_search_result">');
 				str.append('<li class="col-sm-1 li_product_search_result">');
 				str.append('<input type="checkbox" class="checkbox_product" name="checkbox_'+data[i]["productNo"]+'">');
 				str.append('</li>');
 				str.append('<li class="col-sm-2 li_product_search_result">');
-				str.append((data[i]["categoryNo"]));
+				str.append(data[i]["categoryNo"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
 				str.append(data[i]["productNo"]);
 				str.append('</li>');
 				str.append('<li class="col-sm-2 li_product_search_result">');
+				str.append('<div class="row"><div class="col-sm-4">');
+
+				if(getAttach(data[i]["productNo"])!=null){
+					str.append('<a herf="/displayfile?filename=' + getImageLink(getAttach(data[i]["productNo"])) + '">');
+					if(checkImage(getAttach(data[i]["productNo"]))) {
+					str.append('<img src="/displayfile?filename=' + getAttach(data[i]["productNo"]) + '"/>');
+					} else{
+					str.append('<img src="/resources/show.jpg"/>');
+					}		
+					str.append('</a>');
+				} else{
+					console.log(data[i]["productNo"]+"번상품은 사진없음")
+				}
+				str.append('</div>');
+				str.append('<div class="col-sm-8">');	
 				str.append(data[i]["productName"]);
+				str.append('</div"></div>');
 				str.append('</li>');
 				str.append('<li class="col-sm-1 li_product_search_result">');
 				str.append(data[i]["productPrice"]);
@@ -393,7 +424,7 @@ a:hover {
 			}
 			var resultstr = str.toString();
 			
-			$("#form_product_search_result_list").html(resultstr);				
+			$("#form_product_search_result_list").html(resultstr);
 		});
 	};
 	<%-- 미구현 
@@ -411,6 +442,25 @@ a:hover {
 		});
 	};
 --%>
+	function getAttach(productNo){
+		var str;
+		
+		$.ajax({
+			type : 'get',
+			url : '/getAttach/'+productNo,
+			dataType : 'text',
+			async: false,
+			data : {
+			},
+			success : function(data){
+				var list = $.parseJSON(data);
+				if(list[0]!=null)str = list[0];
+			}
+		});
+		
+		return str;	
+	}
+
 	function getFormatDate(date){
 	    var year = date.getFullYear();              
 	    var month = (1 + date.getMonth());          

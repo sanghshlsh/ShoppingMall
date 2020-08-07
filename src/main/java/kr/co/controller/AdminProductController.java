@@ -26,14 +26,8 @@ public class AdminProductController {
 	
 	@RequestMapping(value ="/admin/product/insert", method = RequestMethod.POST)
 	public String insert(ProductDTO productDto) {
-		List<ProductOptionDTO> list = productDto.getProductOptionList();
-		if (list == null) {
-			System.out.println("옵션넣어라 작업하기");
-			return "redirect:/admin/product/insert";
-		}
 		productService.insert(productDto);
 		
-			
 		return "redirect:/admin/product/insert";
 	}
 	
@@ -72,10 +66,35 @@ public class AdminProductController {
 	}
 	
 	@RequestMapping(value ="/admin/product/update/{productNo}")
-	public String update(Model model, @PathVariable("productNo") int productNo) {
+	public String updateUI(Model model, @PathVariable("productNo") int productNo) {
 		ProductDTO productDTO = productService.updateUI(productNo);
 		model.addAttribute("productDTO",productDTO );
-		System.out.println(productDTO.getProductName());
+		
 		return "/admin/product/update";
+	}
+	@ResponseBody
+	@RequestMapping(value ="/product_Category_list", method = RequestMethod.POST)
+	public List<CategoryDTO> CategoryList() {
+		List<CategoryDTO> list = productService.categoryList();
+
+		return list;
+	}
+	
+	@RequestMapping(value ="/admin/product/test")
+	public void test() {
+	}
+	@ResponseBody
+	@RequestMapping(value ="/product_category_list_update", method = RequestMethod.GET)
+	public List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto) {
+		
+		List<CategoryDTO> list = productService.categoryListUpdate(categoryDto, productDto);
+		return list;
+	}
+	@RequestMapping(value ="/admin/product/update", method = RequestMethod.POST)
+	public String update(ProductDTO productDto) {
+		productService.update(productDto);
+		
+		return "redirect:/admin/product/list";
+		
 	}
 }

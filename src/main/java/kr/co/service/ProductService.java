@@ -24,5 +24,9 @@ public interface ProductService {
 
 	ProductDTO updateUI(int productNo);
 
+	List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto);
+
+	void update(ProductDTO productDto);
+
 
 }
