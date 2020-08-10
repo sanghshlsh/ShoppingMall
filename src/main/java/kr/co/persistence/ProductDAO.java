@@ -26,5 +26,13 @@ public interface ProductDAO {
 
 	List<String> getAttach(Integer productNo);
 
+	List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto);
+
+	void update(ProductDTO productDto);
+
+	void deleteAttachByProductNo(int productNo);
+
+	void deleteProductOptionByProductNo(int productNo);
+
 
 }

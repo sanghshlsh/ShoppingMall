@@ -105,8 +105,7 @@ public class UploadAjaxController {
 	@ResponseBody
 	@RequestMapping(value = "/getAttach/{productNo}", method = RequestMethod.GET )
 	public List<String> getAttach(@PathVariable("productNo") Integer productNo){
-		System.out.println(":::::::::::::::::::::::::");
-		System.out.println("getjson");
+
 		return productService.getAttach(productNo);
 	}
 	

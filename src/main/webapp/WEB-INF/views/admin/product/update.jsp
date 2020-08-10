@@ -68,7 +68,7 @@ li {
 				<div class="row">
 					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_list">상품리스트</button></div>
 					<div class="col-sm-8"><h1>판매 상품 관리</h1></div>
-					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_insert">저장하기</button></div>					
+					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_update">수정하기</button></div>					
 				</div>
 				<div class="row">
 					<table class="table table-bordered tbl_product_category">
@@ -116,7 +116,7 @@ li {
 						상품 기본정보
 					</div>
 					<div class="row">
-						<form action="/admin/product/insert" method="post" id="form_product_insert">
+						<form action="/admin/product/update" method="post" id="form_product_update">
 							<div class="form-group">
 								<div class="col-sm-2">
 									<label for="productName">상품명</label>
@@ -288,7 +288,9 @@ li {
 	};
 	var productNo = ${productDTO.productNo};
 	$(document).ready(function(){
+		
 		getCategoryList();
+		
 		var countOption = 0;
 		
 		$('#productDiscountRate').on('keyup', function() {
@@ -315,14 +317,33 @@ li {
 		    }
 		});
 		
-		$('#btn_product_insert').click(function(event){
+		$('#btn_product_update').click(function(event){
 			event.preventDefault();
-			var str = '<input type="hidden">';
+			var str = new StringBuffer();
+			if($("#productName").val()==""){
+				alert("상품명을 입력하시오.")
+				$("#productName").focus();
+				return false;
+			} else if($("#productCategory").val()==""){
+				alert("카테고리를 고르시오.")
+				$(".tbl_product_category").focus();
+				return false;
+			} else if($("#productPrice").val()==""){
+				alert("상품 가격을 입력하시오.")
+				$("#productPrice").focus();
+				return false;
+			} else if($(".div_product_option").children("div").val()==null){
+				alert("옵션을 선택하시오.")
+				$("#btn_product_option").focus();
+				return false;
+			}
+			str.append('<input type="hidden">');
 			$(".deletefile").each(function(index){
-				str += "<input type='hidden' value='"+$(this).attr("href")+"' name='files["+index+"]'>"
+				str.append('<input type="hidden" value="'+$(this).attr("href")+'" name="files['+index+']">');
 			});
-			$("#form_product_insert").append(str);
-			$("#form_product_insert").submit();
+			var resultstr = str.toString();
+			$("#form_product_update").append(resultstr);
+			$("#form_product_update").submit();
 		});
 		
 		$('#btn_product_list').click(function(event){
@@ -378,60 +399,7 @@ li {
 				}
 			});
 		});
-
-		$(".tbl_product_category").on("click", ".link_product_category", function(event){
-			event.preventDefault();
-			var that = $(this);
-			var str = '';
-			var degree = Number($(this).attr("data-degree"))+1;
-				$.ajax({
-					type : 'get',
-					url : '/product_CategoryN',
-					dataType : 'text',
-					data : {
-						categoryNoRef : that.attr("href"),
-						categoryDegree : that.attr("data-degree")
-					},
-					success : function(data){
-						var list = $.parseJSON(data);
-						var listLen = list.length;
-						for(var i = 0; i < listLen; i++){
-							str += '<li><a href="'+list[i].categoryNo+'" class="link_product_category'
-							if(that.attr("data-degree")==2)
-								 str +=' product_category_minimum'
-							str += '" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">'+list[i].categoryName+'</a></li>';
-						}
-						var id = "#ul_product_category_"+degree;
-						$(id).html(str);		
-					}
-				});
-		});
-		$(".tbl_product_category").on("click", ".product_category_minimum", function(event){
-			event.preventDefault();
-			var that = $(this);
-			var str = '';
-			
-			str += '<a href="'+that.attr("href")+'" class="link_product_category'
-			str += '" data-degree="'+that.attr("data-degree")+'" data-name="'+that.attr("data-name")+'">'+that.attr("data-name")+'</a>';
-			str += '<button type="button" class="btn btn-primary" id="btn_product_category_delete">삭제</button>';					
-			$('.product_category_selected').html(str);		
-		});
-		$(".product_category_selected").on("click", ".link_product_category", function(event){
-			event.preventDefault();
-			var that = $(this);
-			var productCategory = document.getElementById('productCategory');
-			productCategory.setAttribute("value",that.attr("data-name"));
-			$('.form_product_category_number').html('<input type="hidden" name="categoryNo" value="'+that.attr("href")+'">')
-		});
-		$(".product_category_selected").on("click", "#btn_product_category_delete", function(event){
-			event.preventDefault();
-			var that = $(this);
-	
-			$(".form_product_category_number").children().remove();
-			$("#productCategory").removeAttr("value")
-			that.parent().children().remove();
-			
-		});
+		
 		$(".div_product_file").on("click", "#btn_product_file", function(event){
 			event.preventDefault();			
 			if(document.getElementById("input_product_file").files[0]==null){
@@ -483,7 +451,7 @@ li {
 		});
 		
 		$.getJSON("/getAttach/" + productNo, function(arr) {
-			console.log("getJson")
+			
 			for(var i = 0; i < arr.length; i++) {
 			var str	= new StringBuffer();
 			str.append('<li class="col-xs-4">');
@@ -505,16 +473,88 @@ li {
 			}
 			
 		});
+
+		$(".tbl_product_category").on("click", ".link_product_category", function(event){
+			event.preventDefault();
+			var that = $(this);
+			var str = new StringBuffer();
+			var degree = Number($(this).attr("data-degree"))+1;
+			var id = "#ul_product_category_"+degree;
+			var nextId = "#ul_product_category_"+(degree+1);
+				$.ajax({
+					type : 'get',
+					url : '/product_CategoryN',
+					dataType : 'text',
+					data : {
+						categoryNoRef : that.attr("href"),
+						categoryDegree : that.attr("data-degree")
+					},
+					success : function(data){
+						var list = $.parseJSON(data);
+						var listLen = list.length;
+						for(var i = 0; i < listLen; i++){
+							str.append('<li><a href="'+list[i].categoryNo+'" class="link_product_category');
+							str.append('" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">'+list[i].categoryName+'</a>');
+							if(that.attr("data-degree")==2)
+								 str.append('<button class="btn btn-primary btn_product_category_selected">추가버튼</button>');
+							str.append('</li>');
+							
+							$(nextId).html("");
+						}
+						var resultstr = str.toString();
+						
+						$(id).html(resultstr);		
+					}
+				});
+			
+		});
+		$(".tbl_product_category").on("click", ".btn_product_category_selected", function(event){
+			event.preventDefault();
+
+			var productCategory = document.getElementById('productCategory');
+			
+			productCategory.setAttribute("value",$(this).prev().attr("data-name"));
+			$('.form_product_category_number').html('<input type="hidden" name="categoryNo" value="'+ $(this).prev().attr("href")+'">')
+			
+		});
+		
+
+		
 	});
 
 		function getCategoryList(){
-			var str = '';			
-			$.getJSON("/product_Category", function(data){
-				for(var i = 0 ; i < data.length ; i++){
-					str += '<li><a href="'+data[i]["categoryNo"]+'" class="link_product_category" data-degree="'+data[i]["categoryDegree"]+'">'+data[i]["categoryName"]+'</a></li>';
-				}
-				$("#ul_product_category_1").html(str);				
-			});
+			for(var i = 1 ; i< 4 ; i++){			
+				categoryGetJSON(i);
+			}
+		};
+
+		function categoryGetJSON(degree){
+				var str = new StringBuffer();
+				$.ajax({
+					type : 'get',
+					url : '/product_category_list_update',
+					dataType : 'text',
+					data : {
+						'productNo' : productNo,
+						'categoryDegree' : degree
+						},
+					success :  function(data){
+						var list = $.parseJSON(data);
+						var listLen = list.length;
+						for(var i = 0; i < listLen; i++){
+							str.append('<li><a href="'+list[i].categoryNo+'" class="link_product_category');
+							str.append('" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">'+list[i].categoryName+'</a>');
+							if(list[i].categoryDegree==3)
+								 str.append('<button class="btn btn-primary btn_product_category_selected">추가버튼</button>');
+							str.append('</li>');
+						}
+						var resultstr = str.toString();
+						var id = "#ul_product_category_"+degree;
+						$(id).html(resultstr);
+					}
+						
+					});
+		
 		};
 	</script>
 </body>

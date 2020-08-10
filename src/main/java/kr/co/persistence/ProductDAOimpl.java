@@ -29,8 +29,10 @@ public class ProductDAOimpl implements ProductDAO {
 	}
 	
 	@Override
-	public void addAttach(String fullName, int productNo) {				
+	public void addAttach(String fullName, int productNo) {	
+		int attachNo = session.selectOne(NS+".getAttachNo");
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("attachNo", attachNo);
 		map.put("fullName", fullName);
 		map.put("productNo", productNo);
 		session.insert(NS+".addAttach", map);
@@ -47,6 +49,8 @@ public class ProductDAOimpl implements ProductDAO {
 	
 	@Override
 	public void insertProductOption(ProductOptionDTO productOptionDTO) {
+		int productOptionNo = session.selectOne(NS+".getProductOptionNo");
+		productOptionDTO.setProductOptionNo(productOptionNo);
 		session.insert(NS+".insertProductOption", productOptionDTO);		
 	}
 	@Override
@@ -72,4 +76,31 @@ public class ProductDAOimpl implements ProductDAO {
 	
 		return session.selectList(NS + ".getAttach", productNo);
 	}
+	@Override
+	public List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto) {
+		int categoryNo = session.selectOne(NS+".getCategoryNo", productDto);
+		
+		if(categoryDto.getCategoryDegree()==2)
+			categoryDto.setCategoryNoRef((categoryNo/100)*100);
+		else if(categoryDto.getCategoryDegree()==3)
+			categoryDto.setCategoryNoRef((categoryNo/10)*10);
+		
+		return session.selectList(NS+".categoryListUpdate", categoryDto);
+	}
+	@Override
+	public void update(ProductDTO productDto) {
+		session.update(NS + ".update", productDto);
+		
+	}
+	@Override
+	public void deleteAttachByProductNo(int productNo) {
+		session.delete(NS + ".deleteAttachByProductNo", productNo);
+		
+	}
+	@Override
+	public void deleteProductOptionByProductNo(int productNo) {
+		session.delete(NS + ".deleteProductOptionByProductNo", productNo);
+		
+	}
+	
 }
