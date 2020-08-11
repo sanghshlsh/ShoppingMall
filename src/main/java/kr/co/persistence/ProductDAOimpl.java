@@ -59,18 +59,21 @@ public class ProductDAOimpl implements ProductDAO {
 		return session.selectList(NS+".productList");
 	}
 	@Override
-	public String getCategoryName(CategoryDTO categoryDto) {
+	public String getCategoryName(int categoryNo) {
 	
-		return session.selectOne(NS+".getCategoryName", categoryDto);
+		return session.selectOne(NS+".getCategoryName", categoryNo);
 	}
 	@Override
 	public ProductDTO updateUI(int productNo) {
 	
-		 ProductDTO productDTO = session.selectOne(NS+".updateUI",productNo);
-		 List<ProductOptionDTO> productOptionList = session.selectList(NS+".getProductOptionList", productNo);
-		 productDTO.setProductOptionList(productOptionList);
-		 return productDTO;
+		 return session.selectOne(NS+".updateUI",productNo);
 	}
+	@Override
+	public List<ProductOptionDTO> productOptionList(int productNo) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".getProductOptionList", productNo);
+	}
+	
 	@Override
 	public List<String> getAttach(Integer productNo) {
 	

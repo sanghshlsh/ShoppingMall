@@ -88,7 +88,7 @@ a:hover {
 				</div>
 			</div>
 			<div class="row div_search_option_outter">
-				<form action="#" method="post" >
+				<form action="/admin/product/search" method="post" id="form_product_search">
 				<div id="div_product_category">
 					<div class="col-sm-2 div_search_option_inner_left div_product_category">
 						카테고리
@@ -122,7 +122,14 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_regDate">
 						<div class="row">
-						박스<br><br><br><br>box
+	
+						<input type="date" id="date1" name="arrRegDate" value="${aWeekAgo }">~<input type="date" id="date2" name="arrRegDate" value="${today }">
+						<select  onchange="selectDate(this.value)">
+							<option value="${aWeekAgo }" selected>1주전</option>
+							<option value="${aMonthAgo }" >1달전</option>
+							<option value="${threeMonthsAgo }" >3달전</option>
+						</select>
+		
 						</div>						
 					</div>
 				</div>
@@ -132,7 +139,7 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_price">
 						<div class="row">
-						박스<br>
+							<input id="productPrice" name="arrProductPrice">원 ~ <input id="maxPrice" name="arrProductPrice">원
 						</div>
 					</div>
 				</div>
@@ -142,7 +149,10 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_sellStatus">
 						<div class="row">
-						박스
+							<input type="checkbox" name="arrSellStatus" value="0" class="input_sellStatus">판매대기
+							<input type="checkbox" name="arrSellStatus" value="1" class="input_sellStatus">판매중
+							<input type="checkbox" name="arrSellStatus" value="2" class="input_sellStatus">품절
+							<input type="checkbox" id="sellStatus_select_all">전체 선택
 						</div>
 					</div>
 				</div>
@@ -152,7 +162,9 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_isDelete">
 						<div class="row">
-						<br><br>	박스
+							<input type="checkbox" name="arrIsDelete" value="0" class="input_isDelete">전시
+							<input type="checkbox" name="arrIsDelete" value="1" class="input_isDelete">미전시
+							<input type="checkbox" id="isDelete_select_all">전체 선택
 						</div>
 					</div>
 				</div>
@@ -162,13 +174,19 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_searchKeyword">
 						<div class="row">
-						<br><br><br>	박스<br>
+							<select name="searchType" id="searchType">
+								<option value="productName">상품명</option>
+								<option value="productNo">상품번호</option>
+								<option value="productSet">세트</option>
+							</select>
+							<input name="keyWord" id="keyWord">
 						</div>
 					</div>
 				</div>
+				<div id="div_product_category_select"></div>
 				</form>
 				
-				<div style="text-align:center">
+				<div style="text-align:center" class="div_product_search">
 					<button class="btn btn-primary" id="btn_product_search">검색</button>
 				</div>
 			</div>
@@ -214,7 +232,69 @@ a:hover {
 						</ul>
 					</div>
 					<form id="form_product_search_result_list">
-						
+						<c:forEach items="${productList }" var="dto">
+							<div class="row div_search_option_result_inner">
+							<ul class="ul_product_search_result">
+							<li class="col-sm-1 li_product_search_result">
+							<input type="checkbox" class="checkbox_product" name="checkbox_${dto.productNo }">
+							</li>
+							<li class="col-sm-2 li_product_search_result">
+							${dto.categoryName }
+							</li>
+							<li class="col-sm-1 li_product_search_result">
+							${dto.productNo}
+							</li>
+							<li class="col-sm-2 li_product_search_result">
+							<div class="row"><div class="col-sm-4 productThumbnail">
+							<c:if test="${not empty dto.files[0] }">
+								<img class="getImage" src="/displayfile?filename=${dto.files[0] }" data-productNo="${dto.productNo}"/>	
+							</c:if>
+							</div>
+							<div class="col-sm-8">
+							${dto.productName}
+							</div></div>
+							</li>
+							<li class="col-sm-1 li_product_search_result">
+							${dto.productPrice}
+							</li>
+							<li class="col-sm-1 li_product_search_result">
+							재고
+							</li>
+							<li class="col-sm-1 li_product_search_result">
+							${dto.regDate }
+							</li>
+							<li class="col-sm-1 li_product_search_result">
+							<select name="sellStatus_${dto.productNo}" ><option value="0"
+							<c:if test="${dto.sellStatus eq 0}">
+								selected="selected"
+							</c:if>
+							>판매대기</option><option value="1"
+							<c:if test="${dto.sellStatus eq 1}">
+								selected="selected"
+							</c:if>
+							>판매중</option><option value="2"
+							<c:if test="${dto.sellStatus eq 2}">
+								selected="selected"
+							</c:if>
+							>품절</option></select>								
+							</li>
+							<li class="col-sm-1 li_product_search_result">
+							<select name="isDelete_${dto.productNo}" ><option value="0"
+							<c:if test="${dto.isDelete eq 0}">
+								selected="selected"
+							</c:if>
+							>전시</option><option value="1"
+							<c:if test="${dto.isDelete eq 1}">
+								selected="selected"
+							</c:if>
+							>미전시</option></select>	
+							</li>
+							<li class="col-sm-1">
+							<button class="btn btn-primary btn_product_update" data-location="${dto.productNo}">수정</button>			
+							</li>
+							</ul>
+							</div>
+						</c:forEach>
 					</form>			
 				</div>
 				<div  class="row">				
@@ -238,11 +318,11 @@ a:hover {
 		StringBuffer.prototype.toString = function() { 
 			return this.buffer.join(""); 
 		};
-			$(document).ready(function(){
-		
+
+		$(document).ready(function(){
 		
 		getCategoryList();
-		getProductList();
+	
 
 		equalHeights( $("#div_product_category"));
 		equalHeights( $("#div_product_regDate"));
@@ -250,8 +330,6 @@ a:hover {
 		equalHeights( $("#div_product_sellStatus"));
 		equalHeights( $("#div_product_isDelete"));
 		equalHeights( $("#div_product_searchKeyword"));
-
-		
 
 		$('div').on("click","#btn_product_insert",function(event){
 			event.preventDefault();
@@ -267,16 +345,40 @@ a:hover {
 		$('.product_search_result').on("click", ".checkbox_product", function(){
 		    $("#checkAll").prop('checked', false);
 		});
+		  
+		$('.div_product_isDelete').on("click", "#isDelete_select_all", function(){
+		    if (!$('#isDelete_select_all').prop('checked')) {
+		            $('.input_isDelete').prop('checked', false);
+		    }else{
+		        $('.input_isDelete').prop('checked', true);
+		    }
+		});
+		$('.div_product_isDelete').on("click", ".input_isDelete", function(){
+		    $("#sellStatus_select_all").prop('checked', false);
+		});
 
 		
+		$('.div_product_sellStatus').on("click", "#sellStatus_select_all", function(){
+		    if (!$('#sellStatus_select_all').prop('checked')) {
+		            $('.input_sellStatus').prop('checked', false);
+		    }else{
+		        $('.input_sellStatus').prop('checked', true);
+		    }
+		});
+		$('.div_product_sellStatus').on("click", ".input_sellStatus", function(){
+		    $("#sellStatus_select_all").prop('checked', false);
+		});
 		<%--수정할부분 --%>
 		$('.product_search_result').on("click",".btn_product_update",function(event){
 			event.preventDefault();
 			var that = $(this);
+
 			alert(that.attr("data-location"));
 			location.assign("/admin/product/update/"+that.attr("data-location"));
 			
 		});
+	
+		
 		
 		$(".div_product_category").on("click", ".link_product_category", function(event){
 			event.preventDefault();
@@ -311,13 +413,48 @@ a:hover {
 				
 			
 		});
+
+	
 		<%--수정할 부분--%>
 		$(".div_product_category").on("click", ".linkt_product_category_select", function(event){
 			event.preventDefault();
 			
-			alert("ajax입력");
+			$("#div_product_category_select").html("<input type='hidden' name='categoryNo' class='input_categoryNo' value='"+$(this).attr("href")+"'>");
+			alert("cateNO : "+$(this).attr("href"));
 			
 		});
+		$(".div_product_search").on("click","#btn_product_search", function(event){
+			event.preventDefault();
+			var check = false;
+			var sellStatus = document.getElementsByName("arrSellStatus");
+			var isDelete = document.getElementsByName("arrIsDelete"); 
+			for(var i = 0 ; i < sellStatus.length; i++){
+				if(sellStatus[i].checked){
+					check = true;
+					break;
+				}
+			}
+			if(!check){
+				alert("판매상태 체크박스를 선택하시오.");
+				return false;
+			}
+			check = false;
+			for(var i = 0 ; i < isDelete.length; i++){
+				if(isDelete[i].checked){
+					check = true;
+					break;
+				}
+			}
+			if(!check){
+				alert("전시상태 체크박스를 선택하시오.");
+				return false;
+			}
+
+			
+			$("#form_product_search").submit();
+		});
+
+		
 	});
 
 	function childHeights(that){
@@ -345,88 +482,9 @@ a:hover {
 	    children.height(highest);
 	}
 
-	function getProductList(){
-		var str = new StringBuffer();			
-		$.getJSON("/product_List", function(data){
-			for(var i = 0 ; i < data.length ; i++){
-				var date = new Date(data[i]["regDate"]);
-				str.append('<div class="row div_search_option_result_inner">');
-				str.append('<ul class="ul_product_search_result">');
-				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('<input type="checkbox" class="checkbox_product" name="checkbox_'+data[i]["productNo"]+'">');
-				str.append('</li>');
-				str.append('<li class="col-sm-2 li_product_search_result">');
-				str.append(data[i]["categoryNo"]);
-				str.append('</li>');
-				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append(data[i]["productNo"]);
-				str.append('</li>');
-				str.append('<li class="col-sm-2 li_product_search_result">');
-				str.append('<div class="row"><div class="col-sm-4">');
-
-				if(getAttach(data[i]["productNo"])!=null){
-					str.append('<a herf="/displayfile?filename=' + getImageLink(getAttach(data[i]["productNo"])) + '">');
-					if(checkImage(getAttach(data[i]["productNo"]))) {
-					str.append('<img src="/displayfile?filename=' + getAttach(data[i]["productNo"]) + '"/>');
-					} else{
-					str.append('<img src="/resources/show.jpg"/>');
-					}		
-					str.append('</a>');
-				} else{
-					console.log(data[i]["productNo"]+"번상품은 사진없음")
-				}
-				str.append('</div>');
-				str.append('<div class="col-sm-8">');	
-				str.append(data[i]["productName"]);
-				str.append('</div"></div>');
-				str.append('</li>');
-				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append(data[i]["productPrice"]);
-				str.append('</li>');
-				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('재고');
-				str.append('</li>');
-				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append(getFormatDate(date));
-				str.append('</li>');
-				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('<select name="sellStatus_'+data[i]["productNo"]+'" ><option value="0"');
-				if(data[i]["sellStatus"]==0){
-					str.append(' selected="selected"');
-				}
-				str.append('>판매대기</option><option value="1"');
-				if(data[i]["sellStatus"]==1){
-					str.append(' selected="selected"');
-				}
-				str.append('>판매중</option><option value="2"');
-				if(data[i]["sellStatus"]==2){
-					str.append(' selected="selected"');
-				}
-				str.append('>품절</option></select>');								
-				str.append('</li>');
-				str.append('<li class="col-sm-1 li_product_search_result">');
-				str.append('<select name="isDelete'+data[i]["productNo"]+'" ><option value="0"');
-				if(data[i]["isDelete"]==0){
-					str.append(' selected="selected"');
-				}
-				str.append('>전시</option><option value="1"');
-				if(data[i]["isDelete"]==1){
-					str.append(' selected="selected"');
-				}
-				str.append('>미전시</option></select>');	
-				str.append('</li>');
-				str.append('<li class="col-sm-1">');
-				str.append('<button class="btn btn-primary btn_product_update" data-location="'+data[i]["productNo"]+'">수정</button>');			
-				str.append('</li>');
-				str.append('</ul>');
-				str.append('</div>');
-				
-			}
-			var resultstr = str.toString();
-			
-			$("#form_product_search_result_list").html(resultstr);
-		});
-	};
+	
+	
+	
 	<%-- 미구현 
 	function getCategoryName(categoryNo){
 		$.ajax({
@@ -460,16 +518,8 @@ a:hover {
 		
 		return str;	
 	}
-
-	function getFormatDate(date){
-	    var year = date.getFullYear();              
-	    var month = (1 + date.getMonth());          
-	    month = month >= 10 ? month : '0' + month;  
-	    var day = date.getDate();                  
-	    day = day >= 10 ? day : '0' + day;          
-	    return  month + '-' + day;     
-	}
 	
+
 	function getCategoryList(){
 		var str = '';			
 		$.getJSON("/product_Category", function(data){
@@ -481,6 +531,13 @@ a:hover {
 		});
 	
 	};
+	function selectDate(option){
+		var date1= document.getElementById('date1');
+		
+		date1.setAttribute("value",option);
+	}
+
+
 </script>
 </body>
 </html>

@@ -20,7 +20,7 @@ public interface ProductDAO {
 
 	List<ProductDTO> productList();
 
-	String getCategoryName(CategoryDTO categoryDto);
+	String getCategoryName(int categoryNo);
 
 	ProductDTO updateUI(int productNo);
 
@@ -33,6 +33,8 @@ public interface ProductDAO {
 	void deleteAttachByProductNo(int productNo);
 
 	void deleteProductOptionByProductNo(int productNo);
+
+	List<ProductOptionDTO> productOptionList(int productNo);
 
 
 }

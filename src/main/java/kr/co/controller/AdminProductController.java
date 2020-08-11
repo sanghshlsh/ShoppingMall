@@ -1,5 +1,7 @@
 package kr.co.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,24 @@ public class AdminProductController {
 	}
 	
 	@RequestMapping(value ="/admin/product/list")
-	public void list() {
+	public void list(Model model) {
+		
+		List<ProductDTO> productList = productService.productList();
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
+		
+		model.addAttribute("today", format.format(today.getTime()));
+		today.add(Calendar.DATE, -7);
+		model.addAttribute("aWeekAgo", format.format(today.getTime()));
+		today.add(Calendar.DATE, +7);
+		today.add(Calendar.MONTH, -1);
+		model.addAttribute("aMonthAgo", format.format(today.getTime()));
+		today.add(Calendar.MONTH, -2);
+		model.addAttribute("threeMonthsAgo", format.format(today.getTime()));
+		model.addAttribute("productList", productList);
+
 	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value ="/product_Category", method = RequestMethod.GET)
@@ -50,19 +68,38 @@ public class AdminProductController {
 		return list;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value ="/product_List", method = RequestMethod.GET)
-	public List<ProductDTO> productList() {
-		List<ProductDTO> list = productService.productList();
-		return list;
-	}
 	
-	@ResponseBody
-	@RequestMapping(value ="/getCategoryName", method = RequestMethod.GET)
-	public String getCategoryName(CategoryDTO categoryDto) {
-		String categoryName = productService.getCategoryName(categoryDto);
-
-		return categoryName;
+	@RequestMapping(value ="/admin/product/search", method = RequestMethod.POST)
+	public String productSearchList(Model model, String categoryNo, String[] arrRegDate, String[] arrProductPrice, String searchType, String keyWord, String[] arrSellStatus, String[] arrIsDelete) {
+		System.out.println("cateNo : "+categoryNo);
+		for(int i = 0 ; i < arrRegDate.length; i++) {
+			System.out.println("arrRegDate["+i+"] : "+arrRegDate[i]);
+		}
+		for(int i = 0 ; i < arrProductPrice.length; i++) {
+			System.out.println("arrProductPrice["+i+"] : "+arrProductPrice[i]);
+		}
+		System.out.println("searchType : "+searchType);
+		System.out.println("keyWord : "+keyWord);
+		for(int i = 0; i < arrSellStatus.length; i++) {
+			System.out.println("arrSellStatus["+i+"] : "+arrSellStatus[i]);
+		}
+		for(int i = 0; i < arrIsDelete.length; i++) {
+			System.out.println("arrIsDelete["+i+"] : "+arrIsDelete[i]);
+		}
+		List<ProductDTO> productList = productService.productList();
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
+		
+		model.addAttribute("today", format.format(today.getTime()));
+		today.add(Calendar.DATE, -7);
+		model.addAttribute("aWeekAgo", format.format(today.getTime()));
+		today.add(Calendar.DATE, +7);
+		today.add(Calendar.MONTH, -1);
+		model.addAttribute("aMonthAgo", format.format(today.getTime()));
+		today.add(Calendar.MONTH, -2);
+		model.addAttribute("threeMonthsAgo", format.format(today.getTime()));
+		model.addAttribute("productList", productList);
+		return "/admin/product/list";
 	}
 	
 	@RequestMapping(value ="/admin/product/update/{productNo}")
@@ -82,6 +119,7 @@ public class AdminProductController {
 	
 	@RequestMapping(value ="/admin/product/test")
 	public void test() {
+		//test용 삭제필수
 	}
 	@ResponseBody
 	@RequestMapping(value ="/product_category_list_update", method = RequestMethod.GET)
@@ -92,6 +130,7 @@ public class AdminProductController {
 	}
 	@RequestMapping(value ="/admin/product/update", method = RequestMethod.POST)
 	public String update(ProductDTO productDto) {
+		
 		productService.update(productDto);
 		
 		return "redirect:/admin/product/list";

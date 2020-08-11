@@ -6,6 +6,7 @@ import java.util.List;
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
 
+
 public interface ProductService {
 
 	void insert(ProductDTO productDto);
@@ -20,13 +21,12 @@ public interface ProductService {
 
 	List<ProductDTO> productList();
 
-	String getCategoryName(CategoryDTO categoryDto);
-
 	ProductDTO updateUI(int productNo);
 
 	List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto);
 
 	void update(ProductDTO productDto);
+
 
 
 }
