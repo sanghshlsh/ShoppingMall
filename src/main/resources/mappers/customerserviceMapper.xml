@@ -4,16 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="c.u.s">
 
-	<select id="updateUI" resultType="QnaDTO">
+	<!-- Q&A -->
+	<select id="qnaUpdateUI" resultType="QnaDTO">
 		select * from qna where qnaNo = #{qnaNo}
 	</select>
 
-	<update id="update">
+	<update id="qnaUpdate">
 		<![CDATA[update qna set qnaTitle = #{qnaTitle}, memberId=#{memberId},qnaContent=#{qnaContent}
 		where qnaNo = #{qnaNo}]]>
 	</update>
 
-	<delete id="delete">
+	<delete id="qnaDelete">
 		<![CDATA[delete from qna where qnaNo = #{qnaNo]]>
 	</delete>
 
@@ -22,22 +23,24 @@
 	
 	</select>
 
-	<update id="increaseViewcnt">
+	<update id="qnaIncreaseViewcnt">
 		update qna set qnaReadCnt = qnaReadCnt+1 where qnaNp = #{qnaNo}
 	</update>
 	
-	<select id="read" resultType="QnaDTO">
+	<select id="qnaRead" resultType="QnaDTO">
 		select*from qna where qnaNo = #{qnaNo}
 	</select>
 	
-	<select id="list" resultType="QnaDTO">
+	<select id="qnaList" resultType="QnaDTO">
 		select* from qna order by qnaNo desc
 	</select>
 	
-	<insert id="insert">
+	<insert id="qnaInsert">
 		insert into qna (qnaNo,qnaTitle,qnaContent,qnaRegDate,qnaReadCnt,memberId,productNo,isDelete)
 		values (#{qnaNo},#{qnaTitle},#{qnaContent},#{qnaRegDate},#{qnaReadCnt},#{memberId},#{productNo},#{isDelete})
 	</insert>
+	
+	<!-- FAQ -->
  
 	
 </mapper>

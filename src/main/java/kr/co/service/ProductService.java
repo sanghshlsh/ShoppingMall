@@ -8,7 +8,7 @@ import kr.co.domain.ProductDTO;
 
 public interface ProductService {
 
-	void insert(ProductDTO pdto);
+	void insert(ProductDTO productDto);
 
 	void deleteAttachByFileName(String filename);
 
@@ -17,6 +17,16 @@ public interface ProductService {
 	List<CategoryDTO> categoryList();
 
 	List<CategoryDTO> categoryListN(CategoryDTO categoryDto);
+
+	List<ProductDTO> productList();
+
+	String getCategoryName(CategoryDTO categoryDto);
+
+	ProductDTO updateUI(int productNo);
+
+	List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto);
+
+	void update(ProductDTO productDto);
 
 
 }

@@ -178,7 +178,7 @@
 
 											});
 
-							$("#insertbtn").click(function(event) {
+							$("#qnainsertbtn").click(function(event) {
 								event.preventDefault();
 								var str = '';
 								

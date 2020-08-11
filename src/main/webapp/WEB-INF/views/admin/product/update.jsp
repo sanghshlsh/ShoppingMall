@@ -68,7 +68,7 @@ li {
 				<div class="row">
 					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_list">상품리스트</button></div>
 					<div class="col-sm-8"><h1>판매 상품 관리</h1></div>
-					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_insert">저장하기</button></div>					
+					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_update">수정하기</button></div>					
 				</div>
 				<div class="row">
 					<table class="table table-bordered tbl_product_category">
@@ -83,17 +83,17 @@ li {
 							<tr>
 								<td class="col-sm-4">
 									<ul id="ul_product_category_1">
-										<li></li>
+										<li>1차 db불러오기</li>
 									</ul>
 								</td>
 								<td class="col-sm-4">
 									<ul id="ul_product_category_2">
-										<li></li>
+										<li>2차 db불러오기</li>
 									</ul>
 								</td>
 								<td class="col-sm-4">
 									<ul id="ul_product_category_3">
-										<li></li>
+										<li>3차 db불러오기</li>
 									</ul>
 								</td>
 							</tr>
@@ -101,17 +101,28 @@ li {
 					</table>
 				</div>
 				<div class="row"> 
+					<div class="row text-center">
+						<button type="button" class="btn btn-primary" id="btn_product_category_insert">카테고리 추가 버튼</button>
+					</div>
+					<div class="row borderd_div">
+						<div class="col-sm-3">
+							선택된 카테고리
+						</div>
+						<div class="col-sm-9">
+							<div class="row borderd_div_left product_category_selected">${categoryNo }</div>
+						</div>
+					</div>
 					<div class="row">
 						상품 기본정보
 					</div>
 					<div class="row">
-						<form action="/admin/product/insert" method="post" id="form_product_insert">
+						<form action="/admin/product/update" method="post" id="form_product_update">
 							<div class="form-group">
 								<div class="col-sm-2">
 									<label for="productName">상품명</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productName" required id="productName" class="form-control">
+									<input name="productName" required id="productName" class="form-control" value="${productDTO.productName }">
 								</div>
 							</div>
 							<div class="form-group">
@@ -119,7 +130,7 @@ li {
 									<label for="productCategory">카테고리</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productCategory" readonly id="productCategory" class="form-control">
+									<input name="productCategory" readonly id="productCategory" class="form-control" value="${productDTO.categoryNo }">
 								</div>
 							</div>
 							<div class="radio">
@@ -128,13 +139,13 @@ li {
 								</div>
 								<div class="col-sm-10">
 									<label for="sellStatus1">
-										<input  type="radio" name="sellStatus" id="sellStatus1" value="0" checked>판매대기
+										<input  type="radio" name="sellStatus" id="sellStatus1" value="0" ${productDTO.sellStatus == 0 ? "checked" :"" }>판매대기
 									</label>
 									<label for="sellStatus2">
-										<input  type="radio" name="sellStatus" id="sellStatus2" value="1">판매중
+										<input  type="radio" name="sellStatus" id="sellStatus2" value="1" ${productDTO.sellStatus == 1 ? "checked" :"" }>판매중
 									</label>
 									<label for="sellStatus3">
-										<input  type="radio" name="sellStatus" id="sellStatus3" value="2">품절
+										<input  type="radio" name="sellStatus" id="sellStatus3" value="2" ${productDTO.sellStatus == 2 ? "checked" :"" }>품절
 									</label>
 								</div>
 							</div>
@@ -145,10 +156,10 @@ li {
 								</div>
 								<div class="col-sm-10">
 									<label for="isDelete1">
-										<input  type="radio" name="isDelete" id="isDelete1" value="0" checked>전시
+										<input  type="radio" name="isDelete" id="isDelete1" value="0" ${productDTO.isDelete == 0 ? "checked" :"" }>전시
 									</label>
 									<label for="isDelete2">
-										<input  type="radio" name="isDelete" id="isDelete2"value="1">미전시
+										<input  type="radio" name="isDelete" id="isDelete2" value="1" ${productDTO.isDelete == 1 ? "checked" :"" }>미전시
 									</label>
 								</div>
 							</div>
@@ -157,7 +168,7 @@ li {
 									<label for="productSet">세트설정</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productSet" required id="productSet" class="form-control">
+									<input name="productSet" required id="productSet" class="form-control" value="${productDTO.productSet }">
 								</div>
 							</div>
 							<div class="form-group">
@@ -165,7 +176,7 @@ li {
 									<label for="productPrice">가격</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productPrice" required id="productPrice" class="form-control">
+									<input name="productPrice" required id="productPrice" class="form-control" value="${productDTO.productPrice }">
 								</div>
 							</div>
 							<div class="form-group">
@@ -173,7 +184,7 @@ li {
 									<label for="productDiscountRate">할인율(%)</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productDiscountRate" required id="productDiscountRate" class="form-control">
+									<input name="productDiscountRate" required id="productDiscountRate" class="form-control" value="${productDTO.productDiscountRate }">
 								</div>
 							</div>
 							<div class="form_product_category_number">
@@ -201,7 +212,7 @@ li {
 										<input type="file" id="input_product_file" name="file">
 									</div>
 									<div class="col-sm-4">
-										<button class="btn btn-primary" id="btn_product_file">사진 등록</button>
+										<button class="btn btn-primary" id="btn_product_file">확인</button>
 									</div>
 								</div>								
 							</form>
@@ -275,8 +286,11 @@ li {
 	StringBuffer.prototype.toString = function() { 
 		return this.buffer.join(""); 
 	};
+	var productNo = ${productDTO.productNo};
 	$(document).ready(function(){
+		
 		getCategoryList();
+		
 		var countOption = 0;
 		
 		$('#productDiscountRate').on('keyup', function() {
@@ -303,10 +317,9 @@ li {
 		    }
 		});
 		
-		$('#btn_product_insert').click(function(event){
+		$('#btn_product_update').click(function(event){
 			event.preventDefault();
 			var str = new StringBuffer();
-
 			if($("#productName").val()==""){
 				alert("상품명을 입력하시오.")
 				$("#productName").focus();
@@ -324,15 +337,13 @@ li {
 				$("#btn_product_option").focus();
 				return false;
 			}
-			
-			
 			str.append('<input type="hidden">');
 			$(".deletefile").each(function(index){
 				str.append('<input type="hidden" value="'+$(this).attr("href")+'" name="files['+index+']">');
 			});
 			var resultstr = str.toString();
-			$("#form_product_insert").append(resultstr);
-			$("#form_product_insert").submit();
+			$("#form_product_update").append(resultstr);
+			$("#form_product_update").submit();
 		});
 		
 		$('#btn_product_list').click(function(event){
@@ -345,8 +356,7 @@ li {
 		});
 
 		$(".fileDrop").on("drop", function(event){
-			event.preventDefault();
-			var str = new StringBuffer();
+			event.preventDefault();		
 			var files = event.originalEvent.dataTransfer.files;
 			var file = files[0];			
 			var formData = new FormData();
@@ -359,18 +369,16 @@ li {
 				processData : false,
 				contentType : false,					
 				success : function(result){						
-					str.append('<li class="col-xs-4"><a href ="/displayfile?filename='+getImageLink(result)+'">');
+					var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
 					if(checkImage(result)){
-						str.append('<img src = "/displayfile?filename='+result+'" />');
+						str += "<img src = '/displayfile?filename="+result+"' />";
 					} else{
-						str.append('<img src = "/resources/show.jpg"/>');
+						str += "<img src = '/resources/show.jpg'/>";
 					}
 					
-					str.append('</a><p class="originalfilename"><a class="deletefile" href="'+result+'"><span class="glyphicon glyphicon-trash"></span></a>');
-					str.append(getOriginalName(result));
-					str.append('</p></li>');
-					var resultstr = str.toString();
-					$(".uploadedList").append(resultstr);
+					str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
+					str += getOriginalName(result)+"</p></li>";
+					$(".uploadedList").append(str);
 				}
 			});
 		})
@@ -390,6 +398,80 @@ li {
 						that.parent("p").parent("li").remove();
 				}
 			});
+		});
+		
+		$(".div_product_file").on("click", "#btn_product_file", function(event){
+			event.preventDefault();			
+			if(document.getElementById("input_product_file").files[0]==null){
+			alert("사진이 없습니다.");
+			}else{
+				var formData = new FormData(document.getElementById('form_product_file'));
+				
+				$.ajax({
+					type : 'post',
+					url : '/uploadajax',
+					dataType : 'text',
+					data : formData,
+					processData : false,
+					contentType : false,					
+					success : function(result){						
+						var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
+						if(checkImage(result)){
+							str += "<img src = '/displayfile?filename="+result+"' />";
+						} else{
+							str += "<img src = '/resources/show.jpg'/>";
+						}
+						
+						str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
+						str += getOriginalName(result)+"</p></li>";
+						$(".uploadedList").append(str);
+						document.getElementById("form_product_file").reset();
+					}
+				});
+			}
+		});
+		$(".modal-footer").on("click", ".modal-insert", function(){
+			var productColor = $(".modal_productColor").val();
+			var productSize = $(".modal_productSize").val();
+			var productQuantity = $(".modal_productQuantity").val();
+			var str = '';
+			str += '<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>';
+			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>';
+			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>';
+			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productQuantity">수량</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productQuantity" required value="'+productQuantity+'" class="form-control"></div></div></div>'; 
+			
+			
+			countOption++;
+			$('.div_product_option').append(str);
+		});
+		$(".div_product_option").on("click", ".btn_product_option_delete", function(event){
+			event.preventDefault();	
+			var that = $(this);
+			that.parent().parent().remove();
+		});
+		
+		$.getJSON("/getAttach/" + productNo, function(arr) {
+			
+			for(var i = 0; i < arr.length; i++) {
+			var str	= new StringBuffer();
+			str.append('<li class="col-xs-4">');
+			str.append('<a herf="/displayfile?filename=' + getImageLink(arr[i]) + '">');
+			if(checkImage(arr[i])) {
+				str.append('<img src="/displayfile?filename=' + arr[i] + '"/>');
+			} else {
+				str.append('<img src="/resources/show.png"/>');
+			}						
+			str.append('</a>');
+			str.append('<p class="orifilename">');
+			str.append('<a class="deletefile" href="' + arr[i] + '"><span class="glyphicon glyphicon-trash"></span></a>');
+			str.append(getOriginalName(arr[i]));
+			str.append('</p>');
+			str.append('</li>');
+		
+			var resultstr = str.toString();
+			$(".uploadedList").append(resultstr);
+			}
+			
 		});
 
 		$(".tbl_product_category").on("click", ".link_product_category", function(event){
@@ -435,69 +517,44 @@ li {
 			$('.form_product_category_number').html('<input type="hidden" name="categoryNo" value="'+ $(this).prev().attr("href")+'">')
 			
 		});
-
-		$(".div_product_file").on("click", "#btn_product_file", function(event){
-			event.preventDefault();			
-			if(document.getElementById("input_product_file").files[0]==null){
-			alert("사진이 없습니다.");
-			}else{
-				var formData = new FormData(document.getElementById('form_product_file'));
-				
-				$.ajax({
-					type : 'post',
-					url : '/uploadajax',
-					dataType : 'text',
-					data : formData,
-					processData : false,
-					contentType : false,					
-					success : function(result){						
-						var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
-						if(checkImage(result)){
-							str += "<img src = '/displayfile?filename="+result+"' />";
-						} else{
-							str += "<img src = '/resources/show.jpg'/>";
-						}
-						
-						str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
-						str += getOriginalName(result)+"</p></li>";
-						$(".uploadedList").append(str);
-						document.getElementById("form_product_file").reset();
-					}
-				});
-			}
-		});
-		$(".modal-footer").on("click", ".modal-insert", function(){
-			var productColor = $(".modal_productColor").val();
-			var productSize = $(".modal_productSize").val();
-			var productQuantity = $(".modal_productQuantity").val();
-			var str = new StringBuffer();
-			str.append('<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>');
-			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>');
-			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>');
-			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productQuantity">수량</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productQuantity" required value="'+productQuantity+'" class="form-control"></div></div></div>'); 
-			var resultstr = str.toString();
-			
-			countOption++;
-			$('.div_product_option').append(resultstr);
-		});
-		$(".div_product_option").on("click", ".btn_product_option_delete", function(event){
-			event.preventDefault();	
-			var that = $(this);
-			that.parent().parent().remove();
-		});
 		
+
 		
 	});
 
 		function getCategoryList(){
-			var str = new StringBuffer();
-			$.getJSON("/product_Category", function(data){
-				for(var i = 0 ; i < data.length ; i++){
-					str.append('<li><a href="'+data[i]["categoryNo"]+'" class="link_product_category" data-degree="'+data[i]["categoryDegree"]+'">'+data[i]["categoryName"]+'</a></li>');
-				}
-				var resultstr = str.toString();
-				$("#ul_product_category_1").html(resultstr);				
-			});
+			for(var i = 1 ; i< 4 ; i++){			
+				categoryGetJSON(i);
+			}
+		};
+
+		function categoryGetJSON(degree){
+				var str = new StringBuffer();
+				$.ajax({
+					type : 'get',
+					url : '/product_category_list_update',
+					dataType : 'text',
+					data : {
+						'productNo' : productNo,
+						'categoryDegree' : degree
+						},
+					success :  function(data){
+						var list = $.parseJSON(data);
+						var listLen = list.length;
+						for(var i = 0; i < listLen; i++){
+							str.append('<li><a href="'+list[i].categoryNo+'" class="link_product_category');
+							str.append('" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">'+list[i].categoryName+'</a>');
+							if(list[i].categoryDegree==3)
+								 str.append('<button class="btn btn-primary btn_product_category_selected">추가버튼</button>');
+							str.append('</li>');
+						}
+						var resultstr = str.toString();
+						var id = "#ul_product_category_"+degree;
+						$(id).html(resultstr);
+					}
+						
+					});
+		
 		};
 	</script>
 </body>
