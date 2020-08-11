@@ -5,8 +5,9 @@ grant connect, resource, dba to ca20;
 
 member table
 
-create table member(
-memberId varchar2(32),
+create table member (
+memberNo number NOT NULL,
+memberId varchar2(32) NOT NULL,
 memberPw varchar2(32) NOT NULL,
 memberName varchar2(21) NOT NULL,
 memberZipcode varchar2(12) NOT NULL,
@@ -25,8 +26,9 @@ memberAcceptedEmail number default 0,
 memberAcceptedSns number default 0,
 isDelete number default 0,
 memberGrade number default 0,
-constraint member_pk primary key (memberId)
+constraint member_pk primary key (memberNo)
 );
+
 
 notice table
 

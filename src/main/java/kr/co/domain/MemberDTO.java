@@ -1,60 +1,35 @@
 package kr.co.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class MemberDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int memberNo;
-	private String memberId;
-	private String memberPw;
-	private String memberName;
+	private int memberNo; // 회원번호
+	private String memberId; // 아이디
+	private String memberPw; // 비밀번호
+	private String memberName; // 이름
+	private String memberBirth; // 생일
 	private String memberZipcode; // 우편
 	private String memberAddress_1; // 주소
 	private String memberAddress_2; // 상세주소
 	private String memberTel; // 일반전화
 	private String memberPhone; // 핸드폰
-	private String memberPetName;
-	private int memberPetAge;
+	private String memberGender; // 성별
+	private String memberPetName; // 동물이름
+	private String memberPetAge; // 동물나이
 	private String memberHolder; // 예금주
 	private String memberAccount; // 계좌번호
 	private String memberBank; // 은행
-	private String memberRegDate; // 가입일
+	private Date memberRegDate; // 가입일
 	private String memberEmail; // 이메일
-	private int memberAcceptedEmail; // 이메일수신동의
-	private int memberAcceptedSns; // SNS수신동의
 	private int isDelete; // 삭제여부
 	private int memberGrade; // 등급
-
+	private int memberPoint; // 포인트
+		
 	public MemberDTO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public MemberDTO(int memberNo, String memberId, String memberPw, String memberName, String memberZipcode,
-			String memberAddress_1, String memberAddress_2, String memberTel, String memberPhone, String memberPetName,
-			int memberPetAge, String memberHolder, String memberAccount, String memberBank, String memberRegDate,
-			String memberEmail, int memberAcceptedEmail, int memberAcceptedSns, int isDelete, int memberGrade) {
-		super();
-		this.memberNo = memberNo;
-		this.memberId = memberId;
-		this.memberPw = memberPw;
-		this.memberName = memberName;
-		this.memberZipcode = memberZipcode;
-		this.memberAddress_1 = memberAddress_1;
-		this.memberAddress_2 = memberAddress_2;
-		this.memberTel = memberTel;
-		this.memberPhone = memberPhone;
-		this.memberPetName = memberPetName;
-		this.memberPetAge = memberPetAge;
-		this.memberHolder = memberHolder;
-		this.memberAccount = memberAccount;
-		this.memberBank = memberBank;
-		this.memberRegDate = memberRegDate;
-		this.memberEmail = memberEmail;
-		this.memberAcceptedEmail = memberAcceptedEmail;
-		this.memberAcceptedSns = memberAcceptedSns;
-		this.isDelete = isDelete;
-		this.memberGrade = memberGrade;
 	}
 
 	public int getMemberNo() {
@@ -87,6 +62,14 @@ public class MemberDTO implements Serializable {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+
+	public String getMemberBirth() {
+		return memberBirth;
+	}
+
+	public void setMemberBirth(String memberBirth) {
+		this.memberBirth = memberBirth;
 	}
 
 	public String getMemberZipcode() {
@@ -129,6 +112,14 @@ public class MemberDTO implements Serializable {
 		this.memberPhone = memberPhone;
 	}
 
+	public String getMemberGender() {
+		return memberGender;
+	}
+
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
+	}
+
 	public String getMemberPetName() {
 		return memberPetName;
 	}
@@ -137,11 +128,11 @@ public class MemberDTO implements Serializable {
 		this.memberPetName = memberPetName;
 	}
 
-	public int getMemberPetAge() {
+	public String getMemberPetAge() {
 		return memberPetAge;
 	}
 
-	public void setMemberPetAge(int memberPetAge) {
+	public void setMemberPetAge(String memberPetAge) {
 		this.memberPetAge = memberPetAge;
 	}
 
@@ -169,11 +160,11 @@ public class MemberDTO implements Serializable {
 		this.memberBank = memberBank;
 	}
 
-	public String getMemberRegDate() {
+	public Date getMemberRegDate() {
 		return memberRegDate;
 	}
 
-	public void setMemberRegDate(String memberRegDate) {
+	public void setMemberRegDate(Date memberRegDate) {
 		this.memberRegDate = memberRegDate;
 	}
 
@@ -183,22 +174,6 @@ public class MemberDTO implements Serializable {
 
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
-	}
-
-	public int getMemberAcceptedEmail() {
-		return memberAcceptedEmail;
-	}
-
-	public void setMemberAcceptedEmail(int memberAcceptedEmail) {
-		this.memberAcceptedEmail = memberAcceptedEmail;
-	}
-
-	public int getMemberAcceptedSns() {
-		return memberAcceptedSns;
-	}
-
-	public void setMemberAcceptedSns(int memberAcceptedSns) {
-		this.memberAcceptedSns = memberAcceptedSns;
 	}
 
 	public int getIsDelete() {
@@ -217,8 +192,18 @@ public class MemberDTO implements Serializable {
 		this.memberGrade = memberGrade;
 	}
 
+	public int getMemberPoint() {
+		return memberPoint;
+	}
+
+	public void setMemberPoint(int memberPoint) {
+		this.memberPoint = memberPoint;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	
 	
 }
