@@ -1,5 +1,7 @@
 package kr.co.persistence;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,27 +20,24 @@ public class MemberDAOImpl  implements MemberDAO{
 	@Autowired
 	private SqlSession session;
 	
+	
+	
 	private final String NS = "m.e.m";
 
-	@Override
-	public void insert(MemberDTO dto) {
-		
-
-		// TODO Auto-generated method stub
-		
-		Integer memberno = session.selectOne(NS + ".getMemberNo");
-		if (memberno != null) {
-			memberno += 1;
-		} else {
-			memberno = 1;
-		}
-
-		dto.setMemberNo(memberno);
-		
-		session.insert(NS+ ".insert", dto);
-		
-		
-	}
+	
+	  @Override public void insert(MemberDTO dto) {
+	  
+	  
+	  // TODO Auto-generated method stub
+	  
+	  Integer memberno = session.selectOne(NS + ".getMemberNo"); if (memberno !=
+	  null) { memberno += 1; } else { memberno = 1; }
+	  
+	  dto.setMemberNo(memberno);
+	  
+	  session.insert(NS+ ".insert", dto); 
+	  }
+	 
 
 	@Override
 	public PageTO<MemberDTO> list(PageTO<MemberDTO> mto) {
@@ -96,8 +95,17 @@ public class MemberDAOImpl  implements MemberDAO{
 		
 		return session.selectList(NS+".searchlist", map);
 	}
-	
 
 
-}
+	@Override
+	public int idcheck(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".idcheck", dto);
+	}
+
+
+	}
+
+
+
 

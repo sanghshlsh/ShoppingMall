@@ -1,6 +1,5 @@
 package kr.co.persistence;
 
-
 import java.util.List;
 
 import kr.co.domain.MemberDTO;
@@ -23,6 +22,9 @@ public interface MemberDAO {
 	void delete(int memberno);
 
 	List<MemberDTO> searchlist(String searchType, String keyword);
-}
 
+	int idcheck(MemberDTO dto);
+
+
+}
 

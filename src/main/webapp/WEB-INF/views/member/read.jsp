@@ -23,23 +23,121 @@
       <div class="row text-center">
          <h1>회원 정보</h1>
       </div>
-      <div class="row">
-         <div class="form-group">
-            <label for="title">아이디</label> <input readonly value="${to.memberId}"
-               class="form-control">
+      
+      <div class="row">                
+           <table border="1" width="400px">
+           
+            <tr>
+             <div class="form-group">
+            <td><label for="memberId">아이디</label><td> 
+            <td><input readonly value="${to.memberId}" class="form-control"></td>         
          </div>
+         </tr> 
 
-         <div class="form-group">
-            <label for="title">이름</label> <input readonly value="${to.memberName}"
-               class="form-control">
+         <tr>
+             <div class="form-group">
+            <td><label for="memberName">이름</label><td> 
+            <td><input readonly value="${to.memberName}" class="form-control"></td>         
          </div>
-
-         <div class="form-group">
-            <label for="title">이메일</label>
-            <textarea readonly rows="5" class="form-control">${to.memberEmail}</textarea>
+         </tr> 
+         
+         <tr>
+             <div class="form-group">
+            <td><label for="memberBirth">생년월일</label><td> 
+            <td><input readonly value="${to.memberBirth}" class="form-control"></td>         
          </div>
-      </div>
-
+         </tr> 
+         
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberEmail">이메일</label><td> 
+            <td><input readonly value="${to.memberEmail}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberTel">일반전화</label><td> 
+            <td><input readonly value="${to.memberTel}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberPhone">휴대전화</label><td> 
+            <td><input readonly value="${to.memberPhone}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberAddress_1">주소</label><td> 
+            <td><input readonly value="${to.memberAddress_1}" class="form-control"></td>          
+         </div>
+         </tr> 
+         
+             <tr>
+             <div class="form-group">
+            <td><label for="memberAddress_2">상세주소</label><td> 
+            <td><input readonly value="${to.memberAddress_2}" class="form-control"></td>          
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberPetName">반려동물 이름</label><td> 
+            <td><input readonly value="${to.memberPetName}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberPetAge">반려동물 나이</label><td> 
+            <td><input readonly value="${to.memberPetAge}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberHolder">예금주</label><td> 
+            <td><input readonly value="${to.memberHolder}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberBank">은행명</label><td> 
+            <td><input readonly value="${to.memberBank}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberAccount">계좌번호</label><td> 
+            <td><input readonly value="${to.memberAccount}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+           <tr>
+             <div class="form-group">
+            <td><label for="memberRegDate">가입일</label><td> 
+            <td><input readonly value="${to.memberRegDate}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+         
+         
+ </table>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
       <div class="row">
          <div class="form-group">
             <button class="btn btn-warning" id="update">수정</button>
@@ -67,4 +165,6 @@
 	
 </script>
 </body>
+
+
 </html>
