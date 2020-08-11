@@ -38,16 +38,18 @@
                   <th class="th-center">이름</th>
                   <th class="th-center">전화번호</th>
                   <th class="th-center">이메일</th>
+                  <th class="th-center">관리</th>
                </tr>
             </thead>
             <tbody>
                <c:forEach items="${list}" var="dto">
                   <tr>
                      <td>${dto.memberNo}</td>   
-                     <td><a href="/member/read/${dto.memberNo}">${dto.memberId}</a></td>    
+                     <td>${dto.memberId}</td>    
                      <td>${dto.memberName}</td>
                      <td>${dto.memberPhone}</td>
                      <td>${dto.memberEmail}</td>
+                     <td><a href="/member/read/${dto.memberNo}" class="btn btn-info" role="button">자세히 보기</a></td>
                   </tr>
                </c:forEach>
             </tbody>

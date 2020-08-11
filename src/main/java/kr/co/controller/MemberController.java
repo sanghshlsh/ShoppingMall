@@ -1,24 +1,25 @@
 package kr.co.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
-
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import kr.co.domain.MemberDTO;
-import kr.co.domain.PageTO;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kr.co.domain.MemberDTO;
+import kr.co.domain.PageTO;
 import kr.co.service.MemberService;
+
 
 @Controller
 @RequestMapping("member")
@@ -26,28 +27,42 @@ import kr.co.service.MemberService;
 
 public class MemberController {
 	
+	
 	@Inject
-	
 	private MemberService mService;
+	 
+    // 아이디 중복 체크
 	
-	@Autowired
-	private MemberService memberService;
-	
-	// 회원 가입 get
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert() {
-		return "member/insert";
-	}
-	
-	// 회원 가입 post
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(MemberDTO dto) {
+	@ResponseBody
+	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
+	public int idcheck(MemberDTO dto) {
 		
-		memberService.insert(dto);
-		
-	 return "redirect:/member/list";
+		int result = mService.idcheck(dto);
+		return result;
 	}
+
 	
+	 // 회원 가입 get
+	  
+	  @RequestMapping(value = "/insert", method = RequestMethod.GET) public String
+	 insert() { 
+		  
+		  return "member/insert"; }
+	 
+	
+	  // 회원 가입 post
+	  
+	  @RequestMapping(value = "/insert", method = RequestMethod.POST) public String
+	  insert(MemberDTO dto) {
+	  
+		  mService.insert(dto);
+	  
+	  return "redirect:/member/list"; }
+	
+
+
+
+	// 검색기능
 	@RequestMapping(value = "/searchlist")
 	public String serchlist(Model model, String searchType, String keyword) {
 		
@@ -90,9 +105,7 @@ public class MemberController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(MemberDTO to) {
 		mService.update(to);
-		System.out.println(to.getMemberNo());
-		System.out.println(to.getMemberName());
-		System.out.println(to.getMemberEmail());
+	
 		return "redirect:/member/read/"+to.getMemberNo();
 	}
 	
