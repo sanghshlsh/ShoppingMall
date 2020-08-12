@@ -60,7 +60,7 @@
 	
 	<update id="update">
 		update member set memberId=#{memberId}, memberName=#{memberName}, memberBirth = #{memberBirth},
-		memberEmail = #{memberEmail}, memberTel = #{memberTel}, memberPhone = #{memberPhone}, 
+		memberEmail = #{memberEmail}, memberTel = #{memberTel}, memberPhone = #{memberPhone}, memberGender = #{memberGender}, 
 		memberAddress_1 = #{memberAddress_1}, memberAddress_2 = #{memberAddress_2}, memberPetName = #{memberPetName}, 
 		memberPetAge = #{memberPetAge}, memberHolder = #{memberHolder}, memberBank = #{memberBank}, 
 		memberAccount = #{memberAccount}  

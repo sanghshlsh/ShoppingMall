@@ -22,16 +22,16 @@ public class AdminManageController {
 	@Inject
 	private ManageService manageService;
 
-	@RequestMapping(value = "/manage/inquiryBoardModify", method = RequestMethod.GET)
-	public void adminInquiryBoardModify() {
+	@RequestMapping(value = "/manage/inquiryBoardWrite", method = RequestMethod.GET)
+	public void adminInquiryBoardWrite() {
 	}
 
 	@RequestMapping(value = "/manage/inquiryBoardList", method = RequestMethod.GET)
 	public void adminInquiryBoardList(Model model) {
 	}
 
-	@RequestMapping(value = "/manage/qnaBoardModify", method = RequestMethod.GET)
-	public void adminQnaBoardModify() {
+	@RequestMapping(value = "/manage/qnaBoardWrite", method = RequestMethod.GET)
+	public void adminQnaBoardWrite() {
 	}
 
 	@RequestMapping(value = "/manage/qnaBoardList", method = RequestMethod.GET)
@@ -41,8 +41,8 @@ public class AdminManageController {
 		model.addAttribute("qnaDto", qnaDto);
 	}
 
-	@RequestMapping(value = "/manage/faqBoardModify", method = RequestMethod.GET)
-	public void adminFaqBoardModify() {
+	@RequestMapping(value = "/manage/faqBoardWrite", method = RequestMethod.GET)
+	public void adminFaqBoardWrite() {
 	}
 
 	@RequestMapping(value = "/manage/faqBoardList", method = RequestMethod.GET)
@@ -52,8 +52,8 @@ public class AdminManageController {
 		model.addAttribute("faqDto", faqDto);
 	}
 
-	@RequestMapping(value = "/manage/noticeBoardModify", method = RequestMethod.GET)
-	public void adminNoticeBoardModify() {
+	@RequestMapping(value = "/manage/noticeBoardWrite", method = RequestMethod.GET)
+	public void adminNoticeBoardWrite() {
 	}
 
 	@RequestMapping(value = "/manage/noticeBoardList", method = RequestMethod.GET)
@@ -63,8 +63,8 @@ public class AdminManageController {
 		model.addAttribute("noticeDto", noticeDto);
 	}
 
-	@RequestMapping(value = "/manage/reviewBoardModify", method = RequestMethod.GET)
-	public void adminReviewBoardModify() {
+	@RequestMapping(value = "/manage/reviewBoardWrite", method = RequestMethod.GET)
+	public void adminReviewBoardWrite() {
 	}
 
 	@RequestMapping(value = "/manage/reviewBoardList", method = RequestMethod.GET)

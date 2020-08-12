@@ -8,13 +8,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.co.domain.ProductDTO;
 import kr.co.service.ProductService;
 
-
 @Controller
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
 
+	@RequestMapping(value = "/admin/product/insert", method = RequestMethod.GET)
+	public String insertProduct(ProductDTO pdto) {
+		productService.insert(pdto);
+		return "redirct:/admin/insert";
+	}
+
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public void productIndex() {
 
 
 //	@RequestMapping(value = "/product", method = RequestMethod.GET)

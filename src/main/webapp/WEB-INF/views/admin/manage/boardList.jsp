@@ -15,7 +15,7 @@
 		<div class="row">
 			<%@ include file="../include/sidebar.jsp"%>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">MANAGEMENT</h1>
+				<h1 class="page-header">BOARD LIST</h1>
 				<div class="row">
 					<table id="mytable" class="table table-bordred">
 						<thead>
@@ -27,7 +27,7 @@
 								<th>새글</th>
 								<th>총게시글</th>
 								<th>게시글관리</th>
-								<th>게시판관리</th>
+								<th>게시글쓰기</th>
 							</tr>
 						</thead>
 
@@ -42,8 +42,8 @@
 								<td><button class="btn btn-warning btn-xs" onclick="location.href='reviewBoardList';">
 										<span class="glyphicon glyphicon-list-alt"></span>
 									</button></td>
-								<td><button class="btn btn-success btn-xs" onclick="location.href='reviewBoardModify';">
-										<span class="glyphicon glyphicon-cog"></span>
+								<td><button class="btn btn-success btn-xs" onclick="location.href='reviewBoardWrite';">
+										<span class="glyphicon glyphicon-pencil"></span>
 									</button></td>
 							</tr>
 
@@ -57,8 +57,8 @@
 								<td><button class="btn btn-warning btn-xs" onclick="location.href='noticeBoardList';">
 										<span class="glyphicon glyphicon-list-alt"></span>
 									</button></td>
-								<td><button class="btn btn-success btn-xs" onclick="location.href='noticeBoardModify';">
-										<span class="glyphicon glyphicon-cog"></span>
+								<td><button class="btn btn-success btn-xs" onclick="location.href='noticeBoardWrite';">
+										<span class="glyphicon glyphicon-pencil"></span>
 									</button></td>
 							</tr>
 
@@ -72,8 +72,8 @@
 								<td><button class="btn btn-warning btn-xs" onclick="location.href='faqBoardList';">
 										<span class="glyphicon glyphicon-list-alt"></span>
 									</button></td>
-								<td><button class="btn btn-success btn-xs" onclick="location.href='faqBoardModify';">
-										<span class="glyphicon glyphicon-cog"></span>
+								<td><button class="btn btn-success btn-xs" onclick="location.href='faqBoardWrite';">
+										<span class="glyphicon glyphicon-pencil"></span>
 									</button></td>
 							</tr>
 
@@ -87,8 +87,8 @@
 								<td><button class="btn btn-warning btn-xs" onclick="location.href='qnaBoardList';">
 										<span class="glyphicon glyphicon-list-alt"></span>
 									</button></td>
-								<td><button class="btn btn-success btn-xs" onclick="location.href='qnaBoardModify';">
-										<span class="glyphicon glyphicon-cog"></span>
+								<td><button class="btn btn-success btn-xs" onclick="location.href='qnaBoardWrite';">
+										<span class="glyphicon glyphicon-pencil"></span>
 									</button></td>
 							</tr>
 
@@ -102,8 +102,8 @@
 								<td><button class="btn btn-warning btn-xs" onclick="location.href='inquiryBoardList';">
 										<span class="glyphicon glyphicon-list-alt"></span>
 									</button></td>
-								<td><button class="btn btn-success btn-xs" onclick="location.href='inquiryBoardModify';">
-										<span class="glyphicon glyphicon-cog"></span>
+								<td><button class="btn btn-success btn-xs" onclick="location.href='inquiryBoardWrite';">
+										<span class="glyphicon glyphicon-pencil"></span>
 									</button></td>
 							</tr>
 
