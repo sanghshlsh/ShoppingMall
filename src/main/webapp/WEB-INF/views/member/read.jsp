@@ -70,6 +70,21 @@
          </div>
          </tr> 
          
+         <tr>
+             <div class="form-group">
+            <td><label for="memberGender">성별</label><td> 
+            <td><input readonly value="${to.memberGender}" class="form-control"></td>         
+         </div>
+         </tr> 
+         
+         
+          <tr>
+             <div class="form-group">
+            <td><label for="memberZipcode">우편번호</label><td> 
+            <td><input readonly value="${to.memberZipcode}" class="form-control"></td>          
+         </div>
+         </tr> 
+         
            <tr>
              <div class="form-group">
             <td><label for="memberAddress_1">주소</label><td> 

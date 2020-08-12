@@ -27,11 +27,9 @@
 				class="glyphicon glyphicon-menu-down"></span> </a>
 			<ul id="submenu-4" class="collapse">
 				<li><a href="/admin/manage/boardList">게시판 리스트</a></li>
-				<li><a href="/admin/manage/SavemoneyHistory">적립금 관리</a></li>
-				<li><a href="/admin/manage/PointHistory">포인트 관리</a></li>
-				<li><a href="/admin/manage/SmsSendMain"> SMS 발송</a></li>
+				<li><a href="/admin/manage/couponList">쿠폰 관리</a></li>
+				<li><a href="/admin/manage/SmsSendMain">SMS 발송</a></li>
 				<li><a href="/admin/manage/EmailSendMain">Email 발송</a></li>
-				<li><a href="/admin/manage/BannedList">금칙어 관리</a></li>
 			</ul></li>
 		<li>
 			<form class="navbar-form">

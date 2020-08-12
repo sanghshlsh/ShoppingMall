@@ -82,7 +82,7 @@
 						
 						<div class="col-sm-2">ABOUT</div>
 						<div class="col-sm-2">PRODUCT</div>
-						<div class="col-sm-2">REVIEW</div>
+						<div class="col-sm-2"><a href="/review/main">REVIEW</a></div>
 						<div class="col-sm-2"><a href="/customerservice/main">C/S CENTER</a></div>
 						<div class="col-sm-2"><a href="/customerservice/inquiry">INQUIRY</a></div>
 					</div>
