@@ -8,13 +8,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.co.domain.ProductDTO;
 import kr.co.service.ProductService;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> fetch_head
 @Controller
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
 
+<<<<<<< HEAD
+	@RequestMapping(value = "/admin/product/insert", method = RequestMethod.GET)
+	public String insertProduct(ProductDTO pdto) {
+		productService.insert(pdto);
+		return "redirct:/admin/insert";
+	}
+
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public void productIndex() {
+=======
 
 
 //	@RequestMapping(value = "/product", method = RequestMethod.GET)
@@ -68,6 +81,7 @@ public class ProductController {
 	@RequestMapping(value="/admin/default/main", method = RequestMethod.GET)
 	public void adminMain() {
 		//필요x
+>>>>>>> fetch_head
 	}
 
 

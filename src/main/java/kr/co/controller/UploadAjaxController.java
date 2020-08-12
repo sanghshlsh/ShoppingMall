@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,10 +27,11 @@ import kr.co.utils.Utils;
 
 @Controller
 public class UploadAjaxController {
-	private String uploadPath = "C:"+File.separator+"upload";
-	
+
 	@Autowired
 	ProductService productService;
+	
+	private String uploadPath = "C:"+File.separator+"upload";
 	
 	@RequestMapping(value = "/uploadajax", method = RequestMethod.GET)
 	public void uploadajax() {	
@@ -37,7 +40,6 @@ public class UploadAjaxController {
 	@ResponseBody
 	@RequestMapping(value = "/uploadajax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	private String uploadajax(MultipartHttpServletRequest request) throws Exception {
-	
 		
 		MultipartFile file =  request.getFile("file");
 		String originalName = file.getOriginalFilename();
@@ -80,7 +82,6 @@ public class UploadAjaxController {
 					e.printStackTrace();
 				}
 		}
-		
 		return entity;
 	}
 	
@@ -108,6 +109,5 @@ public class UploadAjaxController {
 
 		return productService.getAttach(productNo);
 	}
-	
 	
 }

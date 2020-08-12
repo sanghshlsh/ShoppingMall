@@ -19,7 +19,7 @@ body {
 /* Top navigation * Hide default border to remove 1px line. */
 .navbar-fixed-top {
 	border: 0;
-} 
+}
 
 /* Sidebar */
 /* Hide for mobile, show later */
@@ -38,8 +38,7 @@ body {
 		padding: 20px;
 		overflow-x: hidden;
 		overflow-y: auto;
-		
-/* Scrollable contents if viewport is shorter than content. */
+		/* Scrollable contents if viewport is shorter than content. */
 		background-color: #f5f5f5;
 		border-right: 1px solid #eee;
 	}
@@ -52,12 +51,12 @@ body {
 	margin-left: -20px;
 }
 
-#submenu-1, #submenu-2, #submenu-3, #submenu-4 >li {
+#submenu-1, #submenu-2, #submenu-3, #submenu-4>li {
 	list-style-type: none;
 	margin-bottom: 5px;
 }
 
-#submenu-1, #submenu-2, #submenu-3, #submenu-4 >li>a:link, a:visited {
+#submenu-1, #submenu-2, #submenu-3, #submenu-4>li>a:link, a:visited {
 	text-decoration: none;
 }
 
@@ -90,5 +89,28 @@ body {
 
 #mytable th, td {
 	text-align: center;
+}
+
+th {
+	text-align: center;
+}
+
+.fileDrop {
+	width: 100%;
+	height: 50px;
+}
+
+.uploadedList {
+	margin-top: 20px;
+}
+
+.uploadedList {
+	list-style: none;
+}
+
+.orifilename {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 </style>
