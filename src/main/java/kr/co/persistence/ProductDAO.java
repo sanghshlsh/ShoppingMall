@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
 import kr.co.domain.ProductOptionDTO;
+import kr.co.domain.SearchDTO;
 
 public interface ProductDAO {
 
@@ -20,7 +21,7 @@ public interface ProductDAO {
 
 	List<ProductDTO> productList();
 
-	String getCategoryName(CategoryDTO categoryDto);
+	String getCategoryName(int categoryNo);
 
 	ProductDTO updateUI(int productNo);
 
@@ -33,6 +34,14 @@ public interface ProductDAO {
 	void deleteAttachByProductNo(int productNo);
 
 	void deleteProductOptionByProductNo(int productNo);
+
+	List<ProductOptionDTO> productOptionList(int productNo);
+
+	List<ProductDTO> productSearchList(SearchDTO searchDTO);
+
+	int productDiscountPrice(ProductDTO productDTO);
+
+	int productTotalQuantity(ProductDTO productDTO);
 
 
 }

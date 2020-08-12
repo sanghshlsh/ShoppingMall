@@ -17,16 +17,19 @@ public class ProductDTO implements Serializable {
 	private int sellStatus; //판매상태
 	private String[] files; //첨부파일
 	private List<ProductOptionDTO> productOptionList; //상품옥션
-	private int categoryNo;
-	private Date regDate;
-
+	private int categoryNo;//카테고리번호
+	private String categoryName;//카테고리이름
+	private Date regDate;//등록일
+	private int productDiscountPrice;//판매가(할인적용)
+	private int productTotalQuantity;//상품재고합계
+	
 	public ProductDTO() {
 
 	}
-
+	
 	public ProductDTO(int productNo, String productName, int productPrice, int productDiscountRate, String productSet,
 			int isDelete, int sellStatus, String[] files, List<ProductOptionDTO> productOptionList, int categoryNo,
-			Date regDate) {
+			String categoryName, Date regDate, int productDiscountPrice, int productTotalQuantity) {
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -38,10 +41,37 @@ public class ProductDTO implements Serializable {
 		this.files = files;
 		this.productOptionList = productOptionList;
 		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
 		this.regDate = regDate;
+		this.productDiscountPrice = productDiscountPrice;
+		this.productTotalQuantity = productTotalQuantity;
 	}
 
 
+	public int getProductTotalQuantity() {
+		return productTotalQuantity;
+	}
+
+	public void setProductTotalQuantity(int productTotalQuantity) {
+		this.productTotalQuantity = productTotalQuantity;
+	}
+
+	public int getProductDiscountPrice() {
+		return productDiscountPrice;
+	}
+
+	public void setProductDiscountPrice(int productDiscountPrice) {
+		this.productDiscountPrice = productDiscountPrice;
+	}
+
+	public String getCategoryName() {
+			return categoryName;
+	}
+	
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	
 	public Date getRegDate() {
 		return regDate;
 	}

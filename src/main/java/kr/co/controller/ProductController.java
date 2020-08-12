@@ -77,6 +77,12 @@ public class ProductController {
 	public void adminMain() {
 		//필요x
 	}
+	/*
+	 * @RequestMapping(value = "/admin/product/insert", method = RequestMethod.GET)
+	 * public String insertProduct(ProductDTO pdto) { productService.insert(pdto);
+	 * return "redirct:/admin/insert"; }
+	 */
+
 
 
 }

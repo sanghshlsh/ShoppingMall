@@ -46,7 +46,7 @@
 	<select id="getAttach" resultType="string">
 		<![CDATA[select fullName from productAttach where productNo = #{productNo} order by attachRegDate asc]]>
 	</select>
-	<select id="getCategoryNo" resultType="integer">
+	<select id="getCategoryNo" resultType="Integer">
 		<![CDATA[select categoryNo from product where productNo = #{productNo}]]>
 	</select>
 	
@@ -67,9 +67,66 @@
 		<![CDATA[update product set productName = #{productName}, productPrice = #{productPrice}, productDiscountRate = #{productDiscountRate}, productSet = #{productSet}, isDelete = #{isDelete}, sellStatus = #{sellStatus}, categoryNo =  #{categoryNo} where productNo = #{productNo}]]>
 	</update>
 	<delete id="deleteAttachByProductNo">
-		delete from productAttach where productNo = #{productNo}
+		<![CDATA[delete from productAttach where productNo = #{productNo}]]>
 	</delete>
 	<delete id="deleteProductOptionByProductNo">
-		delete from productOption where productNo = #{productNo}
+		<![CDATA[delete from productOption where productNo = #{productNo}]]>
 	</delete>
+	<select id="productDiscountPrice" resultType="Integer">
+		<![CDATA[select fn_dc(#{productPrice}, #{productDiscountRate}) from dual]]>
+	</select>
+	<select id="productTotalQuantity" resultType="Integer">
+	<![CDATA[select sum(productQuantity) as productTotalQuantity from productOption where productNo = #{productNo}]]>
+	</select>
+	
+	<sql id="search">
+		<if test="categoryNo != null">
+			<if test="categoryNo == 0">
+				<![CDATA[where categoryNo like '%']]> 
+			</if>
+			<if test="categoryNo != 0">
+			<![CDATA[where categoryNo like (#{categoryNo})||'%']]> 
+			</if>
+		</if>
+		<if test="regDate != null">
+			and regDate between
+			<foreach collection="regDate" item="date" separator="and">
+				 #{date}		
+			</foreach>	
+			
+		</if>
+		<if test="minPrice != 0">
+			<![CDATA[and productPrice >= #{minPrice}]]>
+		</if>
+		<if test="maxPrice != 0">
+			<![CDATA[and productPrice <= #{maxPrice}]]>
+		</if>
+		<if test="searchType != null">
+			<if test="searchType == 'productName'.toString()">
+				<![CDATA[and lower(productName) like '%'||lower(#{keyWord})||'%']]>
+			</if>
+			<if test="searchType == 'productNo'.toString()">
+				<![CDATA[and lower(productNo) like '%'||lower(#{keyWord})||'%']]>
+			</if>
+			<if test="searchType == 'productSet'.toString()">
+				<![CDATA[and lower(productSet) like '%'||lower(#{keyWord})||'%']]>
+			</if>
+		</if>
+		<if test="sellStatus != null">
+			and
+			<foreach collection="sellStatus" item="status" open="(" close=")" separator="or">
+				sellStatus = #{status}
+			</foreach>
+		</if>
+		<if test="isDelete != null">
+			and
+			<foreach collection="isDelete" item="delete" open="(" close=")" separator="or">
+				isDelete = #{delete}
+			</foreach>
+		</if>
+	</sql>
+	
+	<select id="productSearchList" resultType="ProductDTO">
+		<![CDATA[select * from product ]]><include refid="search"></include>
+	</select>
 </mapper>
