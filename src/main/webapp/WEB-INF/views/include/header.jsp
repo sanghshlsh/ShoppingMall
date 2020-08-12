@@ -71,8 +71,8 @@
 						<div class="col-sm-2"></div>
 					</div>
 					<div class="col-sm-4">
-						<div class="col-sm-3">로그인</div>
-						<div class="col-sm-3">회원가입</div>
+						<div class="col-sm-3"><a href="/member/login">로그인</a></div>
+						<div class="col-sm-3"><a href="/member/insert">회원가입</a></div>
 						<div class="col-sm-3">마이페이지</div>
 						<div class="col-sm-3">주문관리</div>
 					</div>

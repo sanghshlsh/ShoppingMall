@@ -56,7 +56,7 @@
 	<div class="container">
 		<div class="row">
 
-			<form action="customerservice/qnainsert" method="post">
+			<form action="/customerservice/qnainsert" method="post">
 				<div class="form-group">
 					<label for="qnaTitle">제목</label> <input name="qnaTitle"
 						id="qnaTitle" class="form-control">

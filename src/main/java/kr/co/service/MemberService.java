@@ -2,7 +2,7 @@ package kr.co.service;
 
 import java.util.List;
 
-
+import kr.co.domain.LoginDTO;
 import kr.co.domain.MemberDTO;
 import kr.co.domain.PageTO;
 
@@ -25,6 +25,8 @@ public interface MemberService {
 	List<MemberDTO> searchlist(String searchType, String keyword);
 
 	int idcheck(MemberDTO dto);
+
+	MemberDTO loginpost(LoginDTO login);
 
 	
 }

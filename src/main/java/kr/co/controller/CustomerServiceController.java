@@ -154,8 +154,8 @@ public class CustomerServiceController {
 		}
 		PageTO<QnaDTO> qto = new PageTO<QnaDTO>(page);
 		qto = cService.qnaList(qto);
-		model.addAttribute("to",qto);
-		model.addAttribute("listist",qto.getList());
+		model.addAttribute("qto",qto);
+		model.addAttribute("list",qto.getList());
 	}
 	@RequestMapping(value = "/qnaread/{qnaNo}", method = RequestMethod.GET)
 	public String qnaRead(Model model,@PathVariable("qnaNo")int qnaNo) {
