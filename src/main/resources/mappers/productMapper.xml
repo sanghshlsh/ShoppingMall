@@ -3,14 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="p.r.o">
-	<select id="getProductNo" resultType="Integer">
-		<![CDATA[select max(productNo) from product]]>
-	</select>
+	
 	<insert id="insert">
 			<![CDATA[insert into product (productNo, productName, productPrice, productDiscountRate, productSet, isDelete, sellStatus, categoryNo)
 		values (#{productNo}, #{productName}, #{productPrice}, #{productDiscountRate}, #{productSet}, #{isDelete}, #{sellStatus}, #{categoryNo})]]>
 	</insert>
-	
+	<select id="getProductNo" resultType="Integer">
+	<![CDATA[select NVL2(max(productNo), max(productNo)+1, 1) from product]]>
+	</select>
 	<select id="categoryList" resultType="CategoryDTO">
 			<![CDATA[select * from category where categoryNoRef is null]]>
 	</select>
@@ -19,16 +19,57 @@
 			<![CDATA[select * from category where categoryNoRef = #{categoryNoRef}]]>
 	</select>
 	<select id="getAttachNo" resultType="Integer">
-			<![CDATA[select NVL2(max(attachNo), max(attachNo)+1, 1) from productAttach]]>
+	<![CDATA[select NVL2(max(attachNo), max(attachNo)+1, 1) from productAttach]]>
 	</select>
 	<insert id="addAttach">
-			<![CDATA[insert into productAttach (attachNo, fullName, productNo) values  (#{attachNo}, #{fullName}, #{productNo})]]>
+			<![CDATA[insert into productAttach (attachNo, fullName, productNo) values (#{attachNo},  #{fullName}, #{productNo})]]>
+	</insert>
+
+	<insert id="insertProductOption">
+			<![CDATA[insert into productOption (productOptionNo, productColor, productSize, productQuantity, productNo) values ((select NVL2(max(productOptionNo), max(productOptionNo)+1, 1) from productOption) , #{productColor}, #{productSize}, #{productQuantity}, #{productNo})]]>
 	</insert>
 		<select id="getProductOptionNo" resultType="Integer">
-		<![CDATA[select max(productOptionNo) from productOption]]>
+	<![CDATA[select NVL2(max(productOptionNo), max(productOptionNo)+1, 1) from productOption]]>
 	</select>
-	<insert id="insertProductOption">
-			<![CDATA[insert into productOption (productOptionNo, productColor, productSize, productQuantity, productNo) values (#{productOptionNo}, #{productColor}, #{productSize}, #{productQuantity}, #{productNo})]]>
-	</insert>
+	<select id="productList" resultType="ProductDTO">
+			<![CDATA[select * from product]]>
+	</select>
+	<select id="getCategoryName" resultType="string">
+		<![CDATA[select categoryName from category where categoryNo = #{categoryNo}]]>
+	</select>
+	<select id="updateUI" resultType="ProductDTO">
+		<![CDATA[select * from product where productNo = #{productNo}]]>
+	</select>
+	<select id="getProductOptionList" resultType="ProductOptionDTO">
+		<![CDATA[select * from productOption where productNo = #{productNo}]]>
+	</select>
+	<select id="getAttach" resultType="string">
+		<![CDATA[select fullName from productAttach where productNo = #{productNo} order by attachRegDate asc]]>
+	</select>
+	<select id="getCategoryNo" resultType="integer">
+		<![CDATA[select categoryNo from product where productNo = #{productNo}]]>
+	</select>
 	
+	<sql id="categoryNoRef">
+		<if test="categoryDegree >1 ">
+			categoryNoRef = #{categoryNoRef}
+		</if>
+		<if test="categoryDegree == 1">
+			categoryNoRef is null
+		</if>
+	</sql>
+	
+	<select id="categoryListUpdate" resultType="CategoryDTO">
+		<![CDATA[select * from category where ]]> <include refid="categoryNoRef"></include>
+	</select>
+
+	<update id="update">
+		<![CDATA[update product set productName = #{productName}, productPrice = #{productPrice}, productDiscountRate = #{productDiscountRate}, productSet = #{productSet}, isDelete = #{isDelete}, sellStatus = #{sellStatus}, categoryNo =  #{categoryNo} where productNo = #{productNo}]]>
+	</update>
+	<delete id="deleteAttachByProductNo">
+		delete from productAttach where productNo = #{productNo}
+	</delete>
+	<delete id="deleteProductOptionByProductNo">
+		delete from productOption where productNo = #{productNo}
+	</delete>
 </mapper>

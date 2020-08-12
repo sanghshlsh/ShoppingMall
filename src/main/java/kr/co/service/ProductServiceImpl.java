@@ -20,22 +20,18 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void insert(ProductDTO productDto) {
-		// TODO Auto-generated method stub
 		productDao.insert(productDto);
-		
 		String[] files = productDto.getFiles();
 		if(files != null) {  
-			for(String fullName : files) {
+			for(String fullName : files) {	
 				productDao.addAttach(fullName, productDto.getProductNo());
-			}
+			}			
 		}
 		List<ProductOptionDTO> list = productDto.getProductOptionList();
-		if( list != null) {
-			for (ProductOptionDTO productOptionDTO : list) {
-				if(productOptionDTO.getProductQuantity()!=0){
-					productOptionDTO.setProductNo(productDto.getProductNo());
-					productDao.insertProductOption(productOptionDTO);
-				}
+		for (ProductOptionDTO productOptionDTO : list) {
+			if(productOptionDTO.getProductQuantity()!=0){
+				productOptionDTO.setProductNo(productDto.getProductNo());
+				productDao.insertProductOption(productOptionDTO);
 			}
 		}
 		
@@ -48,8 +44,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 	@Override
 	public List<String> getAttach(Integer productNo) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return productDao.getAttach(productNo);
 	}
 	
 	@Override
@@ -63,5 +59,46 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return  productDao.categoryListN(categoryDto);
 	}
-
+	@Override
+	public List<ProductDTO> productList() {
+		// TODO Auto-generated method stub
+		return productDao.productList();
+	}
+	@Override
+	public String getCategoryName(CategoryDTO categoryDto) {
+		
+		return productDao.getCategoryName(categoryDto);
+	}
+	@Override
+	public ProductDTO updateUI(int productNo) {
+	
+		return productDao.updateUI(productNo);
+	}
+	@Override
+	public List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto) {
+		// TODO Auto-generated method stub
+		return productDao.categoryListUpdate(categoryDto, productDto);
+	}
+	
+	@Override
+	public void update(ProductDTO productDto) {
+		productDao.update(productDto);
+		productDao.deleteAttachByProductNo(productDto.getProductNo());
+		productDao.deleteProductOptionByProductNo(productDto.getProductNo());
+		
+		String[] files = productDto.getFiles();
+		if(files != null) {
+			for (String fullname : files) {
+				productDao.addAttach(fullname, productDto.getProductNo());
+			}
+		}
+		
+		List<ProductOptionDTO> list = productDto.getProductOptionList();
+		for (ProductOptionDTO productOptionDTO : list) {
+			if(productOptionDTO.getProductQuantity()!=0){
+				productOptionDTO.setProductNo(productDto.getProductNo());
+				productDao.insertProductOption(productOptionDTO);
+			}
+		}
+	}
 }

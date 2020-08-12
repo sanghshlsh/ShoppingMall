@@ -18,5 +18,15 @@ public interface ProductService {
 
 	List<CategoryDTO> categoryListN(CategoryDTO categoryDto);
 
+	List<ProductDTO> productList();
+
+	String getCategoryName(CategoryDTO categoryDto);
+
+	ProductDTO updateUI(int productNo);
+
+	List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto);
+
+	void update(ProductDTO productDto);
+
 
 }

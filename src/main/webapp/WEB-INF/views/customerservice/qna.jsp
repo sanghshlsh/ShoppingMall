@@ -50,11 +50,11 @@
 						<tbody>
 							<c:forEach items="${list}" var="qdto">
 								<tr>
-									<td>${dto.qnaNo}</td>
-									<td><a href="/customerservice/qnaread/${dto.qnaNo}">${dto.qnaTitle}</a></td>
-									<td>${dto.memberId}</td>
-									<td>${dto.qnaRegDate}</td>
-									<td>${dto.qnaReadCnt}</td>
+									<td>${qdto.qnaNo}</td>
+									<td><a href="/customerservice/qnaread/${qdto.qnaNo}">${qdto.qnaTitle}</a></td>
+									<td>${qdto.memberId}</td>
+									<td>${qdto.qnaRegDate}</td>
+									<td>${qdto.qnaReadCnt}</td>
 		
 								</tr>
 		
