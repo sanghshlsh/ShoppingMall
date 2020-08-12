@@ -5,26 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-<<<<<<< HEAD
-
 import kr.co.service.ProductService;
 
 
-=======
-import kr.co.service.ProductService;
-
->>>>>>> fetch_head
 @Controller
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-<<<<<<< HEAD
-	
-	@RequestMapping(value="/admin/default/main", method = RequestMethod.GET)
-	public void adminMain() {
-		//필요x
-=======
+
 
 	/*
 	 * @RequestMapping(value = "/admin/product/insert", method = RequestMethod.GET)
@@ -35,8 +24,6 @@ public class ProductController {
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public void productIndex() {
 
-
->>>>>>> fetch_head
 	}
 
 
