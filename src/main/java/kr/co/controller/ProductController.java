@@ -23,6 +23,7 @@ public class ProductController {
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public void productIndex() {
 
+	}
 
 //	@RequestMapping(value = "/product", method = RequestMethod.GET)
 //	public void productIndex() {
