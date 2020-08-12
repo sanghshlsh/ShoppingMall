@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
 import kr.co.domain.ProductOptionDTO;
+import kr.co.domain.SearchDTO;
 import kr.co.persistence.ProductDAO;
 
 @Transactional
@@ -73,6 +74,8 @@ public class ProductServiceImpl implements ProductService {
 			}
 			productDTO.setFiles(files);	
 			productDTO.setCategoryName(productDao.getCategoryName(productDTO.getCategoryNo()));
+			productDTO.setProductDiscountPrice(productDao.productDiscountPrice(productDTO));
+			productDTO.setProductTotalQuantity(productDao.productTotalQuantity(productDTO));
 		}
 		
 		
@@ -125,5 +128,25 @@ public class ProductServiceImpl implements ProductService {
 				productDao.insertProductOption(productOptionDTO);
 			}
 		}
+	}
+	@Override
+	public List<ProductDTO> productSearchList(SearchDTO searchDTO) {
+		List<ProductDTO> productList = productDao.productSearchList(searchDTO);
+		for (ProductDTO productDTO : productList) {
+			List<String> fileList = productDao.getAttach(productDTO.getProductNo());	
+			String[] files = new String[fileList.size()];
+			int i = 0;
+			for(String file : fileList) {
+				files[i] = file;		
+				i++;
+			}
+			productDTO.setFiles(files);	
+			productDTO.setCategoryName(productDao.getCategoryName(productDTO.getCategoryNo()));
+			productDTO.setProductDiscountPrice(productDao.productDiscountPrice(productDTO));
+			productDTO.setProductTotalQuantity(productDao.productTotalQuantity(productDTO));
+		}
+		
+		
+		return productList;
 	}
 }

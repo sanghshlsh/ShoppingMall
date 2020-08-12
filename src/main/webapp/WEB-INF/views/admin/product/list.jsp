@@ -123,7 +123,7 @@ a:hover {
 					<div class="col-sm-10 div_search_option_inner div_product_regDate">
 						<div class="row">
 	
-						<input type="date" id="date1" name="arrRegDate" value="${aWeekAgo }">~<input type="date" id="date2" name="arrRegDate" value="${today }">
+						<input type="date" id="date1" name="regDate" value="${aWeekAgo }">~<input type="date" id="date2" name="regDate" value="${today }">
 						<select  onchange="selectDate(this.value)">
 							<option value="${aWeekAgo }" selected>1주전</option>
 							<option value="${aMonthAgo }" >1달전</option>
@@ -139,7 +139,7 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_price">
 						<div class="row">
-							<input id="productPrice" name="arrProductPrice">원 ~ <input id="maxPrice" name="arrProductPrice">원
+							<input id="minPrice" name="minPrice">원 ~ <input id="maxPrice" name="maxPrice">원
 						</div>
 					</div>
 				</div>
@@ -149,9 +149,9 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_sellStatus">
 						<div class="row">
-							<input type="checkbox" name="arrSellStatus" value="0" class="input_sellStatus">판매대기
-							<input type="checkbox" name="arrSellStatus" value="1" class="input_sellStatus">판매중
-							<input type="checkbox" name="arrSellStatus" value="2" class="input_sellStatus">품절
+							<input type="checkbox" name="sellStatus" value="0" class="input_sellStatus">판매대기
+							<input type="checkbox" name="sellStatus" value="1" class="input_sellStatus">판매중
+							<input type="checkbox" name="sellStatus" value="2" class="input_sellStatus">품절
 							<input type="checkbox" id="sellStatus_select_all">전체 선택
 						</div>
 					</div>
@@ -162,8 +162,8 @@ a:hover {
 					</div>
 					<div class="col-sm-10 div_search_option_inner div_product_isDelete">
 						<div class="row">
-							<input type="checkbox" name="arrIsDelete" value="0" class="input_isDelete">전시
-							<input type="checkbox" name="arrIsDelete" value="1" class="input_isDelete">미전시
+							<input type="checkbox" name="isDelete" value="0" class="input_isDelete">전시
+							<input type="checkbox" name="isDelete" value="1" class="input_isDelete">미전시
 							<input type="checkbox" id="isDelete_select_all">전체 선택
 						</div>
 					</div>
@@ -203,7 +203,7 @@ a:hover {
 								<input type="checkbox" id="checkAll">
 							</li>
 							<li class="col-sm-2">
-								카테고리
+								카테고리 | 카테고리번호
 							</li>
 							<li class="col-sm-1">
 								상품번호
@@ -212,7 +212,7 @@ a:hover {
 								상품명
 							</li>
 							<li class="col-sm-1">
-								판매가
+								판매가(할인율%)
 							</li>
 							<li class="col-sm-1">
 								재고
@@ -239,7 +239,7 @@ a:hover {
 							<input type="checkbox" class="checkbox_product" name="checkbox_${dto.productNo }">
 							</li>
 							<li class="col-sm-2 li_product_search_result">
-							${dto.categoryName }
+							${dto.categoryName } | ${dto.categoryNo }
 							</li>
 							<li class="col-sm-1 li_product_search_result">
 							${dto.productNo}
@@ -255,10 +255,10 @@ a:hover {
 							</div></div>
 							</li>
 							<li class="col-sm-1 li_product_search_result">
-							${dto.productPrice}
+							${dto.productDiscountPrice}(${dto.productDiscountRate }%)
 							</li>
 							<li class="col-sm-1 li_product_search_result">
-							재고
+							${dto.productTotalQuantity}
 							</li>
 							<li class="col-sm-1 li_product_search_result">
 							${dto.regDate }
@@ -426,8 +426,8 @@ a:hover {
 		$(".div_product_search").on("click","#btn_product_search", function(event){
 			event.preventDefault();
 			var check = false;
-			var sellStatus = document.getElementsByName("arrSellStatus");
-			var isDelete = document.getElementsByName("arrIsDelete"); 
+			var sellStatus = document.getElementsByName("sellStatus");
+			var isDelete = document.getElementsByName("isDelete"); 
 			for(var i = 0 ; i < sellStatus.length; i++){
 				if(sellStatus[i].checked){
 					check = true;
@@ -449,8 +449,12 @@ a:hover {
 				alert("전시상태 체크박스를 선택하시오.");
 				return false;
 			}
-
-			
+			if($("#minPrice").val()==""){
+				$("#minPrice").remove();
+			}
+			if($("#maxPrice").val()==""){
+				$("#maxPrice").remove();
+			}
 			$("#form_product_search").submit();
 		});
 

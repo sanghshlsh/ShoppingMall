@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
 import kr.co.domain.ProductOptionDTO;
+import kr.co.domain.SearchDTO;
 import kr.co.service.ProductService;
 
 @Controller
@@ -70,23 +71,9 @@ public class AdminProductController {
 	
 	
 	@RequestMapping(value ="/admin/product/search", method = RequestMethod.POST)
-	public String productSearchList(Model model, String categoryNo, String[] arrRegDate, String[] arrProductPrice, String searchType, String keyWord, String[] arrSellStatus, String[] arrIsDelete) {
-		System.out.println("cateNo : "+categoryNo);
-		for(int i = 0 ; i < arrRegDate.length; i++) {
-			System.out.println("arrRegDate["+i+"] : "+arrRegDate[i]);
-		}
-		for(int i = 0 ; i < arrProductPrice.length; i++) {
-			System.out.println("arrProductPrice["+i+"] : "+arrProductPrice[i]);
-		}
-		System.out.println("searchType : "+searchType);
-		System.out.println("keyWord : "+keyWord);
-		for(int i = 0; i < arrSellStatus.length; i++) {
-			System.out.println("arrSellStatus["+i+"] : "+arrSellStatus[i]);
-		}
-		for(int i = 0; i < arrIsDelete.length; i++) {
-			System.out.println("arrIsDelete["+i+"] : "+arrIsDelete[i]);
-		}
-		List<ProductDTO> productList = productService.productList();
+	public String productSearchList(Model model, SearchDTO searchDTO) {
+	
+		List<ProductDTO> productList = productService.productSearchList(searchDTO);
 		Calendar today = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
 		

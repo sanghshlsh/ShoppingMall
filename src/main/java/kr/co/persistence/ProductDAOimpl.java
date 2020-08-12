@@ -1,5 +1,6 @@
 package kr.co.persistence;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
 import kr.co.domain.ProductOptionDTO;
+import kr.co.domain.SearchDTO;
 
 @Repository
 public class ProductDAOimpl implements ProductDAO {
@@ -105,5 +107,30 @@ public class ProductDAOimpl implements ProductDAO {
 		session.delete(NS + ".deleteProductOptionByProductNo", productNo);
 		
 	}
+	@Override
+	public List<ProductDTO> productSearchList(SearchDTO searchDTO) {
+		int categoryNo = searchDTO.getCategoryNo();
+		if (categoryNo % 10 != 0) {
+		} else if(categoryNo % 100 != 0) {
+			searchDTO.setCategoryNo(categoryNo/10);
+		} else {
+			searchDTO.setCategoryNo(categoryNo/100);
+		}
+		Date minDate = new Date(searchDTO.getRegDate()[0].getTime());
+		Date maxDate = new Date(searchDTO.getRegDate()[1].getTime()+(long) (24*60*60*1000));
+		Date[] regDate = {minDate, maxDate};
+		searchDTO.setRegDate(regDate);
+		return session.selectList(NS+".productSearchList", searchDTO);
+	}
+	@Override
+	public int productTotalQuantity(ProductDTO productDTO) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".productTotalQuantity", productDTO);
+	}
 	
+	@Override
+	public int productDiscountPrice(ProductDTO productDTO) {
+	
+		return session.selectOne(NS+".productDiscountPrice", productDTO);
+	}
 }

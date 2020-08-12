@@ -5,6 +5,7 @@ import java.util.List;
 
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
+import kr.co.domain.SearchDTO;
 
 
 public interface ProductService {
@@ -26,6 +27,8 @@ public interface ProductService {
 	List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto);
 
 	void update(ProductDTO productDto);
+
+	List<ProductDTO> productSearchList(SearchDTO searchDTO);
 
 
 
