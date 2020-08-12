@@ -2,8 +2,6 @@ package kr.co.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-
-
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,13 +12,10 @@ import javax.imageio.ImageIO;
 import org.imgscalr.Scalr;
 import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
-
 import org.springframework.web.multipart.MultipartFile;
 
-
-
 public class Utils {
-
+	
 	public static String makeNewName(String originalName) {
 		UUID uid = UUID.randomUUID();
 		String newName = uid.toString() + "_" + originalName;
@@ -40,8 +35,6 @@ public class Utils {
 			String beforeChangeName = datePath + File.separator + newName;
 			return beforeChangeName.replace(File.separatorChar, '/');
 		}
-		
-		
 	}
 
 	public static int[] getDateInfo() {
