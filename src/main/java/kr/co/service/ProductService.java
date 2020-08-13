@@ -30,6 +30,10 @@ public interface ProductService {
 
 	List<ProductDTO> productSearchList(SearchDTO searchDTO);
 
+	void deleteList(String[] checkbox_product);
+
+	void updateList(ProductDTO productDTO);
+
 
 
 }

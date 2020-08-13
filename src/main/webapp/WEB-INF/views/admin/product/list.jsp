@@ -231,73 +231,87 @@ a:hover {
 							</li>
 						</ul>
 					</div>
-					<form id="form_product_search_result_list">
-						<c:forEach items="${productList }" var="dto">
+					<form action="/admin/product/list_delete" method="post" id="form_product_search_result_list">
+						<c:forEach items="${productList }" var="dto" begin="1" varStatus="vs">
 							<div class="row div_search_option_result_inner">
-							<ul class="ul_product_search_result">
-							<li class="col-sm-1 li_product_search_result">
-							<input type="checkbox" class="checkbox_product" name="checkbox_${dto.productNo }">
-							</li>
-							<li class="col-sm-2 li_product_search_result">
-							${dto.categoryName } | ${dto.categoryNo }
-							</li>
-							<li class="col-sm-1 li_product_search_result">
-							${dto.productNo}
-							</li>
-							<li class="col-sm-2 li_product_search_result">
-							<div class="row"><div class="col-sm-4 productThumbnail">
-							<c:if test="${not empty dto.files[0] }">
-								<img class="getImage" src="/displayfile?filename=${dto.files[0] }" data-productNo="${dto.productNo}"/>	
-							</c:if>
-							</div>
-							<div class="col-sm-8">
-							${dto.productName}
-							</div></div>
-							</li>
-							<li class="col-sm-1 li_product_search_result">
-							${dto.productDiscountPrice}(${dto.productDiscountRate }%)
-							</li>
-							<li class="col-sm-1 li_product_search_result">
-							${dto.productTotalQuantity}
-							</li>
-							<li class="col-sm-1 li_product_search_result">
-							${dto.regDate }
-							</li>
-							<li class="col-sm-1 li_product_search_result">
-							<select name="sellStatus_${dto.productNo}" ><option value="0"
-							<c:if test="${dto.sellStatus eq 0}">
-								selected="selected"
-							</c:if>
-							>판매대기</option><option value="1"
-							<c:if test="${dto.sellStatus eq 1}">
-								selected="selected"
-							</c:if>
-							>판매중</option><option value="2"
-							<c:if test="${dto.sellStatus eq 2}">
-								selected="selected"
-							</c:if>
-							>품절</option></select>								
-							</li>
-							<li class="col-sm-1 li_product_search_result">
-							<select name="isDelete_${dto.productNo}" ><option value="0"
-							<c:if test="${dto.isDelete eq 0}">
-								selected="selected"
-							</c:if>
-							>전시</option><option value="1"
-							<c:if test="${dto.isDelete eq 1}">
-								selected="selected"
-							</c:if>
-							>미전시</option></select>	
-							</li>
-							<li class="col-sm-1">
-							<button class="btn btn-primary btn_product_update" data-location="${dto.productNo}">수정</button>			
-							</li>
-							</ul>
+								<ul class="ul_product_search_result">
+									<li class="col-sm-1 li_product_search_result">
+										<input type="checkbox" class="checkbox_product" name="checkbox_product" value="${dto.productNo }">
+									</li>
+									<li class="col-sm-2 li_product_search_result">
+										${dto.categoryName } | ${dto.categoryNo }
+									</li>
+									<li class="col-sm-1 li_product_search_result">
+										${dto.productNo}
+									</li>
+									<li class="col-sm-2 li_product_search_result">
+										<div class="row">
+											<div class="col-sm-4 productThumbnail">
+												<c:if test="${not empty dto.files[0] }">
+													<img class="getImage" src="/displayfile?filename=${dto.files[0] }" data-productNo="${dto.productNo}"/>	
+												</c:if>
+											</div>
+											<div class="col-sm-8">
+												${dto.productName}
+											</div>
+										</div>
+									</li>
+									<li class="col-sm-1 li_product_search_result">
+										${dto.productDiscountPrice}(${dto.productDiscountRate }%)
+									</li>
+									<li class="col-sm-1 li_product_search_result">
+										${dto.productTotalQuantity}
+									</li>
+									<li class="col-sm-1 li_product_search_result">
+										${dto.regDate }
+									</li>
+									<li class="col-sm-1 li_product_search_result li_product_search_sellStatus">
+										<select name="sellStatus" class="select_product_search_sellStatus" >
+											<option value="0"
+												<c:if test="${dto.sellStatus eq 0}">
+													selected="selected"
+												</c:if>
+												>판매대기
+											</option>
+											<option value="1"
+												<c:if test="${dto.sellStatus eq 1}">
+													selected="selected"
+												</c:if>
+												>판매중
+											</option>
+										<option value="2"
+											<c:if test="${dto.sellStatus eq 2}">
+												selected="selected"
+											</c:if>
+											>품절
+										</option>
+										</select>								
+									</li>
+									<li class="col-sm-1 li_product_search_result li_product_search_isDelete">
+										<select name="isDelete" class="select_product_search_isDelete" >
+										<option value="0"
+											<c:if test="${dto.isDelete eq 0}">
+												selected="selected"
+											</c:if>
+											>전시
+										</option>
+										<option value="1"
+											<c:if test="${dto.isDelete eq 1}">
+												selected="selected"
+											</c:if>
+											>미전시
+										</option>
+										</select>	
+									</li>
+									<li class="col-sm-1">
+										<button class="btn btn-primary btn_product_update" data-location="${dto.productNo}">수정</button>			
+									</li>
+								</ul>
 							</div>
 						</c:forEach>
 					</form>			
 				</div>
-				<div  class="row">				
+				<div class="row">				
 					<button class="btn btn-danger" id="btn_product_checked_delete" style="float:left">삭제</button>
 					<button class="btn btn-danger" id="btn_product_checked_update" style="float:right">수정사항 저장</button>
 				</div>
@@ -322,7 +336,6 @@ a:hover {
 		$(document).ready(function(){
 		
 		getCategoryList();
-	
 
 		equalHeights( $("#div_product_category"));
 		equalHeights( $("#div_product_regDate"));
@@ -368,17 +381,52 @@ a:hover {
 		$('.div_product_sellStatus').on("click", ".input_sellStatus", function(){
 		    $("#sellStatus_select_all").prop('checked', false);
 		});
-		<%--수정할부분 --%>
+
 		$('.product_search_result').on("click",".btn_product_update",function(event){
 			event.preventDefault();
 			var that = $(this);
 
-			alert(that.attr("data-location"));
 			location.assign("/admin/product/update/"+that.attr("data-location"));
 			
 		});
+		$('div').on("click","#btn_product_checked_delete",function(event){
+			event.preventDefault();
+			
+			$("#form_product_search_result_list").submit();			
+		});
+		$("#btn_product_checked_update").click(function(event){
+			event.preventDefault();
+			
+			var checkedArr = new Array();
+			
+
+			$("input:checkbox[name=checkbox_product]:checked").each(function(){
+				var checkedProductNo = this.value;
+				var checkedSellStatus = $(this).parent().parent().children(".li_product_search_sellStatus").children(".select_product_search_sellStatus").children("option:selected").val();
+				var checkedIsDelete = $(this).parent().parent().children(".li_product_search_isDelete").children(".select_product_search_isDelete").children("option:selected").val();
+				var productDTO={
+					productNo : checkedProductNo,
+					sellStatus : checkedSellStatus,
+					isDelete : checkedIsDelete
+						};
+				checkedArr.push(productDTO);
+				
+			});
+			$.ajax({
+				type : 'post',
+				url : '/product_checked_update',
+				data : {
+					checkedArr : JSON.stringify(checkedArr) 	
+				},
+				success : function(){
+					location.assign("/admin/product/list");
+				}
+			});
+			
+			
+			
+		});
 	
-		
 		
 		$(".div_product_category").on("click", ".link_product_category", function(event){
 			event.preventDefault();
@@ -420,7 +468,7 @@ a:hover {
 			event.preventDefault();
 			
 			$("#div_product_category_select").html("<input type='hidden' name='categoryNo' class='input_categoryNo' value='"+$(this).attr("href")+"'>");
-			alert("cateNO : "+$(this).attr("href"));
+
 			
 		});
 		$(".div_product_search").on("click","#btn_product_search", function(event){
@@ -486,24 +534,6 @@ a:hover {
 	    children.height(highest);
 	}
 
-	
-	
-	
-	<%-- 미구현 
-	function getCategoryName(categoryNo){
-		$.ajax({
-			type : 'get',
-			url : '/getCategoryName',
-			dataType : 'text',
-			data : {
-				categoryNo : categoryNo
-			},			
-			success : function(result){
-			console.log(result);
-			}
-		});
-	};
---%>
 	function getAttach(productNo){
 		var str;
 		

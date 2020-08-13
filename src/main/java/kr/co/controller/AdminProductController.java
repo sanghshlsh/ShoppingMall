@@ -1,16 +1,28 @@
 package kr.co.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
@@ -121,6 +133,36 @@ public class AdminProductController {
 		productService.update(productDto);
 		
 		return "redirect:/admin/product/list";
+		
+	}
+	
+	@RequestMapping(value = "/admin/product/list_delete", method = RequestMethod.POST)
+	public String productListDelete(String[] checkbox_product) {
+		if(checkbox_product!=null) {
+		productService.deleteList(checkbox_product);
+		}
+		return "redirect:/admin/product/list";
+	}
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/product_checked_update", method = RequestMethod.POST)
+	public void productListUpdate(@RequestParam Map<String, Object> map ) throws Exception {
+		String jsonStr = map.get("checkedArr").toString();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		List<Map<String, Object>> mlist = mapper.readValue(jsonStr, new TypeReference<ArrayList<Map<String, Object>>>() {
+		});
+		
+		
+		for (Map<String, Object> m : mlist) {
+			int productNo = Integer.valueOf((String) m.get("productNo"));
+			int sellStatus = Integer.valueOf((String) m.get("sellStatus"));
+			int isDelete = Integer.valueOf((String) m.get("isDelete"));
+			ProductDTO productDTO = new ProductDTO(productNo, isDelete, sellStatus);	
+			productService.updateList(productDTO);
+		}
 		
 	}
 }

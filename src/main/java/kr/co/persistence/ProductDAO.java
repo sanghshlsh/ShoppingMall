@@ -43,5 +43,9 @@ public interface ProductDAO {
 
 	int productTotalQuantity(ProductDTO productDTO);
 
+	void deleteList(Integer productNo);
+
+	void updateList(ProductDTO productDTO);
+
 
 }

@@ -149,4 +149,18 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productList;
 	}
+	@Override
+	public void deleteList(String[] checkbox_product) {
+		for (String sProductNo : checkbox_product) {
+			productDao.deleteList(Integer.valueOf(sProductNo));
+		}
+		
+	}
+	
+	@Override
+	public void updateList(ProductDTO productDTO) {
+		productDao.updateList(productDTO);
+		
+	}
+
 }

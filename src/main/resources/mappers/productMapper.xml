@@ -129,4 +129,12 @@
 	<select id="productSearchList" resultType="ProductDTO">
 		<![CDATA[select * from product ]]><include refid="search"></include>
 	</select>
+	
+	<update id="deleteList">
+		<![CDATA[update product set isDelete = 1 , sellStatus = 0 where productNo = #{productNo}]]>	
+	</update>
+	
+	<update id="updateList">
+		<![CDATA[update product set isDelete = #{isDelete} , sellStatus = #{sellStatus} where productNo = #{productNo}]]>	
+	</update>
 </mapper>
