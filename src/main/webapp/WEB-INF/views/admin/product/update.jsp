@@ -54,18 +54,15 @@ li {
  	color : black;
  }
 
- 
- 
 </style>
+<%@ include file="../include/head.jsp"%>
 </head>
 <body>
-	<div class="container-fluid">
-	
-		<div class="row">
-			<div class="col-sm-2">
-				sidebar	
-			</div>
-			<div class="col-sm-10">
+<%@ include file="../include/top.jsp"%>
+<div class="container-fluid">
+	<div class="row">
+				<jsp:include page="../include/sidebar.jsp" flush="false"/>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_list">상품리스트</button></div>
 					<div class="col-sm-8"><h1>판매 상품 관리</h1></div>
@@ -102,17 +99,6 @@ li {
 					</table>
 				</div>
 				<div class="row"> 
-					<div class="row text-center">
-						<button type="button" class="btn btn-primary" id="btn_product_category_insert">카테고리 추가 버튼</button>
-					</div>
-					<div class="row borderd_div">
-						<div class="col-sm-3">
-							선택된 카테고리
-						</div>
-						<div class="col-sm-9">
-							<div class="row borderd_div_left product_category_selected">${categoryNo }</div>
-						</div>
-					</div>
 					<div class="row">
 						상품 기본정보
 					</div>
@@ -132,7 +118,7 @@ li {
 									<label for="productCategory">카테고리</label>
 								</div>
 								<div class="col-sm-10">
-									<input name="productCategory" readonly id="productCategory" class="form-control" value="${productDTO.categoryNo }">
+									<input name="productCategory" readonly id="productCategory" class="form-control" value="${productDTO.categoryName }">
 								</div>
 							</div>
 							<div class="radio">
@@ -265,7 +251,7 @@ li {
 			</div>
 		</div>
 	</div>
-	
+	<%@ include file="../include/footer.jsp"%>	
 	
 	<div class="row">
 		<div data-backdrop="static" class="modal fade" tabindex="-1" role="dialog" id="modal_product_option_insert">
@@ -308,7 +294,7 @@ li {
 			</div>
 		</div>
 	</div>
-				
+		
 	<script type="text/javascript">
 	var StringBuffer = function() { 
 		this.buffer = new Array(); 

@@ -85,6 +85,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDTO updateUI(int productNo) {
 		ProductDTO productDto = productDao.updateUI(productNo);
+		productDto.setCategoryName(productDao.getCategoryName(productDto.getCategoryNo()));
 		List<String> productAttachList = productDao.getAttach(productNo);
 
 		int arrSize = productAttachList.size();

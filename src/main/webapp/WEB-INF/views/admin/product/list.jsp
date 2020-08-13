@@ -44,16 +44,16 @@ input[type=checkbox] {
 .div_search_option_result_inner {
 	border-bottom : solid 1px gray;
 }
-a:link {
+.color_black:link {
 	color : black;
 }
-a:visited {
+.color_black:visited {
 	color : black;
  }
-a:active {
+.color_black:active {
  	color : black;
  }
-a:hover {
+.color_black:hover {
  	color : black;
  }
  .link_product_category_select {
@@ -67,18 +67,14 @@ a:hover {
  	float: right;
  }
 </style>
+<%@ include file="../include/head.jsp"%>
 </head>
 <body>
-<div class=container-fluid>
+<%@ include file="../include/top.jsp"%>
+<div class="container-fluid">
 	<div class="row">
-		<%-- <jsp:include page="" flush="true">
-		manager-header 액션태그로 삽입 --%>
-	</div>
-	<div class="row">
-		<div class="col-sm-2">
-				sidebar	
-		</div>
-		<div class="col-sm-10">
+				<jsp:include page="../include/sidebar.jsp" flush="false"/>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="row">
 				<div class="col-sm-9">
 					<h1>판매상품관리</h1>
@@ -320,7 +316,7 @@ a:hover {
 		</div>
 	</div>
 </div>
-
+<%@ include file="../include/footer.jsp"%>
 
 <script type="text/javascript">
 		var StringBuffer = function() { 
@@ -447,9 +443,9 @@ a:hover {
 						var list = $.parseJSON(data);
 						var listLen = list.length;
 						for(var i = 0; i < listLen; i++){
-							str.append('<li><a href="'+list[i].categoryNo+'" class="link_product_category" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">');
+							str.append('<li><a href="'+list[i].categoryNo+'" class="link_product_category color_black" data-degree="'+list[i].categoryDegree+'" data-name="'+list[i].categoryName+'">');
 							str.append(list[i].categoryName+'</a>');
-							str.append('<a href="'+list[i].categoryNo+'" class="linkt_product_category_select">선택</a></li>');
+							str.append('<a href="'+list[i].categoryNo+'" class="linkt_product_category_select color_black">선택</a></li>');
 						}
 						var resultstr = str.toString();
 						
@@ -558,7 +554,7 @@ a:hover {
 		var str = '';			
 		$.getJSON("/product_Category", function(data){
 			for(var i = 0 ; i < data.length ; i++){
-				str += '<li><a href="'+data[i]["categoryNo"]+'" class="link_product_category" data-degree="'+data[i]["categoryDegree"]+'">'+data[i]["categoryName"]+'</a><a href="'+data[i]["categoryNo"]+'" class="linkt_product_category_select">선택</a></li>';
+				str += '<li><a href="'+data[i]["categoryNo"]+'" class="link_product_category color_black" data-degree="'+data[i]["categoryDegree"]+'">'+data[i]["categoryName"]+'</a><a href="'+data[i]["categoryNo"]+'" class="linkt_product_category_select color_black">선택</a></li>';
 			}
 			$("#ul_product_category_1").html(str);
 			childHeights( $(".div_search_option_inner.div_product_category"));
