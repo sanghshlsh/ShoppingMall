@@ -29,8 +29,8 @@
 	<div class="headerMenu">
 		<div class="joinList">
 			<ul>
-				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="#">로그인</a></li>
-				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="#">회원가입</a></li>
+				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/login.do">로그인</a></li>
+				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/insert">회원가입</a></li>
 				<li><a href="/myshop/index.html">마이페이지</a></li>
 				<li><a href="/myshop/order/list.html">주문관리</a></li>
 			</ul>

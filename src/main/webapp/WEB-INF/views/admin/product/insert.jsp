@@ -57,14 +57,13 @@ li {
  
  
 </style>
+<%@ include file="../include/head.jsp"%>
 </head>
-<body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-2">
-				sidebar	
-			</div>
-			<div class="col-sm-10">
+<%@ include file="../include/top.jsp"%>
+<div class="container-fluid">
+	<div class="row">
+				<jsp:include page="../include/sidebar.jsp" flush="false"/>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-2"><button type="button" class="btn btn-primary" id="btn_product_list">상품리스트</button></div>
 					<div class="col-sm-8"><h1>판매 상품 관리</h1></div>
@@ -264,7 +263,7 @@ li {
 			</div>
 		</div>
 	</div>
-					
+	<%@ include file="../include/footer.jsp"%>
 	<script type="text/javascript">
 	var StringBuffer = function() { 
 		this.buffer = new Array(); 

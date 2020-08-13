@@ -2,6 +2,8 @@ package kr.co.persistence;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.domain.MemberDTO;
 import kr.co.domain.PageTO;
 
@@ -23,8 +25,11 @@ public interface MemberDAO {
 
 	List<MemberDTO> searchlist(String searchType, String keyword);
 
-	int idcheck(MemberDTO dto);
+	boolean loginCheck(MemberDTO to);
 
+	MemberDTO viewMember(MemberDTO to);
+	
+	void logout(HttpSession session);
 
 }
 

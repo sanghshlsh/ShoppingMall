@@ -2,6 +2,7 @@ package kr.co.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import kr.co.domain.MemberDTO;
 import kr.co.domain.PageTO;
@@ -24,7 +25,10 @@ public interface MemberService {
 
 	List<MemberDTO> searchlist(String searchType, String keyword);
 
-	int idcheck(MemberDTO dto);
+	void logout(HttpSession session);
 
+	boolean loginCheck(MemberDTO to, HttpSession session);
+
+	MemberDTO viewMember(MemberDTO to);
 	
 }
