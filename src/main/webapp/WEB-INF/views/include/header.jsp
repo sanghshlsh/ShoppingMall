@@ -20,7 +20,6 @@
 						});
 
 						/*header*/
-						//header renewal
 						$('.headerMenu .header #nav li')
 								.mouseover(
 										function() {
