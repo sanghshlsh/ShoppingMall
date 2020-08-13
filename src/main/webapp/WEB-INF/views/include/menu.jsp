@@ -93,6 +93,7 @@
 								<h2><a href="#">BEST &amp; STEADY <span class="newicon">N</span></a></h2>
 								<h2><a href="#">NEW PRODUCT <span class="newicon">N</span></a></h2>
 								<h2><a href="#">SPECIAL SET</a></h2>
+							</div>
 							<div class="midMenu">
 								<h2><a href="#">목욕/미용 용품</a></h2>
 								<ul class="subNavList">
