@@ -6,20 +6,30 @@ public class CategoryDTO {
 	private int categoryNo;
 	private int categoryNoRef;
 	private int categoryDegree;
+	private String categoryEngName;
 	
 	public CategoryDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CategoryDTO(String categoryName, int categoryNo, int categoryNoRef, int categoryDegree) {
+	public CategoryDTO(String categoryName, int categoryNo, int categoryNoRef, int categoryDegree,
+			String categoryEngName) {
 		super();
 		this.categoryName = categoryName;
 		this.categoryNo = categoryNo;
 		this.categoryNoRef = categoryNoRef;
 		this.categoryDegree = categoryDegree;
+		this.categoryEngName = categoryEngName;
 	}
+
 	
-	
+	public String getCategoryEngName() {
+		return categoryEngName;
+	}
+
+	public void setCategoryEngName(String categoryEngName) {
+		this.categoryEngName = categoryEngName;
+	}
 
 	public int getCategoryDegree() {
 		return categoryDegree;

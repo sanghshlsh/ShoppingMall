@@ -163,5 +163,7 @@ public class ProductServiceImpl implements ProductService {
 		productDao.updateList(productDTO);
 		
 	}
+	
+
 
 }

@@ -47,5 +47,4 @@ public interface ProductDAO {
 
 	void updateList(ProductDTO productDTO);
 
-
 }

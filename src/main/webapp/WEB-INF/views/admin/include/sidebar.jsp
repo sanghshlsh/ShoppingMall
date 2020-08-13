@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
-		<li><a href="/admin/main"><span class="glyphicon glyphicon-home"></span>&nbsp;HOME</a></li>
+		<li><a href="/main/index"><span class="glyphicon glyphicon-home"></span>&nbsp;HOME</a></li>
 		<li><a data-toggle="collapse" data-target="#submenu-1"><span class="glyphicon glyphicon-gift"></span>&nbsp;PRODUCT <span
 				class="glyphicon glyphicon-menu-down"></span> </a>
 			<ul id="submenu-1" class="collapse">
-				<li><a href="#"> SUBMENU 1.1</a></li>
-				<li><a href="#"> SUBMENU 1.2</a></li>
-				<li><a href="#"> SUBMENU 1.3</a></li>
+				<li><a href="/admin/product/list"> 판매 상품 관리</a></li>
+				<li><a href="#"> 상품 문의 관리</a></li>
+				<li><a href="#"> 상품 후기 관리</a></li>
 			</ul></li>
 		<li><a data-toggle="collapse" data-target="#submenu-2"><span class="glyphicon glyphicon-qrcode"></span>&nbsp;ORDER <span
 				class="glyphicon glyphicon-menu-down"></span> </a>

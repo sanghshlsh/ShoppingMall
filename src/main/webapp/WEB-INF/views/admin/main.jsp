@@ -21,7 +21,7 @@
 		<jsp:include page="include/sidebar.jsp" flush="false"/>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="row">
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<table class="table table-bordered" id="dataTable">
 					<thead>
 						<tr>
 							<th>오늘주문</th>
@@ -213,7 +213,7 @@
 
 
 </div>
-<%@ include file="../include/footer.jsp"%>
+
 	<script type="text/javascript">
 
 	$(document).ready(function(){
@@ -247,6 +247,7 @@
 	for(var i = 0; i < 5; i++){
 		$('.dropdown-menu').append('<li><a href="'+i+'">'+thisWeek[7*i]+'~'+thisWeek[7*i+6]+'</a></li>');
 	}
+	$('.dropdown-toggle').dropdown()
 	$('.dropdown-menu a').click(function(){
 		event.preventDefault();
 	    $('#selected').text($(this).text());
