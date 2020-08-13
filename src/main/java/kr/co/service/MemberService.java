@@ -2,6 +2,7 @@ package kr.co.service;
 
 import java.util.List;
 
+import kr.co.domain.LoginDTO;
 import javax.servlet.http.HttpSession;
 
 import kr.co.domain.MemberDTO;
@@ -26,6 +27,8 @@ public interface MemberService {
 	List<MemberDTO> searchlist(String searchType, String keyword);
 
 	void logout(HttpSession session);
+
+	MemberDTO loginpost(LoginDTO login);
 
 	boolean loginCheck(MemberDTO to, HttpSession session);
 

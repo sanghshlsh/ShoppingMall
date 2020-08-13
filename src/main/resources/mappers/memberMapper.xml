@@ -33,6 +33,9 @@
  from member
  where  memberId = #{memberId} AND memberPw = #{memberPw}
 </select>
+<select id="loginpost" resultType="MemberDTO">
+	select * from member where id = #{id} and name = #{pw}
+</select>
  
  <!-- 리스트 -->
  	<select id="list" resultType="MemberDTO">

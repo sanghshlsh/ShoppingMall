@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.LoginDTO;
 import kr.co.domain.MemberDTO;
 import kr.co.domain.PageTO;
 
@@ -115,6 +116,13 @@ public class MemberDAOImpl  implements MemberDAO{
 	public void logout(HttpSession session) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public MemberDTO loginpost(LoginDTO login) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".loginpost", login);
 	}
 
 

@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="c.u.s">
 
+	<select id="getAmount" resultType="Integer">
+		<![CDATA[select qnaContent(qnaNo) from qna]]>
+		<![CDATA[select faqContent(faqNo) from faq]]>
+	</select>
+
 	<!-- Q&A -->
 	<select id="qnaUpdateUI" resultType="QnaDTO">
 		select * from qna where qnaNo = #{qnaNo}
@@ -15,16 +20,11 @@
 	</update>
 
 	<delete id="qnaDelete">
-		<![CDATA[delete from qna where qnaNo = #{qnaNo]]>
+		<![CDATA[delete from qna where qnaNo = #{qnaNo}]]>
 	</delete>
 
-	<select id="getAmount" resultType="Integer">
-		<![CDATA[select qnaContent(qnaNo) from qna]]>
-	
-	</select>
-
 	<update id="qnaIncreaseViewcnt">
-		update qna set qnaReadCnt = qnaReadCnt+1 where qnaNp = #{qnaNo}
+		update qna set qnaReadCnt = qnaReadCnt+1 where qnaNo = #{qnaNo}
 	</update>
 	
 	<select id="qnaRead" resultType="QnaDTO">
@@ -41,6 +41,36 @@
 	</insert>
 	
 	<!-- FAQ -->
- 
+	
+	<select id="faqUpdateUI" resultType="FaqDTO">
+		select * from faq where faqNo = #{faqNo}
+	</select>
+	
+	<update id="faqUpdate">
+		<![CDATA[update faq set faqTitle = #{faqTitle}, faqContent = #{faqContent}
+		where faqNo = #{faqNo}]]>
+	</update>
+	
+	<delete id="faqDelete">
+		<![CDATA[delete from faq where faqNo = #{faqNo}]]>
+	</delete>
+	
+	<update id="faqIncreaseViewcnt">
+		update faq set faqReadCnt = faqReadCnt+1 where faqNo = #{faqNo}
+	</update>
+	
+	<select id="faqRead" resultType="FaqDTO">
+		select * from faq where faqNo = #{faqNo}
+	</select>
+ 	
+ 	<select id="faqList" resultType="FaqDTO">
+ 		select * from faq order by faq desc
+ 	</select>
+ 	
+ 	<insert id="faqInsert">
+ 		insert into faq (faqNo,faqTitle,faqRegDate,faqContent,faqReadCnt,faqCategory,isDelete)
+ 		values (#{faqNo},#{faqTitle},#{faqRegDate},#{faqContent},#{faqReadCnt},#{faqCategory},#{isDelete})
+ 	</insert>
+ 	
 	
 </mapper>

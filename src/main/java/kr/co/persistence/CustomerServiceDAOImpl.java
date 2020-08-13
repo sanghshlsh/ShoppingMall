@@ -28,9 +28,11 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO{
 		Integer qnaNo = session.selectOne(NS+".getQnaNo");
 		if (qnaNo != null) {
 			qnaNo += 1;
+			
 		} else {
 			qnaNo = 1;
 		}
+		
 		qdto.setQnaNo(qnaNo);
 		
 		session.insert(NS +".qnaInsert", qdto);

@@ -154,4 +154,3 @@ public class MemberController {
 		 return "/member/read";
 	}
 }
-

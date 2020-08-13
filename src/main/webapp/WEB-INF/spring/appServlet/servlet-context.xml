@@ -45,6 +45,9 @@
 	<resources location="/admin/css/" mapping="/admin/css/**" />
 
 	<resources location="/admin/img/" mapping="/admin/img/**" />
+	
+	<resources mapping="/ckeditor/**" location="/WEB-INF/views/ckeditor/" />
+
 
 
 </beans:beans>
