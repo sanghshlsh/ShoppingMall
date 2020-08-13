@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.co.domain.CategoryDTO;
 import kr.co.domain.ProductDTO;
 import kr.co.domain.ProductOptionDTO;
+import kr.co.domain.SearchDTO;
 import kr.co.persistence.ProductDAO;
 
 @Transactional
@@ -61,18 +62,45 @@ public class ProductServiceImpl implements ProductService {
 	}
 	@Override
 	public List<ProductDTO> productList() {
-		// TODO Auto-generated method stub
-		return productDao.productList();
-	}
-	@Override
-	public String getCategoryName(CategoryDTO categoryDto) {
+		List<ProductDTO> productList = productDao.productList();
+		for (ProductDTO productDTO : productList) {
+			List<String> fileList = productDao.getAttach(productDTO.getProductNo());	
+			String[] files = new String[fileList.size()];
+			int i = 0;
+			for(String file : fileList) {
+				files[i] = file;
+				
+				i++;
+			}
+			productDTO.setFiles(files);	
+			productDTO.setCategoryName(productDao.getCategoryName(productDTO.getCategoryNo()));
+			productDTO.setProductDiscountPrice(productDao.productDiscountPrice(productDTO));
+			productDTO.setProductTotalQuantity(productDao.productTotalQuantity(productDTO));
+		}
 		
-		return productDao.getCategoryName(categoryDto);
+		
+		return productList;
 	}
+
 	@Override
 	public ProductDTO updateUI(int productNo) {
-	
-		return productDao.updateUI(productNo);
+		ProductDTO productDto = productDao.updateUI(productNo);
+		List<String> productAttachList = productDao.getAttach(productNo);
+
+		int arrSize = productAttachList.size();
+		String[] files = new String[arrSize];
+		int i = 0;
+		for (String file : productAttachList) {
+			files[i] = file;
+			i++;
+		}		
+		
+		productDto.setFiles(files);
+		List<ProductOptionDTO> productOptionList = productDao.productOptionList(productNo);
+		productDto.setProductOptionList(productOptionList);
+		
+		
+		return productDto;
 	}
 	@Override
 	public List<CategoryDTO> categoryListUpdate(CategoryDTO categoryDto, ProductDTO productDto) {
@@ -101,4 +129,38 @@ public class ProductServiceImpl implements ProductService {
 			}
 		}
 	}
+	@Override
+	public List<ProductDTO> productSearchList(SearchDTO searchDTO) {
+		List<ProductDTO> productList = productDao.productSearchList(searchDTO);
+		for (ProductDTO productDTO : productList) {
+			List<String> fileList = productDao.getAttach(productDTO.getProductNo());	
+			String[] files = new String[fileList.size()];
+			int i = 0;
+			for(String file : fileList) {
+				files[i] = file;		
+				i++;
+			}
+			productDTO.setFiles(files);	
+			productDTO.setCategoryName(productDao.getCategoryName(productDTO.getCategoryNo()));
+			productDTO.setProductDiscountPrice(productDao.productDiscountPrice(productDTO));
+			productDTO.setProductTotalQuantity(productDao.productTotalQuantity(productDTO));
+		}
+		
+		
+		return productList;
+	}
+	@Override
+	public void deleteList(String[] checkbox_product) {
+		for (String sProductNo : checkbox_product) {
+			productDao.deleteList(Integer.valueOf(sProductNo));
+		}
+		
+	}
+	
+	@Override
+	public void updateList(ProductDTO productDTO) {
+		productDao.updateList(productDTO);
+		
+	}
+
 }
