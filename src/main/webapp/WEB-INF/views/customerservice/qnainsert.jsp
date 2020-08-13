@@ -15,192 +15,50 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-.pagination {
-	text-align: center;
-	display: block;
-}
-
-.pagination>li>a {
-	float: none;
-	margin-left: -5px;
-}
-
-#form-seach {
-	text-align: center;
-}
-.fileDrop {
-	width: 80%;
-	height: 200px;
-	border: 1px solid red;
-	margin: auto;
-}
-
-.uploadedList {
-	margin-top: 50px;
-}
-
-.uploadedList li {
-	list-style: none;
-}
-
-.orifilename {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
+<script src="/resources/ckeditor/ckeditor.js"></script>
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:70px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
 </style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false" />
-	<div class="container">
-		<div class="row">
+	
+	<div class="titleArea">
+            <h2><font color="">Q&amp;A</font></h2>
+            <p>상품 Q&amp;A입니다.</p>
+        </div>
 
-			<form action="/customerservice/qnainsert" method="post">
-				<div class="form-group">
-					<label for="qnaTitle">제목</label> <input name="qnaTitle"
-						id="qnaTitle" class="form-control">
-				</div>
+	<form role="form" method="post" autocomplete="off">
 
-				<div class="form-group">
-					<label for="qnaContent">내용</label>
-
-					<textarea class="form-control" id="qnaContent" rows="5"
-						name="qnaContent"></textarea>
-				</div>
-			</form>
-			
-			<div class="form-group">
-
-				<label>업로드할 파일을 드랍시키세요.</label>
-
-				<div class="fileDrop"></div>
-
-				<ul class="uploadedList clearfix">
-
-				</ul>
-
-			</div>
-
-			<div class="form-group">
-
-				<button class="btn btn-danger" type="submit" id="qnainsertbtn">등록</button>
-
-				<button class="btn btn-danger" type="button" id="qnalistbtn">목록</button>
-
-			</div>
-
+		<div class="inputArea">
+			<label for="productNo">상품번호</label> <input type="text" id="productNo"
+				name="productNo" />
+		</div>
+		<div class="inputArea">
+			<label for="qnaContent"></label>
+			<textarea rows="5" cols="50" id="qnaContent" name="gdsDes"></textarea>
+		</div>
+		<div class="inputArea">
+			<button type="submit" id="qnainsert_Btn" class="btn btn-primary">등록</button>
 		</div>
 
-	</div>
+	</form>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			
-			$(".uploadedList").on("click",".deletefile", function(event){		//아이콘 클릭시 업로드된 파일 삭제
-				event.preventDefault();
-				var that = $(this);
-				$.ajax({
-					type : 'post',
-					url : '/deletefile',
-					dataType : 'text',
-					data : {
-						
-						filename : that.attr("href")
-						},
-						success : function(result){
-							that.parent("p").parent("li").remove();
-						}
+	<script>
+		var ckeditor_config = {
+			resize_enaleb : false,
+			enterMode : CKEDITOR.ENTER_BR,
+			shiftEnterMode : CKEDITOR.ENTER_P,
+			filebrowserUploadUrl : "/admin/goods/ckUpload"
+		};
 
-
-					});
-				
-				
-				});
-
-							$(".fileDrop").on("dragenter dragover",
-									function(event) {
-
-										event.preventDefault();
-
-									});
-
-							$(".fileDrop").on("drop",function(event) {								
-												event.preventDefault();
-												var files = event.originalEvent.dataTransfer.files;
-												var file = files[0];
-												var formData = new FormData();
-												formData.append("file", file);
-												$.ajax({														
-														type : 'post',
-														url : '/uploadajax',
-														dataType : 'text',
-														data : formData,
-														processData : false,
-														contentType : false,
-														success : function(result) {																	
-																/* var str = "<li><a href = '/displayfile?filename="+getImageLink(result)+"'>";
-
-																if(checkImage(result)){
-
-																	str += "<img src= '/displayfile?filename="+result+"'/>"
-
-																}else{
-
-																	str += "<img src = '/resources/show.png'/>"
-
-																}
-
-																
-
-																
-
-																str += getOriginalName(result);
-
-																str += "</a><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a></li>"; */
-																var str = '<li class="col-xs-4">';
-																str += '<a href="/displayfile?filename='+ getImageLink(result)+ '">';																																				
-																if (checkImage(result)) {
-																	str += '<img src="/displayfile?filename='+ result+'"/>';			
-																} else {
-																	str += '<img src="/resources/show.png"/>';
-																}
-																str += '</a>';
-																str += '<p class="orifilename">';
-																str += '<a href="'+result+'" class="deletefile"><span class="glyphicon glyphicon-trash"></span></a>';
-																str += getOriginalName(result);
-																str += '</p>';
-																str += '</li>';
-																$(".uploadedList").append(str);																																					
-															}
-
-														});
-
-											});
-
-							$("#qnainsertbtn").click(function(event) {
-								event.preventDefault();
-								var str = '';
-								
-								$(".deletefile").each(function(index){
-									str += "<input name='files["+index+"]' value='"+$(this).attr("href")+"' type='hidden'>";
-									
-									});
-								
-								
-								
-
-								
-								$("form").append(str);
-								$("form").submit();
-							});
-							
-
-						});
+		CKEDITOR.replace("gdsDes", ckeditor_config);
 	</script>
-
-
-
 </body>
 </html>
 

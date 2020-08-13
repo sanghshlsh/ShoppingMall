@@ -133,4 +133,14 @@ public class ProductDAOimpl implements ProductDAO {
 	
 		return session.selectOne(NS+".productDiscountPrice", productDTO);
 	}
+	
+	@Override
+	public void deleteList(Integer productNo) {
+		session.update(NS+".deleteList", productNo);
+	}
+	@Override
+	public void updateList(ProductDTO productDTO) {
+		session.update(NS+".updateList", productDTO);
+		
+	}
 }

@@ -162,6 +162,13 @@ public class ProductDTO implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public ProductDTO(int productNo, int isDelete, int sellStatus) {
+		super();
+		this.productNo = productNo;
+		this.isDelete = isDelete;
+		this.sellStatus = sellStatus;
 	}	
 		
 }
