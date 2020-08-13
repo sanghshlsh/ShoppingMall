@@ -1,10 +1,10 @@
 package kr.co.persistence;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -98,9 +98,23 @@ public class MemberDAOImpl  implements MemberDAO{
 
 
 	@Override
-	public int idcheck(MemberDTO dto) {
+	public boolean loginCheck(MemberDTO to) {
+		String name = session.selectOne(NS+".loginCheck", to);
+		return (name == null) ? false : true;
+	}
+
+
+	@Override
+	public MemberDTO viewMember(MemberDTO to) {
 		// TODO Auto-generated method stub
-		return session.selectOne(NS+".idcheck", dto);
+		return session.selectOne(NS+".viewMember", to);
+	}
+
+
+	@Override
+	public void logout(HttpSession session) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
