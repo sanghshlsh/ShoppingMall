@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.service.ProductService;
 
+
 @Controller
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
 
 	/*
 	 * @RequestMapping(value = "/admin/product/insert", method = RequestMethod.GET)
@@ -21,7 +23,6 @@ public class ProductController {
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public void productIndex() {
-
 
 	}
 

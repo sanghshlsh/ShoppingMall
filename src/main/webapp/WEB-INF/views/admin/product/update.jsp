@@ -60,6 +60,7 @@ li {
 </head>
 <body>
 	<div class="container-fluid">
+	
 		<div class="row">
 			<div class="col-sm-2">
 				sidebar	
@@ -117,6 +118,7 @@ li {
 					</div>
 					<div class="row">
 						<form action="/admin/product/update" method="post" id="form_product_update">
+						<input type="hidden" name="productNo" value="${productNo }">
 							<div class="form-group">
 								<div class="col-sm-2">
 									<label for="productName">상품명</label>
@@ -188,9 +190,40 @@ li {
 								</div>
 							</div>
 							<div class="form_product_category_number">
+								<input type="hidden" name="categoryNo" value="${productDTO.categoryNo}">
 							</div>
 							<div class="row div_product_option">
-								
+								<c:forEach items="${productDTO.productOptionList }" var="optionList" varStatus="vs">
+									<div class="col-sm-4 product_option_idx_${vs.count }">
+										<p>옵션 ${vs.count }
+											<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button>
+										</p>
+										<div class="row">
+											<div class="col-sm-2">
+												<label for="productOptionList[${vs.count }].productColor">색상</label>
+											</div>
+											<div class="col-sm-10">
+												<input name="productOptionList[${vs.count }].productColor" value="${optionList.productColor}" class="form-control">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-2">
+												<label for="productOptionList[${vs.count }].productSize">사이즈</label>
+											</div>
+											<div class="col-sm-10">
+												<input name="productOptionList[${vs.count }].productSize" value="${optionList.productSize}" class="form-control">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-2">
+												<label for="productOptionList[${vs.count }].productQuantity">수량</label>
+											</div>
+											<div class="col-sm-10">
+												<input name="productOptionList[${vs.count }].productQuantity" required value="${optionList.productQuantity}" class="form-control">
+											</div>
+										</div>
+									</div>
+								</c:forEach> 
 							</div>
 						</form>
 					</div>
@@ -275,7 +308,7 @@ li {
 			</div>
 		</div>
 	</div>
-					
+				
 	<script type="text/javascript">
 	var StringBuffer = function() { 
 		this.buffer = new Array(); 
@@ -288,10 +321,10 @@ li {
 	};
 	var productNo = ${productDTO.productNo};
 	$(document).ready(function(){
-		
+	
 		getCategoryList();
 		
-		var countOption = 0;
+		var countOption = ${fn:length(productDTO.productOptionList)}+1;
 		
 		$('#productDiscountRate').on('keyup', function() {
 		    if (/\D/.test(this.value)) {
@@ -369,16 +402,19 @@ li {
 				processData : false,
 				contentType : false,					
 				success : function(result){						
-					var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
+					var str = new StringBuffer(); 
+
+					str.append("<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>");
 					if(checkImage(result)){
-						str += "<img src = '/displayfile?filename="+result+"' />";
+						str.append("<img src = '/displayfile?filename="+result+"' />");
 					} else{
-						str += "<img src = '/resources/show.jpg'/>";
+						str.append("<img src = '/resources/show.jpg'/>");
 					}
 					
-					str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
-					str += getOriginalName(result)+"</p></li>";
-					$(".uploadedList").append(str);
+					str.append("</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>");
+					str.append(getOriginalName(result)+"</p></li>");
+					var resultstr = str.toString();
+					$(".uploadedList").append(resultstr);
 				}
 			});
 		})
@@ -415,16 +451,19 @@ li {
 					processData : false,
 					contentType : false,					
 					success : function(result){						
-						var str = "<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>";
+						var str = new StringBuffer(); 
+
+						str.append("<li class='col-xs-4'><a href ='/displayfile?filename="+getImageLink(result)+"'>");
 						if(checkImage(result)){
-							str += "<img src = '/displayfile?filename="+result+"' />";
+							str.append("<img src = '/displayfile?filename="+result+"' />");
 						} else{
-							str += "<img src = '/resources/show.jpg'/>";
+							str.append("<img src = '/resources/show.jpg'/>");
 						}
 						
-						str += "</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>";
-						str += getOriginalName(result)+"</p></li>";
-						$(".uploadedList").append(str);
+						str.append("</a><p class='originalfilename'><a class='deletefile' href='"+result+"'><span class='glyphicon glyphicon-trash'></span></a>");
+						str.append(getOriginalName(result)+"</p></li>");
+						var resultstr = str.toString();
+						$(".uploadedList").append(resultstr);
 						document.getElementById("form_product_file").reset();
 					}
 				});
@@ -434,15 +473,15 @@ li {
 			var productColor = $(".modal_productColor").val();
 			var productSize = $(".modal_productSize").val();
 			var productQuantity = $(".modal_productQuantity").val();
-			var str = '';
-			str += '<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>';
-			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>';
-			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>';
-			str += '<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productQuantity">수량</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productQuantity" required value="'+productQuantity+'" class="form-control"></div></div></div>'; 
-			
+			var str = new StringBuffer(); 
+			str.append('<div class="col-sm-4 product_option_idx_'+countOption+'"><p>옵션 '+(countOption+1)+'<button type="button" class="btn btn-primary btn_product_option_delete" style="float:right">옵션 삭제 </button></p>');
+			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productColor">색상</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productColor" value="'+productColor+'" class="form-control"></div></div>');
+			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productSize">사이즈</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productSize" value="'+productSize+'" class="form-control"></div></div>');
+			str.append('<div class="row"><div class="col-sm-2"><label for="productOptionList['+countOption+'].productQuantity">수량</label></div><div class="col-sm-10"><input name="productOptionList['+countOption+'].productQuantity" required value="'+productQuantity+'" class="form-control"></div></div></div>'); 
+			var resultstr = str.toString()
 			
 			countOption++;
-			$('.div_product_option').append(str);
+			$('.div_product_option').append(resultstr);
 		});
 		$(".div_product_option").on("click", ".btn_product_option_delete", function(event){
 			event.preventDefault();	
