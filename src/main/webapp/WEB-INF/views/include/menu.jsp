@@ -135,7 +135,7 @@
 								<h2><a href="#none">REVIEW</a></h2>
 								<ul class="subNavList">
 									<li><a href="/review/best">BEST REVIEW</a></li>
-									<li><a href="/review/all">ALL REVIEW</a></li>
+									<li><a href="/review/main">ALL REVIEW</a></li>
 								</ul>
 							</div>
 							<div class="wideNavMenu">
