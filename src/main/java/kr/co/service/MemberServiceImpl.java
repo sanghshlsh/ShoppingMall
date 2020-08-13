@@ -2,6 +2,8 @@ package kr.co.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,9 +71,22 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public int idcheck(MemberDTO dto) {
+	public boolean loginCheck(MemberDTO to, HttpSession session) {
+		boolean result = mDao.loginCheck(to);
+		if(result) {
+			MemberDTO to2 = viewMember(to);
+			
+			session.setAttribute("memberId", to2.getMemberId());
+			session.setAttribute("memberName", to2.getMemberName());
+		}
+		return result;
+	}
+
+
+	@Override
+	public MemberDTO viewMember(MemberDTO to) {
 		// TODO Auto-generated method stub
-		return mDao.idcheck(dto);
+		return mDao.viewMember(to);
 	}
 
 
@@ -82,5 +97,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	public void logout(HttpSession session) {
+		
+		session.invalidate();
+		
+	}
 
 }

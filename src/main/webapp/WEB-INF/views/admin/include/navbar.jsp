@@ -12,9 +12,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="/admin/main">Home</a></li>
         <li><a href="#">customer</a></li>
-        <li><a href="#">product</a></li>
+        <li><a href="/admin/product/list">product</a></li>
         <li><a href="/admin/manage/boardList">manage</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

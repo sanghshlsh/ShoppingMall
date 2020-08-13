@@ -143,4 +143,5 @@ public class ProductDAOimpl implements ProductDAO {
 		session.update(NS+".updateList", productDTO);
 		
 	}
+
 }

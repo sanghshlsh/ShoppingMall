@@ -1,25 +1,23 @@
 package kr.co.controller;
 
-import java.io.PrintWriter;
+
 import java.util.List;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
-import kr.co.domain.LoginDTO;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
+
 import kr.co.domain.MemberDTO;
 import kr.co.domain.PageTO;
 import kr.co.service.MemberService;
@@ -27,60 +25,51 @@ import kr.co.service.MemberService;
 
 @Controller
 @RequestMapping("member")
-@SessionAttributes ({"login"})
+@SessionAttributes
 
 public class MemberController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Inject
 	private MemberService mService;
-	
-	// 로그아웃
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	 
 
-	public String logout(SessionStatus status) {
-
-		status.setComplete();
-
-		return "redirect:/member/list";
-
-	}
-	
-	// 로그인 submit
-	@RequestMapping(value = "/loginpost", method = RequestMethod.POST) 
-	public String loginpost(LoginDTO login, Model model, HttpSession session) {
-		
-		MemberDTO dto = mService.loginpost(login);
-		
-		if (dto != null) {
-			model.addAttribute("login", dto);
-			String path = (String) session.getAttribute("path");
-			if (path != null) {
-				return "redirect:"+path;
-			}
-			
-			return "redirect:/member/list";
-		} else {
-			return "redirect:/member/login";
-		}
+	// 로그인 화면
+	@RequestMapping("login.do")
+	public String login() {
+		return "member/login";
 	}
 	
 	// 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	
-	public void login() {
-		
+	@RequestMapping("loginCheck.do")
+	public ModelAndView loginCheck(@ModelAttribute MemberDTO to, HttpSession session) {
+		boolean result = mService.loginCheck(to, session);
+		ModelAndView mav = new ModelAndView();
+		if (result == true) {
+			
+			mav.setViewName("home");
+			mav.addObject("msg", "success");
+		} else { 
+			
+			mav.setViewName("member/login");
+			mav.addObject("msg", "failure");
+		}
+		return mav;
 	}
-	 
+	
+	// 로그아웃
+	@RequestMapping("logout.do")
+	public ModelAndView logout(HttpSession session) {
+		mService.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/login");
+		mav.addObject("msg", "logout");
+		return mav;
+	}
+	
     // 아이디 중복 체크
 	
-	@ResponseBody
-	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
-	public int idcheck(MemberDTO dto) {
-		
-		int result = mService.idcheck(dto);
-		return result;
-	}
 
 	
 	 // 회원 가입 get
@@ -165,4 +154,3 @@ public class MemberController {
 		 return "/member/read";
 	}
 }
-

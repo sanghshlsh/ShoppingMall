@@ -12,19 +12,16 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<%@ include file="include/head.jsp"%>
 </head>
 <body>
-<div class="container">
-	<div class="row"> 
-		<div class="col-sm-3">
-			좌측 사이드바 삽입
-		</div>
-		<div class="row col-sm-9">
+<%@ include file="include/top.jsp"%>
+<div class="container-fluid">
+	<div class="row">
+		<jsp:include page="include/sidebar.jsp" flush="false"/>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="row">
-			admin헤더삽입
-			</div>
-			<div class="row">
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<table class="table table-bordered" id="dataTable">
 					<thead>
 						<tr>
 							<th>오늘주문</th>
@@ -50,12 +47,14 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="row">
-			</div>
+
 			<div class="row">
 				<div class="row" id="table_title">
 					<div class="col-sm-6">
 						쇼핑몰 운영 현황
+					</div>
+					<div class="col-sm-3">
+						
 					</div>
 					<div class="dropdown col-sm-3">
 						<a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -63,9 +62,7 @@
 						<ul class="dropdown-menu">
 						</ul>
 					</div>
-					<div class="col-sm-3">
-						
-					</div>
+				
 				</div>
 			<div class="row">
 				<table class="table">
@@ -250,6 +247,7 @@
 	for(var i = 0; i < 5; i++){
 		$('.dropdown-menu').append('<li><a href="'+i+'">'+thisWeek[7*i]+'~'+thisWeek[7*i+6]+'</a></li>');
 	}
+	$('.dropdown-toggle').dropdown()
 	$('.dropdown-menu a').click(function(){
 		event.preventDefault();
 	    $('#selected').text($(this).text());

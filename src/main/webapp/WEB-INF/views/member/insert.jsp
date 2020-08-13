@@ -486,6 +486,7 @@ $('#id_check').css('color', 'red');
                        </div> 
                               
                         <button type="submit" id="insert_btn" name="insert_btn">회원가입</button>
+                      
                        </form>
                        </section>
                        </div>
