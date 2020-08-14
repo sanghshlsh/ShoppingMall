@@ -18,91 +18,6 @@
 						$('#contents').css({
 							'min-height' : doc_h
 						});
-
-<<<<<<< HEAD
-</style>
-</head>
-<body>
-	<div class="container-fluid">
-		<div class="row topheader">
-			<div class="col-sm-2 dropdown">
-				<button class="btn btn-blue dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-					SEND YOUR LOVE TO PETS<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li><a href="#">KAKAO Chat</a></li>
-					<li><a href="/customerservice/faq">FAQs</a></li>
-					<li><a href="/customerservice/qna">Q&A</a></li>
-					<li><a href="#">Membership(comming soon)</a></li>
-				</ul>
-			</div>
-			<div class="col-sm-8"> 1644-9603 ( MON - FRI 9:30 - 17:00, lunch 11:50 - 13:00 )</div>
-			<div class="col-sm-2">"Pets, Just Enjoy The Bathroom!</div>
-		 </div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="row col-sm-1">
-				홈버튼
-			</div>
-			<div class="row col-sm-11">
-				<div class="row">
-					<div class="col-sm-8">
-					
-						<div class="col-sm-2"></div>
-						<div class="col-sm-2"></div>
-						<div class="col-sm-2"></div>
-						<div class="col-sm-2"></div>
-						<div class="col-sm-2"></div>
-					</div>
-					<div class="col-sm-4">
-<<<<<<< HEAD
-						<div class="col-sm-3"><a href="/member/login">로그인</a></div>
-=======
-					<c:choose>
-					<c:when test="${sessionScope.memberId == null}">
-					<a href="${path}/member/login.do"><div class="col-sm-3">로그인</div></a>
-                    </c:when>
-                    <c:otherwise>
-                        ${sessionScope.memberName}님이 로그인중입니다.
-                        <a href="${path}/member/logout.do"><div class="col-sm-3">로그아웃</div></a>
-                    </c:otherwise>
-                    </c:choose>
->>>>>>> 59c1d8a74aa0473da090e86ea258f50f8ab17457
-						<div class="col-sm-3"><a href="/member/insert">회원가입</a></div>
-						<div class="col-sm-3">마이페이지</div>
-						<div class="col-sm-3">주문관리</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-8">
-						
-						<div class="col-sm-2">ABOUT</div>
-						<div class="col-sm-2">PRODUCT</div>
-						<div class="col-sm-2"><a href="/review/main">REVIEW</a></div>
-						<div class="col-sm-2"><a href="/customerservice/main">C/S CENTER</a></div>
-						<div class="col-sm-2"><a href="/customerservice/inquiry">INQUIRY</a></div>
-<<<<<<< HEAD
-=======
-						<div class="col-sm-2"><a href="/member/list">회원관리</a></div>
->>>>>>> 59c1d8a74aa0473da090e86ea258f50f8ab17457
-					</div>
-					<div class="col-sm-4">
-							<div class="col-sm-7">
-								<input name="searchproductname">
-							</div>
-							<div class="col-sm-2">
-								<button type="button" class="btn-none">검색</button>
-							</div>
-							<div class="col-sm-1">바구니</div>
-							<div class="col-sm-1">목록</div>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-=======
 						/*header*/
 						$('.headerMenu .header #nav li')
 								.mouseover(
@@ -118,8 +33,6 @@
 											$('.backgroundCover').css({
 												'height' : gnbHt
 											});
->>>>>>> fetch_head
-
 											if ($(this).children('.navbarMenu').length > 0) {
 												$(this).find('.pageOne').addClass(
 														'active');
@@ -136,12 +49,10 @@
 											$('.headerMenu .header #nav li .navbarMenu')
 													.stop().hide();
 										});
-
 						$('#icoHam').click(function() {
 							$("#navPrdList").show();
 							$('.backgroundCover').stop().show();
 						});
-
 						//top_header fixed
 						var hdHt = $('.top_header').outerHeight();
 						$(window).scroll(function() {
@@ -158,7 +69,6 @@
 								});
 							}
 						});
-
 						//fixed_btn ( top_btn )
 						$(window).scroll(function() {
 							var winTop = $(window).scrollTop();
@@ -168,7 +78,6 @@
 								$('.btnTop').removeClass('on');
 							}
 						});
-
 						//btnTop ( top_btn )
 						$('.btnTop').click(function(event) {
 							event.preventDefault();
@@ -177,7 +86,6 @@
 							}, 500, 'linear');
 							return false;
 						});
-
 					});
 </script>
 </head>

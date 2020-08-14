@@ -47,12 +47,17 @@ public class MemberController {
 		boolean result = mService.loginCheck(to, session);
 		ModelAndView mav = new ModelAndView();
 		if (result == true) {
-			
-			mav.setViewName("home");
+			String path = (String) session.getAttribute("path");
+			if (path != null) {
+				mav.setViewName(path);
+				mav.addObject("msg", "success");
+			}else {	
+			mav.setViewName("/main/index");
 			mav.addObject("msg", "success");
+			}
 		} else { 
 			
-			mav.setViewName("member/login");
+			mav.setViewName("/member/login");
 			mav.addObject("msg", "failure");
 		}
 		return mav;
