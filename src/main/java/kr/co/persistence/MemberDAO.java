@@ -34,5 +34,7 @@ public interface MemberDAO {
 	
 	void logout(HttpSession session);
 
+	MemberDTO readById(String memberId);
+
 }
 

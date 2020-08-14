@@ -158,4 +158,11 @@ public class MemberController {
 		 model.addAttribute("to", to);
 		 return "/member/read";
 	}
+	
+	@RequestMapping(value = "/readById/{memberId}", method = RequestMethod.GET)
+	public String readById(@PathVariable("memberId") String memberId, Model model) {
+		MemberDTO to = mService.readById(memberId);
+		 model.addAttribute("to", to);
+		 return "/member/read";
+	}
 }

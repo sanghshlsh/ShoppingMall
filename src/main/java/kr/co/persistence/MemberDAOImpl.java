@@ -124,7 +124,12 @@ public class MemberDAOImpl  implements MemberDAO{
 		// TODO Auto-generated method stub
 		return session.selectOne(NS+".loginpost", login);
 	}
-
+	
+	@Override
+	public MemberDTO readById(String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".readById", memberId);
+	}
 
 	}
 

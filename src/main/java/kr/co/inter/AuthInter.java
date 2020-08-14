@@ -32,7 +32,7 @@ public class AuthInter extends HandlerInterceptorAdapter {
 			String path = uri + queryString;
 			session.setAttribute("path", path);				
 		}
-		
+
 		if (memberId == null || memberGrade < 8) {
 			response.sendRedirect("/member/login.do");
 			return false;

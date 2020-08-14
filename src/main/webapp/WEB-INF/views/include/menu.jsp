@@ -44,9 +44,18 @@
 	                    </li>
 	                    </c:otherwise>
                     </c:choose>
-                   
+                    <c:choose>
+						<c:when test="${sessionScope.memberGrade > 7 }">
+						<li class="xans-element- xans-layout xans-layout-statelogoff ">
+						<a href="/admin/main">관리자 페이지</a>
+	                    </li>
+	                    </c:when>
+	                    <c:otherwise>
+	               		<li><a href="/member/readById/${sessionScope.memberId }">마이페이지</a></li>
+	                    </c:otherwise>
+                    </c:choose>
 				
-				<li><a href="/myshop/index.html">마이페이지</a></li>
+
 				<li><a href="/myshop/order/list.html">주문관리</a></li>
 			</ul>
 		</div>

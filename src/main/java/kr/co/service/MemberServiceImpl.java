@@ -78,6 +78,7 @@ public class MemberServiceImpl implements MemberService {
 			
 			session.setAttribute("memberId", to2.getMemberId());
 			session.setAttribute("memberName", to2.getMemberName());
+			session.setAttribute("memberGrade", to2.getMemberGrade());
 		}
 		return result;
 	}
@@ -102,5 +103,10 @@ public class MemberServiceImpl implements MemberService {
 		session.invalidate();
 		
 	}
-
+	
+	@Override
+	public MemberDTO readById(String memberId) {
+		// TODO Auto-generated method stub
+		return mDao.readById(memberId);
+	}
 }

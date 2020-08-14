@@ -55,6 +55,13 @@ height: 18px;
 padding-top: 380px;
 padding-bottom: 200px;
 }
+body {
+height: 100%;
+}
+.container {
+min-height: 73%;
+}
+
 </style>
 <title>Insert title here</title>
 </head>
