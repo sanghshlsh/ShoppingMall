@@ -33,5 +33,7 @@ public interface MemberService {
 	boolean loginCheck(MemberDTO to, HttpSession session);
 
 	MemberDTO viewMember(MemberDTO to);
+
+	MemberDTO readById(String memberId);
 	
 }

@@ -9,7 +9,14 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Login</a></li>
+			<c:choose>
+			<c:when test="${sessionScope.memberId == null }">
+				<li><a href="/member/login.do"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/member/logout.do"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			</c:otherwise>
+		</c:choose>
 				<li><a href="#">Settings</a></li>
 				<li><a href="#">Help</a></li>
 			</ul>

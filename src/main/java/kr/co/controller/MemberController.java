@@ -47,12 +47,17 @@ public class MemberController {
 		boolean result = mService.loginCheck(to, session);
 		ModelAndView mav = new ModelAndView();
 		if (result == true) {
-			
-			mav.setViewName("home");
+			String path = (String) session.getAttribute("path");
+			if (path != null) {
+				mav.setViewName(path);
+				mav.addObject("msg", "success");
+			}else {	
+			mav.setViewName("/main/index");
 			mav.addObject("msg", "success");
+			}
 		} else { 
 			
-			mav.setViewName("member/login");
+			mav.setViewName("/member/login");
 			mav.addObject("msg", "failure");
 		}
 		return mav;
@@ -150,6 +155,13 @@ public class MemberController {
 	@RequestMapping(value = "/read/{memberno}", method = RequestMethod.GET)
 	public String read(@PathVariable("memberno") int memberno, Model model) {
 		MemberDTO to = mService.read(memberno);
+		 model.addAttribute("to", to);
+		 return "/member/read";
+	}
+	
+	@RequestMapping(value = "/readById/{memberId}", method = RequestMethod.GET)
+	public String readById(@PathVariable("memberId") String memberId, Model model) {
+		MemberDTO to = mService.readById(memberId);
 		 model.addAttribute("to", to);
 		 return "/member/read";
 	}

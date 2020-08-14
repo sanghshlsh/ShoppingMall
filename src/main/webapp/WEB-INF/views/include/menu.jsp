@@ -29,9 +29,33 @@
 	<div class="headerMenu">
 		<div class="joinList">
 			<ul>
-				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/login.do">로그인</a></li>
-				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/insert">회원가입</a></li>
-				<li><a href="/myshop/index.html">마이페이지</a></li>
+				
+					<c:choose>
+						<c:when test="${sessionScope.memberId == null}">
+						<li class="xans-element- xans-layout xans-layout-statelogoff ">	
+						<a href="/member/login.do">로그인</a>
+						</li>
+						<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/insert">회원가입</a></li>
+	                    </c:when>
+	                    <c:otherwise>
+	                    <li class="xans-element- xans-layout xans-layout-statelogoff ">	
+	                    ${sessionScope.memberName}님이 로그인중입니다.
+	                    <a href="/member/logout.do">로그아웃</a>
+	                    </li>
+	                    </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+						<c:when test="${sessionScope.memberGrade > 7 }">
+						<li class="xans-element- xans-layout xans-layout-statelogoff ">
+						<a href="/admin/main">관리자 페이지</a>
+	                    </li>
+	                    </c:when>
+	                    <c:otherwise>
+	               		<li><a href="/member/readById/${not empty sessionScope.memberId?sessionScope.memberId:"a" }">마이페이지</a></li>
+	                    </c:otherwise>
+                    </c:choose>
+				
+
 				<li><a href="/myshop/order/list.html">주문관리</a></li>
 			</ul>
 		</div>
@@ -39,7 +63,7 @@
 		<!-- header 시작 -->
 		<div class="header">
 			<div class="logo">
-				<a href="/"><img src="https://www.pethroom.com/web/upload/category/editor/2020/01/02/768b248922ce8fe4d74a541c074f7dd7.png" alt=""></a>
+				<a href="/main/index"><img src="https://www.pethroom.com/web/upload/category/editor/2020/01/02/768b248922ce8fe4d74a541c074f7dd7.png" alt=""></a>
 			</div>
 
 			<!-- 검색&카트 시작  -->

@@ -29,7 +29,8 @@
    memberId AS memberId, 
    memberName AS memberName, 
    memberEmail AS memberEmail, 
-   memberRegDate AS memberRegDate
+   memberRegDate AS memberRegDate,
+   memberGrade
  from member
  where  memberId = #{memberId} AND memberPw = #{memberPw}
 </select>
@@ -54,7 +55,9 @@
    <select id="read" resultType="MemberDTO">
 		select * from member where memberNo = #{memberNo}
 	</select>
-	
+   <select id="readById" resultType="MemberDTO">
+		select * from member where memberId = #{memberId}
+	</select>
 	<!-- 수정, 삭제 -->
 	<select id="updateUI" resultType="MemberDTO">
 		select * from member where memberNo = #{memberNo}
