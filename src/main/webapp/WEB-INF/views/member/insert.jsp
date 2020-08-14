@@ -16,9 +16,13 @@
 <!-- daum 도로명주소 찾기 api --> 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
 <style type="text/css"> 
-td{ border:1px solid #000000; 
+td { border:1px solid #000000; 
 border-collapse:collapse; 
 } 
+.padding_topbottom {
+padding-top: 200px;
+padding-bottom: 200px;
+}
 </style> 
 <script type="text/javascript"> 
 
@@ -315,8 +319,10 @@ $('#id_check').css('color', 'red');
                       }).open(); 
                       } </script> 
                       </head>
+                      <%@ include file="../include/header.jsp"%>
                       <body> 
-                      <article class="container"> 
+                      <%@ include file="../include/menu.jsp"%>
+                      <article class="container padding_topbottom"> 
                       <div class="page-header"> 
                       <div class="col-md-6 col-md-offset-3"> 
                       <h3>회원가입</h3>
@@ -492,6 +498,7 @@ $('#id_check').css('color', 'red');
                        </div>
                        </section>
                        </div>
-                       </article>           
+                       </article> 
+                       <%@ include file="../include/footer.jsp"%>          
                        </body>
                        </html>
