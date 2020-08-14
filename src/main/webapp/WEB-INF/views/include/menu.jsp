@@ -51,7 +51,7 @@
 	                    </li>
 	                    </c:when>
 	                    <c:otherwise>
-	               		<li><a href="/member/readById/${sessionScope.memberId }">마이페이지</a></li>
+	               		<li><a href="/member/readById/${not empty sessionScope.memberId?sessionScope.memberId:"a" }">마이페이지</a></li>
 	                    </c:otherwise>
                     </c:choose>
 				

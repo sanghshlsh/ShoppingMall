@@ -49,11 +49,17 @@
 	<resources mapping="/ckeditor/**" location="/WEB-INF/views/ckeditor/" />
 
 	<beans:bean id="authinter" class="kr.co.inter.AuthInter"></beans:bean>
+	<beans:bean id="LoginAuthInter" class="kr.co.inter.LoginAuthInter"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/**"/>
 			<beans:ref bean="authinter"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/member/read*/**"/>
+			<beans:ref bean="LoginAuthInter"/>
+		</interceptor>
+
 	</interceptors>
 
 
