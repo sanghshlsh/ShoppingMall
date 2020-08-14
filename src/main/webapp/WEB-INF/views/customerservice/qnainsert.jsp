@@ -17,39 +17,68 @@
 <title>Insert title here</title>
 <script src="/resources/ckeditor/ckeditor.js"></script>
 <style>
-.inputArea { margin:10px 0; }
-select { width:100px; }
-label { display:inline-block; width:70px; padding:5px; }
-label[for='gdsDes'] { display:block; }
-input { width:150px; }
-textarea#gdsDes { width:400px; height:180px; }
+.inputArea {
+	margin: 10px 0;
+}
+
+select {
+	width: 100px;
+}
+
+label {
+	display: inline-block;
+	width: 70px;
+	padding: 5px;
+}
+
+label[for='gdsDes'] {
+	display: block;
+}
+
+input {
+	width: 150px;
+}
+
+textarea#gdsDes {
+	width: 400px;
+	height: 180px;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" flush="false" />
-	
+
 	<div class="titleArea">
-            <h2><font color="">Q&amp;A</font></h2>
-            <p>상품 Q&amp;A입니다.</p>
-        </div>
+		<h2>
+			<font color="">Q&amp;A</font>
+		</h2>
+		<p>상품 Q&amp;A입니다.</p>
+	</div>
+	<div class="container">
+		<form role="form" method="post" autocomplete="off">
 
-	<form role="form" method="post" autocomplete="off">
+			<div class="inputArea">
+				<label for="productName">상품이름</label> <input type="text"
+					id="productName" name="productName" />
+			</div>
+			<div class="inputArea">
+				<label for="qnaContent"></label>
+				<textarea rows="5" cols="50" id="qnaContent" name="gdsDes"></textarea>
+			</div>
+			<div class="inputArea">
+				<button type="submit" id="qnainsertbtn" class="btn btn-primary">등록</button>
+				<button id="qnabtn" class="btn btn-danger">목록</button>
+			</div>
 
-		<div class="inputArea">
-			<label for="productNo">상품번호</label> <input type="text" id="productNo"
-				name="productNo" />
-		</div>
-		<div class="inputArea">
-			<label for="qnaContent"></label>
-			<textarea rows="5" cols="50" id="qnaContent" name="gdsDes"></textarea>
-		</div>
-		<div class="inputArea">
-			<button type="submit" id="qnainsert_Btn" class="btn btn-primary">등록</button>
-		</div>
-
-	</form>
+		</form>
+	</div>
 
 	<script>
+		$("#qnainsertbtn").click(function(event) {
+		event.preventDefault();
+		var str = '';
+		});
+	
 		var ckeditor_config = {
 			resize_enaleb : false,
 			enterMode : CKEDITOR.ENTER_BR,

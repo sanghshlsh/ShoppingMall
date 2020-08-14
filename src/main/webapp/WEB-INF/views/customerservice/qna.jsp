@@ -51,6 +51,7 @@
 							<c:forEach items="${qnaList}" var="qdto">
 								<tr>
 									<td>${qdto.qnaNo}</td>
+									<td>${qdto.productName}</td>
 									<td><a href="/customerservice/qnaread/${qdto.qnaNo}">${qdto.qnaTitle}</a></td>
 									<td>${qdto.memberId}</td>
 									<td>${qdto.qnaRegDate}</td>
